@@ -16,6 +16,7 @@ module.exports = function() {
 	require('../app/routes/scrapbook.server.routes.js')(app);
 	require('../app/routes/post.server.routes.js')(app);
 	require('../app/routes/admin.server.routes.js')(app);
+	require('../app/routes/posts.server.routes.js')(app);
 
 	return app;
 };
