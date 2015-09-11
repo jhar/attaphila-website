@@ -1,0 +1,9 @@
+doctype html
+html
+	head
+		title Attaphila - All Posts
+	body
+		each val in allPosts
+			h1= val.title
+			p= val.body
+			img(src=val.coverPhotoURL)

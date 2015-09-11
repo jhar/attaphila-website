@@ -1,7 +1,12 @@
 var Post = require('mongoose').model('Posts');
 
 exports.create = function(req, res, next) {
-    var post = new Post(req.body);
+    var post = new Post({
+    	title: req.body.title,
+    	body: req.body.body,
+    	category: req.body.category,
+    	coverPhotoURL: req.body.coverPhotoURL
+    });
 
     post.save(function(err) {
         if (err) {
@@ -12,12 +17,13 @@ exports.create = function(req, res, next) {
     });
 };
 
-exports.list = function(req, res, next) {
-	Post.find({}, function(err, users) {
+exports.render = function(req, res) {
+	Post.find({}, function(err, posts) {
 		if (err) {
-			return next(err);
+			return err;
 		} else {
-			res.json(posts);
+			console.log(posts);
+			res.render('posts', { allPosts: posts });
 		}
 	});
 };

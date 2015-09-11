@@ -1,8 +1,17 @@
 var config = require('./config'),
-	express = require('express');
+	express = require('express'),
+	bodyParser = require('body-parser'),
+	methodOverride = require('method-override');
 
 module.exports = function() {
 	var app = express();
+
+	// Miscellaneous
+	app.use(bodyParser.urlencoded({
+		extended: true
+	}));
+	app.use(bodyParser.json());
+	app.use(methodOverride());
 
 	// For Jade
 	app.set('views', './app/views');
