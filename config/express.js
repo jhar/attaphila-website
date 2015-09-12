@@ -1,7 +1,8 @@
 var config = require('./config'),
 	express = require('express'),
 	bodyParser = require('body-parser'),
-	methodOverride = require('method-override');
+	methodOverride = require('method-override'),
+	session = require('express-session');
 
 module.exports = function() {
 	var app = express();
@@ -12,6 +13,12 @@ module.exports = function() {
 	}));
 	app.use(bodyParser.json());
 	app.use(methodOverride());
+	app.use(express.static('./public'));
+	app.use(session({
+		saveUninitialized: true,
+		resave: true,
+		secret: config.sessionSecret
+	}));
 
 	// For Jade
 	app.set('views', './app/views');

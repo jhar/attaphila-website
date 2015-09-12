@@ -18,6 +18,7 @@ exports.create = function(req, res, next) {
 };
 
 exports.render = function(req, res) {
+	console.log(req);
 	Post.find({}, function(err, posts) {
 		if (err) {
 			return err;

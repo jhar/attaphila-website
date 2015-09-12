@@ -5,4 +5,5 @@ module.exports = {
 	port: port,
 	ip_address: ip_address,
 	db: 'mongodb://localhost/posts',
+	sessionSecret: 'developmentSessionSecret'
 };
