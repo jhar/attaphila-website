@@ -28,3 +28,20 @@ exports.render = function(req, res) {
 		}
 	});
 };
+
+exports.read = function(req, res) {
+    res.json(req.posts);
+};
+
+exports.postsByCategory = function(req, res, next, category) {
+    Post.find({
+        category: category
+    }, function(err, posts) {
+        if (err) {
+            return next(err);
+        } else {
+            req.posts = posts;
+            next();
+        }
+    });
+};
