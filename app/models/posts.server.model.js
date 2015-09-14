@@ -12,7 +12,8 @@ var PostsSchema = new Schema({
 	},
 	category: {
 		type: String,
-		required: true
+		required: true,
+		enum: ['articles', 'blog', 'comics', 'media']
 	},
 	coverPhotoURL: String,
 	created: {
