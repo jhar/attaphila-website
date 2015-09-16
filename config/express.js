@@ -2,7 +2,8 @@ var config = require('./config'),
 	express = require('express'),
 	bodyParser = require('body-parser'),
 	methodOverride = require('method-override'),
-	session = require('express-session');
+	session = require('express-session'),
+	passport = require('passport');
 
 module.exports = function() {
 	var app = express();
@@ -23,6 +24,10 @@ module.exports = function() {
 	// For Jade
 	app.set('views', './app/views');
 	app.set('view engine', 'jade');
+
+	// For Passport
+	app.use(passport.initialize());
+	app.use(passport.session());
 
 	// Routes
 	require('../app/routes/index.server.routes.js')(app);
