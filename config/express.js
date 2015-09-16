@@ -3,6 +3,7 @@ var config = require('./config'),
 	bodyParser = require('body-parser'),
 	methodOverride = require('method-override'),
 	session = require('express-session'),
+	flash = require('connect-flash'),
 	passport = require('passport');
 
 module.exports = function() {
@@ -24,6 +25,9 @@ module.exports = function() {
 	// For Jade
 	app.set('views', './app/views');
 	app.set('view engine', 'jade');
+
+	// Message flashing
+	app.use(flash());
 
 	// For Passport
 	app.use(passport.initialize());

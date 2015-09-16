@@ -3,5 +3,8 @@ exports.render = function(req, res) {
 		console.log(req.session.lastVisit);
 	}
 	req.session.lastVisit = new Date();
-	res.render('index');
+	res.render('index', {
+		title: 'Attaphila',
+		username: req.user ? req.user.username : ''
+	});
 };

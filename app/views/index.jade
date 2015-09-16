@@ -7,14 +7,17 @@ html(lang="en")
 
 		p The main page clean, with central picture of Attaphila, and links to the other pages around it.  Actually, it could be an image of the cockroach in the center of the fungal garden (schematically drawn and stylized), and the links placed at four corners of the garden.
 
-		ul
-			li
-				a(href='/comics') Comics
-			li
-				a(href='/media') Media
-			li
-				a(href='/articles') What the labcoats are saying
-			li
-				a(href='/journal') Journal
+		if username
+			h2 Hello #{username}
+			a(href="/signout") Sign out
+
+		else
+			ul
+				li
+					a(href="/signin") Sign In
+				li
+					a(href="/signup") Sign Up
+
+
 
 

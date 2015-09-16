@@ -10,5 +10,9 @@ module.exports = function(app) {
 			failureFlash: true
 		}));
 
+	app.route('/signup')
+		.get(users.renderSignup)
+		.post(users.signup);
+
 	app.get('/signout', users.signout);
 };
