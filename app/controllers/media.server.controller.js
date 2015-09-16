@@ -1,3 +1,3 @@
 exports.render = function(req, res) {
-	res.render('photoalbum');
+	res.render('media');
 };
