@@ -30,7 +30,7 @@ module.exports = function() {
 	require('../app/routes/journal.server.routes.js')(app);
 	require('../app/routes/media.server.routes.js')(app);
 	require('../app/routes/comics.server.routes.js')(app);
-	require('../app/routes/post.server.routes.js')(app);
+	require('../app/routes/single.server.routes.js')(app);
 	require('../app/routes/admin.server.routes.js')(app);
 	require('../app/routes/posts.server.routes.js')(app);
 
