@@ -17,32 +17,6 @@ exports.create = function(req, res, next) {
     });
 };
 
-exports.render = function(req, res) {
-	Post.find({}).
-        sort({created: -1}).
-        exec(function(err, posts) {
-	       if (err) {
-			     return err;
-		   } else {
-		      console.log(posts);
-		      res.render('posts', { allPosts: posts });
-		  }
-        });
-};
-
 exports.read = function(req, res) {
     res.json(req.posts);
-};
-
-exports.postsByCategory = function(req, res, next, category) {
-    Post.find({category: category}).
-        sort({created: -1}).
-        exec(function(err, posts) {
-            if (err) {
-                return next(err);
-            } else {
-                req.posts = posts;
-                next();
-            }
-        });
 };

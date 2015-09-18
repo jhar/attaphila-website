@@ -1,12 +1,22 @@
 var posts = require('../../app/controllers/posts.server.controller');
+	Post = require('mongoose').model('Posts');
 
 module.exports = function(app) {
 	app.route('/posts')
-		.post(posts.create)
-		.get(posts.render);
+		.post(posts.create);
 
-	app.route('/posts/:category')
+	app.route('/:category')
 		.get(posts.read);
 
-	app.param('category', posts.postsByCategory);
+	app.param('category', function(req, res, next, category) {
+		Post.postsByCategory(category, function(err, posts) {
+			if (err) {
+                return next(err);
+            } else {
+                req.posts = posts;
+                next();
+            }
+		});
+	});
+
 };
