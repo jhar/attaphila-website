@@ -4,7 +4,7 @@ html(lang="en")
 		title= title
 	body
 		each message in messages
-			div(class="flash") message
+			div(class="flash")= message
 		form(action="/signup", method="post")
 			div
 				label User Name:
