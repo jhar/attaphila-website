@@ -5,6 +5,6 @@ exports.render = function(req, res) {
 	req.session.lastVisit = new Date();
 	res.render('index', {
 		title: 'Attaphila',
-		username: req.user ? req.user.username : ''
+		user: JSON.stringify(req.user)
 	});
 };
