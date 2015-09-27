@@ -14,16 +14,14 @@ var getErrorMessage = function(err) {
 
 exports.create = function(req, res, next) {
 
-    var post = new Post({
-    	title: req.body.title,
-    	body: req.body.body,
-    	category: req.body.category,
-    	coverPhotoURL: req.body.coverPhotoURL
-    });
+    var post = new Post(req.body);
+    article.creator = req.user;
 
     post.save(function(err) {
         if (err) {
-            return next(err);
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
         } else {
             res.json(post);
         }
