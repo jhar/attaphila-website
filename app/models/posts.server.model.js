@@ -19,6 +19,10 @@ var PostsSchema = new Schema({
 	created: {
 		type: Date,
 		default: Date.now
+	},
+	creator: {
+		type: Schema.ObjectId,
+		ref: 'User'
 	}
 });
 
