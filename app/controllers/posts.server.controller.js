@@ -15,7 +15,7 @@ var getErrorMessage = function(err) {
 exports.create = function(req, res, next) {
 
     var post = new Post(req.body);
-    article.creator = req.user;
+    post.creator = req.user;
 
     post.save(function(err) {
         if (err) {
