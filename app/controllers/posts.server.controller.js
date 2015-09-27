@@ -23,6 +23,20 @@ exports.postByID = function(req, res, next, id) {
 
 };
 
+exports.list = function(req, res) {
+
+    Post.find().sort('-created').exec(function(err, posts) {
+        if (err) {
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        } else {
+            res.json(posts);
+        }
+    });
+
+};
+
 exports.create = function(req, res, next) {
 
     var post = new Post(req.body);
@@ -40,22 +54,66 @@ exports.create = function(req, res, next) {
 
 };
 
-exports.list = function(req, res) {
-
-    Post.find().sort('-created').exec(function(err, posts) {
-        if (err) {
-            return res.status(400).send({
-                message: getErrorMessage(err)
-            });
-        } else {
-            res.json(posts);
-        }
-    });
-
-};
-
 exports.read = function(req, res) {
 
     res.json(req.posts);
 
 };
+
+exports.update = function(req, res) {
+
+    var post = req.post;
+    post.title = req.body.title;
+    post.content = req.body.content;
+
+    post.save(function(err) {
+        if (err) {
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        } else {
+            res.json(post);
+        }
+    });
+
+};
+
+exports.delete = function(req, res) {
+
+    var post = req.post;
+
+    post.remove(function(err) {
+        if (err) {
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        } else {
+            res.json(post);
+        }
+    });
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
