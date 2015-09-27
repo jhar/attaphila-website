@@ -43,6 +43,18 @@ exports.renderSignup = function(req,res,next) {
 	}
 };
 
+exports.requiresLogin = function(req, res, next) {
+
+	if (!req.isAuthenticated()) {
+		return res.status(401).send({
+			message: 'User is not logged in'
+		});
+	}
+
+	next();
+
+};
+
 exports.signup = function(req, res, next) {
 	if (!req.user) {
 		var user = new User(req.body);

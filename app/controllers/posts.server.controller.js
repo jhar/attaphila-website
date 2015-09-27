@@ -12,6 +12,18 @@ var getErrorMessage = function(err) {
 
 };
 
+exports.hasAuthorization = function(req, res, next) {
+
+    if (req.post.creator.id !== req.user.id) {
+        return res.status(403).sent({
+            message: 'User is not authorized'
+        });
+    }
+
+    next();
+
+};
+
 exports.postByID = function(req, res, next, id) {
 
     Post.findById(id).exec(function(err, post) {
@@ -93,27 +105,3 @@ exports.delete = function(req, res) {
     });
 
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
