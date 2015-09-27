@@ -12,6 +12,17 @@ var getErrorMessage = function(err) {
 
 };
 
+exports.postByID = function(req, res, next, id) {
+
+    Post.findById(id).exec(function(err, post) {
+        if (err) return next(err);
+        if (!post) return next(new Error('Failed to load post' + id));
+        req.post = post;
+        next();
+    });
+
+};
+
 exports.create = function(req, res, next) {
 
     var post = new Post(req.body);
@@ -24,6 +35,20 @@ exports.create = function(req, res, next) {
             });
         } else {
             res.json(post);
+        }
+    });
+
+};
+
+exports.list = function(req, res) {
+
+    Post.find().sort('-created').exec(function(err, posts) {
+        if (err) {
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        } else {
+            res.json(posts);
         }
     });
 
