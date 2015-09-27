@@ -24,7 +24,7 @@ exports.hasAuthorization = function(req, res, next) {
 
 };
 
-exports.postByID = function(req, res, next, id) {
+exports.postById = function(req, res, next, id) {
 
     Post.findById(id).exec(function(err, post) {
         if (err) return next(err);
