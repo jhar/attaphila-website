@@ -1,4 +1,4 @@
-var	users = require('../../app/controllers/users/server.controller'),
+var	users = require('../../app/controllers/users.server.controller'),
 	posts = require('../../app/controllers/posts.server.controller'),
 	Post = require('mongoose').model('Posts');
 

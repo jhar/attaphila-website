@@ -1,8 +1,9 @@
 {
-	"name": "zach_app",
-	"version": "1.0.0",
-	"dependencies": {
-		"angular": "latest",
-		"angular-route": "latest"
-	}
+  "name": "zach_app",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular": "latest",
+    "angular-resource": "~1.4.6",
+    "angular-route": "latest"
+  }
 }
