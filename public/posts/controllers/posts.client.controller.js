@@ -29,6 +29,30 @@ angular.module('posts').controller('PostsController',
 				});
 			};
 
+			$scope.update = function() {
+				$scope.post.$update(function() {
+					$location.path('posts/' + $scope.post._id);
+				}, function(errRes) {
+					$scope.error = errRes.data.message;
+				});
+			};
+
+			$scope.delete = function() {
+				if (post) {
+					post.$remove(function() {
+						for (var i in $scope.posts) {
+							if ($scope.posts[i] === post) {
+								$scope.posts.splice(i, 1);
+							}
+						}
+					});
+				} else {
+					$scope.post.$remove(function() {
+						$location.path('posts');
+					});
+				}
+			};
+
 		}
 	]
 );
