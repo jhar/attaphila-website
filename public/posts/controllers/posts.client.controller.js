@@ -19,6 +19,16 @@ angular.module('posts').controller('PostsController',
 
 			};
 
+			$scope.find = function() {
+				$scope.posts = Posts.query();
+			};
+
+			$scope.findOne = function() {
+				$scope.post = Posts.get({
+					postId: $routeParams.postId
+				});
+			};
+
 		}
 	]
 );
