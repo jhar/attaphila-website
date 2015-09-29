@@ -3,9 +3,6 @@ angular.module('example').config(['$routeProvider',
 		$routeProvider
 			.when('/', {
 				templateUrl: 'example/views/example.client.view.html'
-			})
-			.otherwise({
-				redirectTo: '/'
 			});
 	}
 ]);
