@@ -22,14 +22,8 @@ var PostsSchema = new Schema({
 	},
 	creator: {
 		type: Schema.ObjectId,
-		ref: 'User'
+		ref: 'Users'
 	}
 });
-
-PostsSchema.statics.postsByCategory = function (category, callback) {
-	this.find({category: category}).
-		sort({created: -1}).
-		exec(callback);
-};
 
 mongoose.model('Posts', PostsSchema);
