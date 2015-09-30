@@ -8,6 +8,7 @@ angular.module('posts').controller('PostsController',
 
 				var post = new Posts({
 					title: this.title,
+					category: this.category,
 					content: this.content
 				});
 

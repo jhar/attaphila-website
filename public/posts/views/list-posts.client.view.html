@@ -1,4 +1,4 @@
-<section data-ng-controller="PostsController" data-ng- init="find()">
+<section data-ng-controller="PostsController" data-ng-init="find()">
  	<h1>Posts</h1>
   	<ul>
 		<li data-ng-repeat="post in posts">
@@ -6,7 +6,7 @@
       		<br>
 			<small data-ng-bind="post.created | date:'medium'"></small>
 			<small>/</small>
-			<small data-ng-bind="post.creator.fullName"></small>
+			<small data-ng-bind="post.creator.username"></small>
 			<p data-ng-bind="post.content"></p>
 		</li>
 	</ul>
