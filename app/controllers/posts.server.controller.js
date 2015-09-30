@@ -26,7 +26,7 @@ exports.hasAuthorization = function(req, res, next) {
 
 exports.postById = function(req, res, next, id) {
 
-    Post.findById(id).exec(function(err, post) {
+    Post.findById(id).populate('creator', 'username').exec(function(err, post) {
         if (err) return next(err);
         if (!post) return next(new Error('Failed to load post' + id));
         req.post = post;
@@ -37,7 +37,7 @@ exports.postById = function(req, res, next, id) {
 
 exports.list = function(req, res) {
 
-    Post.find().sort('-created').exec(function(err, posts) {
+    Post.find().sort('-created').populate('creator', 'username').exec(function(err, posts) {
         if (err) {
             return res.status(400).send({
                 message: getErrorMessage(err)
@@ -68,7 +68,7 @@ exports.create = function(req, res, next) {
 
 exports.read = function(req, res) {
 
-    res.json(req.posts);
+    res.json(req.post);
 
 };
 
