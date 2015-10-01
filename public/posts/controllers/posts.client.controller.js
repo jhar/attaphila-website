@@ -38,7 +38,7 @@ angular.module('posts').controller('PostsController',
 				});
 			};
 
-			$scope.delete = function() {
+			$scope.delete = function(post) {
 				if (post) {
 					post.$remove(function() {
 						for (var i in $scope.posts) {
