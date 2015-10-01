@@ -2,7 +2,7 @@ angular.module('posts').controller('PostsController',
 	['$scope', '$routeParams', '$location', 'Authentication', 'Posts',
 		function($scope, $routeParams, $location, Authentication, Posts) {
 
-			$scope.Authentication = Authentication;
+			$scope.authentication = Authentication;
 
 			$scope.create = function() {
 

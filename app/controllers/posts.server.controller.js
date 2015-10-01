@@ -14,6 +14,8 @@ var getErrorMessage = function(err) {
 
 exports.hasAuthorization = function(req, res, next) {
 
+    console.log(req.post);
+
     if (req.post.creator.id !== req.user.id) {
         return res.status(403).sent({
             message: 'User is not authorized'
