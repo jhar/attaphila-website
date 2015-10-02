@@ -1,9 +1,6 @@
 angular.module('posts').config(['$routeProvider',
 	function($routeProvider) {
     	$routeProvider
-    	.when('/', {
-    		templateUrl: 'posts/views/list-posts.client.view.html'
-    	})
     	.when('/posts', {
 			templateUrl: 'posts/views/list-posts.client.view.html'
 		})

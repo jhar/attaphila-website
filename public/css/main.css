@@ -1,7 +1,7 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@import url(https://fonts.googleapis.com/css?family=Special+Elite);
 
 body {
-	font-family: Roboto;
+	font-family: 'Special Elite', cursive;
 }
 
 html, .container-fluid {
@@ -14,13 +14,13 @@ html, .container-fluid {
 .hero {
 	background: no-repeat center right;
 	background-image: url('/img/attaphila2Desaturated.png');
-	background-size: contain;
+	background-size: cover;
 	height: 500px;
 }
 
 .navigation {
-	background-color: #fdb463;
-	box-shadow: 0px 1px 1px 1px gray;
+	background-color: white;
+	box-shadow: 0px 1px 1px 0px gray;
 	bottom: 0;
 	margin: 0;
 	padding: 1em;
@@ -29,4 +29,14 @@ html, .container-fluid {
 	height: 50px;
 	width: 100%;
 	z-index: 2;
+}
+
+.navbar-icon {
+	float: left;
+	padding: 5px 0 5px 15px;
+}
+
+.navbar-icon>img {
+	max-width: 40px;
+	max-height: 40px;
 }

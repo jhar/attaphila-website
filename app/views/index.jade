@@ -7,8 +7,21 @@ html(lang="en", xmlns:ng="http://angularjs.org")
 		link(rel="stylesheet", media="screen", href="/css/main.css")
 	body(class="container-fluid")
 		section(class="hero")
-			div(class="navigation row")
-				span Attaphila Fungicola
+
+		nav(class="navbar navbar-default row")
+			div(class="navbar-header")
+				a(class="navbar-icon" href="/")
+					img(src="/img/attaBrand.png")
+				ul(class="nav navbar-nav")
+					li
+						a(href="/articles") articles
+					li
+						a(href="/blog") blog
+					li
+						a(href="/comics") comics
+					li
+						a(href="/media") media
+
 
 		section(ng-view)
 
