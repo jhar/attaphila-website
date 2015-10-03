@@ -1,6 +1,5 @@
 var	users = require('../../app/controllers/users.server.controller'),
-	posts = require('../../app/controllers/posts.server.controller'),
-	Post = require('mongoose').model('Posts');
+	posts = require('../../app/controllers/posts.server.controller');
 
 module.exports = function(app) {
 	app.route('/api/posts')
@@ -12,6 +11,11 @@ module.exports = function(app) {
 		.put(users.requiresLogin, posts.hasAuthorization, posts.update)
 		.delete(users.requiresLogin, posts.hasAuthorization, posts.delete);
 
+	app.route('/api/:category')
+		.get(posts.read);
+
 	app.param('postId', posts.postById);
+
+	app.param('category', posts.listByCategory);
 
 };
