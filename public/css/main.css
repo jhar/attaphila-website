@@ -13,7 +13,7 @@ html, .container-fluid {
 
 .hero {
 	background: no-repeat center right;
-	background-image: url('/img/attaphila2Desaturated.png');
+	background-image: url('/img/attaphila2DesaturatedText.jpg');
 	background-size: cover;
 	height: 500px;
 }

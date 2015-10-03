@@ -7,10 +7,13 @@ angular.module('posts').config(['$routeProvider',
 		.when('/posts/create', {
 			templateUrl: 'posts/views/create-post.client.view.html'
 		})
-		.when('/posts/:postId', {
+		.when('/posts/:category', {
+			templateUrl: 'posts/views/list-category.client.view.html'
+		})
+		.when('/posts/:category/:postId', {
 			templateUrl: 'posts/views/view-post.client.view.html'
 		})
-		.when('/posts/:postId/edit', {
+		.when('/posts/:category/:postId/edit', {
 			templateUrl: 'posts/views/edit-post.client.view.html'
 		});
 	}

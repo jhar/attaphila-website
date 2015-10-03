@@ -13,7 +13,7 @@ angular.module('posts').controller('PostsController',
 				});
 
 				post.$save(function(res) {
-					$location.path('posts/' + res._id);
+					$location.path('posts/' + res.category + "/" + res._id);
 				}, function(errRes) {
 					$scope.error = errRes.data.message;
 				});
@@ -26,13 +26,20 @@ angular.module('posts').controller('PostsController',
 
 			$scope.findOne = function() {
 				$scope.post = Posts.get({
+					category: $routeParams.category,
 					postId: $routeParams.postId
+				});
+			};
+
+			$scope.findCategory = function() {
+				$scope.posts = Posts.query({
+					category: $routeParams.category
 				});
 			};
 
 			$scope.update = function() {
 				$scope.post.$update(function() {
-					$location.path('posts/' + $scope.post._id);
+					$location.path('posts/' + $scope.post.category + "/" + $scope.post._id);
 				}, function(errRes) {
 					$scope.error = errRes.data.message;
 				});

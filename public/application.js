@@ -18,20 +18,18 @@ angular.element(document).ready(function() {
 
 $(window).scroll(function () {
 	var scrollTop = $(window).scrollTop();
-    var top = $('.navigation').offset().top;
+    var top = $('.navbar').offset().top;
     var bottom = 450;
-    console.log(scrollTop + " " + top);
 
     if (scrollTop > top) {
-    	console.log("here");
         //when the header reaches the top of the window change position to fixed
-        $('.navigation').css('position', 'fixed');
-        $('.navigation').css('top', 0);
+        $('.navbar').css('position', 'fixed');
+        $('.navbar').css('top', 0);
     }
 
     if (scrollTop < bottom) {
-    	$('.navigation').css('position', 'absolute');
-    	$('.navigation').css('top', 450);
+    	$('.navbar').css('position', 'absolute');
+    	$('.navbar').css('top', 450);
     }
 
 });

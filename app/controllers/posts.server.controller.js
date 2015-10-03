@@ -53,15 +53,14 @@ exports.list = function(req, res) {
 
 exports.listByCategory = function(req, res, next, cat) {
 
-    console.log("listByCategory was called");
-
     Post.find({category: cat}).sort('-created').populate('creator', 'username').exec(function(err, posts) {
         if (err) {
             return res.status(400).send({
                 message: getErrorMessage(err)
             });
         } else {
-            res.json(posts);
+            req.post = posts;
+            next();
         }
     });
 

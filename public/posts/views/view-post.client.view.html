@@ -1,7 +1,7 @@
 <section data-ng-controller="PostsController" data-ng-init="findOne()">
 	<h1 data-ng-bind="post.title"></h1>
 	<div data-ng-show="authentication.user._id == post.creator._id">
-		<a href="#!/posts/{{post._id}}/edit">edit</a>
+		<a href="#!/posts/{{post.category}}/{{post._id}}/edit">edit</a>
 		<a href="#" data-ng-click="delete();">delete</a>
 	</div>
 	<small>
