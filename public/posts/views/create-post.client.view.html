@@ -1,32 +1,47 @@
-<section data-ng-controller="PostsController">
-	<h1>New Post</h1>
-	<form data-ng-submit="create()" novalidate>
-		<div>
-			<label for="title">Title</label>
+<section class="container-fluid" data-ng-controller="PostsController">
+	<div class="col-xs-12 col-sm-6">
+		<h1>New Post</h1>
+		<form data-ng-submit="create()" novalidate>
 			<div>
-				<input type="text" data-ng-model="title" id="title" placeholder="Title" required>
+				<label for="title">Title</label>
+				<div>
+					<input type="text" data-ng-model="title" id="title" placeholder="Title" required>
+				</div>
 			</div>
-		</div>
-		<div>
-			<label for="category">Category</label>
-			<select data-ng-model="category" id="category">
-				<option value="articles">Articles</option>
-				<option value="blog">Blog</option>
-				<option value="comics">Comics</option>
-				<option value="media">Media</option>
-			</select>
-		</div>
-		<div>
-			<label for="content">Content</label>
 			<div>
-				<textarea data-ng-model="content" id="content" cols="30" rows="10" placeholder="Content" required></textarea>
+				<label for="category">Category</label>
+				<br>
+				<select data-ng-model="category" id="category">
+					<option value="articles">Articles</option>
+					<option value="blog">Blog</option>
+					<option value="comics">Comics</option>
+					<option value="media">Media</option>
+				</select>
 			</div>
-		</div>
-		<div>
-			<input type="submit">
-		</div>
-		<div data-ng-show="error">
-			<strong data-ng-bind="error"></strong>
-		</div>
-	</form>
+			<div>
+				<label for="content">Content</label>
+				<div>
+					<textarea data-ng-model="content" id="content" cols="30" rows="10" placeholder="Content" required></textarea>
+				</div>
+			</div>
+			<div>
+				<input type="submit">
+			</div>
+			<div data-ng-show="error">
+				<strong data-ng-bind="error"></strong>
+			</div>
+		</form>
+	</div>
+	<div class="col-xs-12 col-sm-6">
+		<h1>Upload Images</h1>
+		<input type="file" nv-file-select uploader="uploader">
+		<br>
+		<ul>
+			<li ng-repeat="item in uploader.queue">
+				Name: <span ng-bind="item.file.name"></span><br/>
+				<button ng-click="item.upload()">upload</button>
+			</li>
+		</ul>
+		More to do here later
+	</div>
 </section>

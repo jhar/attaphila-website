@@ -5,6 +5,7 @@
     "angular": "latest",
     "angular-resource": "~1.4.6",
     "angular-route": "latest",
-    "bootstrap": "~3.3.5"
+    "bootstrap": "~3.3.5",
+    "angular-file-upload": "~2.1.4"
   }
 }

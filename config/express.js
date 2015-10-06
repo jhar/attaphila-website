@@ -4,7 +4,9 @@ var config = require('./config'),
 	methodOverride = require('method-override'),
 	session = require('express-session'),
 	flash = require('connect-flash'),
-	passport = require('passport');
+	passport = require('passport'),
+	multer = require('multer'),
+	upload = multer({ dest: 'uploads/' });
 
 module.exports = function() {
 	var app = express();
@@ -32,6 +34,11 @@ module.exports = function() {
 	// For Passport
 	app.use(passport.initialize());
 	app.use(passport.session());
+
+	app.post('/uploads', upload.single('file'), function(req, res, next) {
+		console.log(req.file);
+	});
+
 
 	// Routes
 	require('../app/routes/index.server.routes.js')(app);

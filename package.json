@@ -17,6 +17,7 @@
     "jade": "^1.11.0",
     "method-override": "^2.3.5",
     "mongoose": "^4.1.2",
+    "multer": "^1.0.6",
     "passport": "^0.2.2",
     "passport-local": "latest"
   }

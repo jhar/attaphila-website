@@ -1,6 +1,6 @@
 var mainAppModuleName = 'attaphila';
 
-var mainAppModule = angular.module(mainAppModuleName, ['ngResource', 'ngRoute', 'users', 'example', 'posts']);
+var mainAppModule = angular.module(mainAppModuleName, ['ngResource', 'ngRoute', 'angularFileUpload', 'users', 'example', 'posts']);
 
 mainAppModule.config(['$locationProvider',
 	function($locationProvider) {

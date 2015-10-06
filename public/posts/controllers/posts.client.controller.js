@@ -1,8 +1,11 @@
 angular.module('posts').controller('PostsController',
-	['$scope', '$routeParams', '$location', 'Authentication', 'Posts',
-		function($scope, $routeParams, $location, Authentication, Posts) {
+	['$scope', '$routeParams', '$location', 'Authentication', 'FileUploader', 'Posts',
+		function($scope, $routeParams, $location, Authentication, FileUploader, Posts) {
 
 			$scope.authentication = Authentication;
+			$scope.uploader = new FileUploader({
+				url: "uploads/"
+			});
 
 			$scope.create = function() {
 
