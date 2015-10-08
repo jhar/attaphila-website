@@ -7,7 +7,8 @@ module.exports = function(app) {
 		.post(users.requiresLogin, posts.create);
 
 	app.route('/api/posts/:category')
-		.get(posts.read);
+		.get(posts.read)
+		.post(users.requiresLogin, posts.create);
 
 	app.route('/api/posts/:category/:postId')
 		.get(posts.read)
