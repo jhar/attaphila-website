@@ -3,9 +3,14 @@ angular.module('posts').controller('PostsController',
 		function($scope, $routeParams, $location, Authentication, FileUploader, Posts) {
 
 			$scope.authentication = Authentication;
-			$scope.uploader = new FileUploader({
-				url: "uploads/"
-			});
+			var uploader = $scope.uploader = new FileUploader({
+	            url: 'uploads/'
+	        });
+
+	        uploader.onSuccessItem = function(fileItem, response, status, headers) {
+	            console.info('onSuccessItem', fileItem, response, status, headers);
+	            fileItem.message = response.message;
+	        };
 
 			$scope.create = function() {
 

@@ -39,7 +39,13 @@
 		<ul>
 			<li ng-repeat="item in uploader.queue">
 				Name: <span ng-bind="item.file.name"></span><br/>
-				<button ng-click="item.upload()">upload</button>
+				<button ng-click="item.upload()">upload</button><br>
+				<span ng-show="item.isSuccess">
+					Successfully uploaded to:<br>
+					<span ng-bind="item.message"></span>
+				</span>
+                <span ng-show="item.isCancel">Canceled</span>
+                <span ng-show="item.isError">Error</span>
 			</li>
 		</ul>
 		More to do here later

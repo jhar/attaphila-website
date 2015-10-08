@@ -37,6 +37,13 @@ module.exports = function() {
 
 	app.post('/uploads', upload.single('file'), function(req, res, next) {
 		console.log(req.file);
+		if (!req.file) {
+			next();
+		} else {
+			return res.status(201).send({
+				message: req.file.path
+			});
+		}
 	});
 
 
