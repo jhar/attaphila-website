@@ -2,6 +2,7 @@
 
 body {
 	font-family: 'Special Elite', cursive;
+	min-width: 350px;
 }
 
 html, .container-fluid {
@@ -14,16 +15,15 @@ html, .container-fluid {
 .hero {
 	background: no-repeat center right;
 	background-image: url('/img/attaphila2DesaturatedText.jpg');
-	background-size: cover;
+	background-size: contain;
 	height: 500px;
 }
 
-.navigation {
+.navbar {
 	background-color: white;
 	box-shadow: 0px 1px 1px 0px gray;
 	bottom: 0;
 	margin: 0;
-	padding: 1em;
 	position: absolute;
 	top: 450px;
 	height: 50px;
@@ -31,12 +31,27 @@ html, .container-fluid {
 	z-index: 2;
 }
 
-.navbar-icon {
-	float: left;
-	padding: 5px 0 5px 15px;
+.header2 {
+	font-size: 16px;
+	margin-top: 15px;
 }
 
-.navbar-icon>img {
-	max-width: 40px;
-	max-height: 40px;
+.navbar-icon > img {
+	width: 40px;
+	height: 40px;
+	margin: 5px 0 5px 15px;
 }
+
+.header2 > a {
+	margin-right: 15px;
+}
+
+.navbar-link {
+	margin-right: 15px;
+	padding-top: 15px;
+}
+
+.ng-scope {
+	margin-bottom: 1000px;
+}
+

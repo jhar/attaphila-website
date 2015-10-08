@@ -19,6 +19,11 @@
 				</select>
 			</div>
 			<div>
+				<label for="coverPhotoURL">Cover Photo URL</label>
+				<br>
+				<input type="text" data-ng-model="coverPhotoURL" id="coverPhotoURL" placeholder="Cover Photo URL">
+			</div>
+			<div>
 				<label for="content">Content</label>
 				<div>
 					<textarea data-ng-model="content" id="content" cols="30" rows="10" placeholder="Content" required></textarea>
@@ -36,18 +41,16 @@
 		<h1>Upload Images</h1>
 		<input type="file" nv-file-select uploader="uploader">
 		<br>
-		<ul>
-			<li ng-repeat="item in uploader.queue">
-				Name: <span ng-bind="item.file.name"></span><br/>
-				<button ng-click="item.upload()">upload</button><br>
-				<span ng-show="item.isSuccess">
-					Successfully uploaded to:<br>
-					<span ng-bind="item.message"></span>
-				</span>
-                <span ng-show="item.isCancel">Canceled</span>
-                <span ng-show="item.isError">Error</span>
-			</li>
-		</ul>
+		<div ng-repeat="item in uploader.queue">
+			Name: <span ng-bind="item.file.name"></span><br/>
+			<button ng-click="item.upload()">upload</button><br>
+			<span ng-show="item.isSuccess">
+				Successfully uploaded to:<br>
+				<span ng-bind="item.message"></span>
+			</span>
+            <span ng-show="item.isCancel">Canceled</span>
+            <span ng-show="item.isError">Error</span>
+		</div>
 		More to do here later
 	</div>
 </section>

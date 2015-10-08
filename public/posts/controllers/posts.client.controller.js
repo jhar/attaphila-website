@@ -4,7 +4,7 @@ angular.module('posts').controller('PostsController',
 
 			$scope.authentication = Authentication;
 			var uploader = $scope.uploader = new FileUploader({
-	            url: 'uploads/'
+	            url: 'public/img/'
 	        });
 
 	        uploader.onSuccessItem = function(fileItem, response, status, headers) {
@@ -17,7 +17,8 @@ angular.module('posts').controller('PostsController',
 				var post = new Posts({
 					title: this.title,
 					category: this.category,
-					content: this.content
+					content: this.content,
+					coverPhotoURL: this.coverPhotoURL
 				});
 
 				post.$save(function(res) {
