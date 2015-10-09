@@ -1,6 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Special+Elite);
 
 body {
+	background-image: url("/img/roachface.png");
+	background-size: cover;
+	background-repeat: no-repeat;
 	font-family: 'Special Elite', cursive;
 	min-width: 350px;
 }
@@ -12,21 +15,15 @@ html, .container-fluid {
 	width: 100%;
 }
 
-.hero {
-	background: no-repeat center right;
-	background-image: url('/img/attaphila2DesaturatedText.jpg');
-	background-size: contain;
-	height: 500px;
-}
+/* Navigation Bar */
 
 .navbar {
 	background-color: white;
 	box-shadow: 0px 1px 1px 0px gray;
-	bottom: 0;
 	margin: 0;
-	position: absolute;
-	top: 450px;
+	position: fixed;
 	height: 50px;
+	top: 0;
 	width: 100%;
 	z-index: 2;
 }
@@ -51,7 +48,9 @@ html, .container-fluid {
 	padding-top: 15px;
 }
 
-.ng-scope {
-	margin-bottom: 1000px;
+/* Angular App */
+
+section.ng-scope {
+	margin-top: 75px;
 }
 

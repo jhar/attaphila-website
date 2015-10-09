@@ -14,7 +14,7 @@ angular.element(document).ready(function() {
 	angular.bootstrap(document, [mainAppModuleName]);
 });
 
-// Stick title bar to top
+/* Stick title bar to top - not necessary if no hero element
 
 $(window).scroll(function () {
 	var scrollTop = $(window).scrollTop();
@@ -33,3 +33,5 @@ $(window).scroll(function () {
     }
 
 });
+
+*/
