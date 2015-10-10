@@ -1,56 +1,18 @@
 @import url(https://fonts.googleapis.com/css?family=Special+Elite);
 
 body {
-	background-image: url("/img/roachface.png");
-	background-size: cover;
-	background-repeat: no-repeat;
 	font-family: 'Special Elite', cursive;
 	min-width: 350px;
 }
 
 html, .container-fluid {
+	margin: auto;
 	overflow-x: hidden;
-	max-width: 100%;
+	max-width: 1024px;
 	padding: 0;
 	width: 100%;
 }
 
-/* Navigation Bar */
 
-.navbar {
-	background-color: white;
-	box-shadow: 0px 1px 1px 0px gray;
-	margin: 0;
-	position: fixed;
-	height: 50px;
-	top: 0;
-	width: 100%;
-	z-index: 2;
-}
 
-.header2 {
-	font-size: 16px;
-	margin-top: 15px;
-}
-
-.navbar-icon > img {
-	width: 40px;
-	height: 40px;
-	margin: 5px 0 5px 15px;
-}
-
-.header2 > a {
-	margin-right: 15px;
-}
-
-.navbar-link {
-	margin-right: 15px;
-	padding-top: 15px;
-}
-
-/* Angular App */
-
-section.ng-scope {
-	margin-top: 75px;
-}
 

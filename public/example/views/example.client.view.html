@@ -1,14 +1,58 @@
 <section ng-controller="ExampleController">
-	<div data-ng-show="!authentication.user || authentication.user == 'null'">
-		<a href="/signup">Signup</a>
-		<a href="/signin">Signin</a>
+
+	<div class="container-fluid">
+
+		<div class="row title text-center">
+			<div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
+			</div>
+			<div class="col-xs-8 col-sm-6 col-md-6 col-lg-6">
+				<h2>Attaphila Fungicola.</h2>
+				<h5>Cockroach extraordinaire</h5>
+			</div>
+			<div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
+			</div>
+		</div>
+
+		<div class="row image">
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+			</div>
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+				<img class="img-responsive img-circle" src="/img/attafront.png" />
+			</div>
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+			</div>
+		</div>
+
+		<div class="well row">
+			<div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
+			</div>
+			<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+				<div>
+					<img class="img-responsive" src="/img/labcoat.png" />
+				</div>
+			</div>
+			<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+				<h2>What the labcoats are saying...</h2>
+				<h6>Scholarly articles on Attaphila and other related topics.</h6>
+			</div>
+			<div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
+			</div>
+		</div>
+
+		<div class="row text-center">
+			<div class="col-xs-12" data-ng-show="!authentication.user || authentication.user == 'null'">
+				<a href="/signup">Signup</a><br>
+				<a href="/signin">Signin</a>
+			</div>
+			<div class="col-xs-12" data-ng-show="authentication.user && authentication.user != 'null'">
+				<h3>Hello <span data-ng-bind="authentication.user.username"></span></h3>
+				<a href="/signout">Signout</a><br>
+				<a href="/#!/posts/create">Create Post</a><br>
+				<a href="/#!/posts/">List All Posts</a>
+			</div>
+		</div>
+
+
 	</div>
-	<div data-ng-show="authentication.user && authentication.user != 'null'">
-		<h1>Hello <span data-ng-bind="authentication.user.username"></span></h1>
-		<a href="/signout">Signout</a>
-		<ul>
-			<li><a href="/#!/posts">List Posts</a></li>
-			<li><a href="/#!/posts/create">Create Post</a></li>
-		</ul>
-	</div>
+
 </section>
