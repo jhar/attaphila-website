@@ -13,7 +13,7 @@ var PostsSchema = new Schema({
 	category: {
 		type: String,
 		required: true,
-		enum: ['articles', 'blog', 'comics', 'media']
+		enum: ['articles', 'journal', 'photoalbum', 'scrapbook']
 	},
 	coverPhotoURL: String,
 	created: {
