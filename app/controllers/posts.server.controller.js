@@ -14,8 +14,6 @@ var getErrorMessage = function(err) {
 
 exports.hasAuthorization = function(req, res, next) {
 
-    console.log(req.post);
-
     if (req.post.creator.id !== req.user.id) {
         return res.status(403).sent({
             message: 'User is not authorized'
@@ -93,7 +91,9 @@ exports.update = function(req, res) {
 
     var post = req.post;
     post.title = req.body.title;
+    post.category = req.body.category;
     post.content = req.body.content;
+    post.coverPhotoURL = req.body.coverPhotoURL;
 
     post.save(function(err) {
         if (err) {

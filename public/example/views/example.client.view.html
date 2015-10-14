@@ -1,15 +1,24 @@
-<section ng-controller="ExampleController">
-
-	<div class="container-fluid">
+<section class="container-fluid" ng-controller="ExampleController">
 
 		<div class="row title text-center">
 			<div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
 			</div>
 			<div class="col-xs-8 col-sm-6 col-md-6 col-lg-6">
 				<h2>Attaphila Fungicola.</h2>
-				<h5>Cockroach extraordinaire</h5>
+				<h4>AKA Ant Cockroach</h4>
 			</div>
 			<div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
+			</div>
+		</div>
+
+		<div class="row links">
+			<div class="col-xs-6 col-sm-5 col-md-4 col-lg-4">
+				<a class="btn btn-link btn-lg pull-right" href="#!/posts/scrapbook">Scrapbook</a>
+			</div>
+			<div class="col-xs-0 col-sm-2 col-md-4 col-lg-4">
+			</div>
+			<div class="col-xs-6 col-sm-5 col-md-4 col-lg-4">
+				<a class="btn btn-link btn-lg pull-left" href="#!/posts/photoalbum">Photo Album</a>
 			</div>
 		</div>
 
@@ -17,85 +26,27 @@
 			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 			</div>
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-				<img class="img-responsive img-circle" src="/img/attafront.png" />
+				<img class="img-responsive attaphila" src="/img/attaphila.png" />
 			</div>
 			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 			</div>
 		</div>
 
-		<div class="well row">
-			<div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
+		<div class="row links">
+			<div class="col-xs-6 col-sm-5 col-md-4 col-lg-4">
+				<a class="btn btn-link btn-lg pull-right" href="#!/posts/articles">Articles</a>
 			</div>
-			<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-				<div>
-					<img class="img-responsive" src="" alt="Scrapbook" />
-				</div>
+			<div class="col-xs-0 col-sm-2 col-md-4 col-lg-4">
 			</div>
-			<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-				<h2>Scrapbook</h2>
-				<h6>Miscellany associated with Attaphila or cockroaches. Links to weird cockroach related stuff.</h6>
-				<a class="btn btn-default" href="#!/posts/scrapbook">Open the scrapbook</a>
-			</div>
-			<div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
+			<div class="col-xs-6 col-sm-5 col-md-4 col-lg-4">
+				<a class="btn btn-link btn-lg pull-left" href="#!/posts/journal">Journal</a>
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
-			</div>
-			<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-				<div>
-					<img class="img-responsive" src="" alt="Photo Album" />
-				</div>
-			</div>
-			<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-				<h2>Photo Album</h2>
-				<h6>Pictures and videos of Attaphila</h6>
-				<a class="btn btn-default" href="#!/posts/photoalbum">Browse the album</a>
-			</div>
-			<div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
-			</div>
-		</div>
-
-		<div class="well row">
-			<div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
-			</div>
-			<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-				<div>
-					<img class="img-responsive" src="/img/labcoat.png" alt="Scientist" />
-				</div>
-			</div>
-			<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-				<h2>What the labcoats are saying...</h2>
-				<h6>Scholarly articles on Attaphila and other related topics.</h6>
-				<a class="btn btn-default" href="#!/posts/articles">Read the articles</a>
-			</div>
-			<div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
-			</div>
-		</div>
-
-
-		<div class="row">
-			<div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
-			</div>
-			<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-				<div>
-					<img class="img-responsive" src="" alt="Journal" />
-				</div>
-			</div>
-			<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-				<h2>Journal</h2>
-				<h6>Weird stuff from the mouth of Attaphila. Who knows what Attaphila will say.</h6>
-				<a class="btn btn-default" href="#!/posts/journal">See the journal</a>
-			</div>
-			<div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
-			</div>
-		</div>
-
-		<div class="well row text-center">
+		<footer class="row well text-center">
 			<div class="col-xs-12" data-ng-show="!authentication.user || authentication.user == 'null'">
-				<a href="/signup">Signup</a><br>
-				<a href="/signin">Signin</a>
+				Are you Zach? Then
+				<a href="/signin">Sign In</a>!
 			</div>
 			<div class="col-xs-12" data-ng-show="authentication.user && authentication.user != 'null'">
 				<h3>Hello <span data-ng-bind="authentication.user.username"></span></h3>
@@ -103,9 +54,6 @@
 				<a href="/#!/posts/create">Create Post</a><br>
 				<a href="/#!/posts/">List All Posts</a>
 			</div>
-		</div>
-
-
-	</div>
+		</footer>
 
 </section>

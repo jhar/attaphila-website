@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Special+Elite);
 
+article {
+	margin-bottom: 40px;
+}
+
 body {
 	font-family: 'Special Elite', cursive;
 	min-width: 350px;
@@ -8,10 +12,42 @@ body {
 html, .container-fluid {
 	margin: auto;
 	overflow-x: hidden;
-	max-width: 1024px;
 	padding: 0;
 	width: 100%;
 }
+
+.attaphila {
+	margin-left: auto;
+	margin-right: auto;
+	max-height: 750px;
+}
+
+.cover-photo {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.links {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.page {
+	margin: 5%;
+}
+
+.media {
+	max-width: 1024px;
+}
+
+.media-object {
+	max-width: 128px;
+}
+
+.well {
+	margin-bottom: 0;
+}
+
 
 
 

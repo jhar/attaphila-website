@@ -1,23 +1,60 @@
-<section data-ng-controller="PostsController" data-ng-init="findOne()">
-    <h1>Edit Post</h1>
-    <form data-ng-submit="update()" novalidate>
-    <div>
-        <label for="title">Title</label>
-        <div>
-            <input type="text" data-ng-model="post.title" id="title" placeholder="Title" required>
+<section class="page" data-ng-controller="PostsController" data-ng-init="findOne()">
+
+    <div class="col-xs-12 col-sm-6">
+        <h1>Edit Post</h1>
+        <form data-ng-submit="update()" novalidate>
+            <div>
+                <label for="title">Title</label>
+                <div>
+                    <input type="text" data-ng-model="post.title" id="title" placeholder="Title" required>
+                </div>
+            </div>
+            <div>
+                <label for="category">Category</label>
+                <br>
+                <select data-ng-model="post.category" id="category">
+                    <option value="articles">Articles</option>
+                    <option value="journal">Journal</option>
+                    <option value="scrapbook">Scrapbook</option>
+                    <option value="photoalbum">Photo Album</option>
+                </select>
+            </div>
+            <div>
+                <label for="coverPhotoURL">Cover Photo URL</label>
+                <br>
+                <input type="text" data-ng-model="post.coverPhotoURL" id="coverPhotoURL" placeholder="Cover Photo URL">
+            </div>
+            <div>
+                <label for="content">Content</label>
+                <div>
+                    <textarea data-ng-model="post.content" id="content" cols="30" rows="10" placeholder="Content"></textarea>
+                </div>
+            </div>
+
+            <div>
+                <input type="submit" value="Update">
+            </div>
+
+            <div data-ng-show="error">
+                <strong data-ng-bind="error"></strong>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-xs-12 col-sm-6">
+        <h1>Upload Images</h1>
+        <input type="file" nv-file-select uploader="uploader">
+        <br>
+        <div ng-repeat="item in uploader.queue">
+            Name: <span ng-bind="item.file.name"></span><br/>
+            <button ng-click="item.upload()">upload</button><br>
+            <span ng-show="item.isSuccess">
+                Successfully uploaded to:<br>
+                <span ng-bind="item.message"></span>
+            </span>
+            <span ng-show="item.isCancel">Canceled</span>
+            <span ng-show="item.isError">Error</span>
         </div>
     </div>
-    <div>
-        <label for="content">Content</label>
-        <div>
-            <textarea data-ng-model="post.content" id="content" cols="30" rows="10" placeholder="Content"></textarea>
-        </div>
-    </div>
-    <div>
-        <input type="submit" value="Update">
-    </div>
-    <div data-ng-show="error">
-        <strong data-ng-bind="error"></strong>
-    </div>
-    </form>
+
 </section>

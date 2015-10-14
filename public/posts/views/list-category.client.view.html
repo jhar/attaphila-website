@@ -1,13 +1,24 @@
-<section data-ng-controller="PostsController" data-ng-init="findCategory()">
- 	<h2>Latest</h2>
-		<article data-ng-repeat="post in posts">
-			<a data-ng-href="#!/posts/{{post.category}}/{{post._id}}" data-ng-bind="post.title"></a>
-      		<br>
-			<small data-ng-bind="post.created | date:'medium'"></small>
-			<small>/</small>
-			<small data-ng-bind="post.creator.username"></small>
-			<p data-ng-bind="post.content"></p>
-		</article>
+<section class="page" data-ng-controller="PostsController" data-ng-init="findCategory()">
+	<article class="row" data-ng-repeat="post in posts">
+		<div class="col-xs-0 col-sm-2 col-md-2 col-lg-2">
+		</div>
+		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+			<a data-ng-href="#!/posts/{{post.category}}/{{post._id}}">
+				<div class="media">
+					<div class="media-left media-middle">
+						<img class="media-object" ng-src="{{post.coverPhotoURL}}" />
+					</div>
+					<div class="media-body">
+						<h3 class="media-heading" data-ng-bind="post.title"></h3>
+						<p>{{post.content | limitTo: 150}}<span ng-if="post.content.length > 150">...</span></p>
+						<span>Click to read more.</span>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="col-xs-0 col-sm-2 col-md-2 col-lg-2">
+		</div>
+	</article>
 	<div data-ng-hide="!posts || posts.length">
    		No posts yet, why don't you <a href="/#!/posts/create">create one</a>?
    	</div>
