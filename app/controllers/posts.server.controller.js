@@ -66,7 +66,21 @@ exports.listByCategory = function(req, res, next, cat) {
 
 exports.create = function(req, res, next) {
 
-    var post = new Post(req.body);
+    var post = new Post({
+        title: req.body.title,
+        category: req.body.category,
+        content: req.body.content,
+        coverPhotoURL: req.body.coverPhotoURL,
+        medialinks: []
+    });
+
+    for (i = 0; i < req.body.medialinks.length; i++) {
+        post.medialinks.push({
+            url: req.body.medialinks[i].url,
+            media: req.body.medialinks[i].media
+        });
+    }
+
     post.creator = req.user;
 
     post.save(function(err) {
@@ -89,11 +103,13 @@ exports.read = function(req, res) {
 
 exports.update = function(req, res) {
 
+    console.log(req.body);
+
     var post = req.post;
     post.title = req.body.title;
     post.category = req.body.category;
     post.content = req.body.content;
-    post.coverPhotoURL = req.body.coverPhotoURL;
+    post.medialinks = req.body.medialinks;
 
     post.save(function(err) {
         if (err) {

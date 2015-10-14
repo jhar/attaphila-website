@@ -8,6 +8,13 @@ mainAppModule.config(['$locationProvider',
 	}
 ]);
 
+mainAppModule.config(function($sceDelegateProvider) {
+   $sceDelegateProvider.resourceUrlWhitelist([
+     'self',
+     '*://www.youtube.com/**'
+   ]);
+ });
+
 if (window.location.hash === '#_=_') window.location.hash = '#!';
 
 angular.element(document).ready(function() {

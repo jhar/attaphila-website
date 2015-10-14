@@ -50,7 +50,6 @@ module.exports = function() {
 
 	app.get('/uploads')
 
-
 	// Routes
 	require('../app/routes/index.server.routes.js')(app);
 	require('../app/routes/users.server.routes.js')(app);

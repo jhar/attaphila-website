@@ -12,13 +12,23 @@ angular.module('posts').controller('PostsController',
 	            fileItem.message = response.message;
 	        };
 
+	        $scope.medialinks = [];
+
+	        $scope.addNewLink = function() {
+			  $scope.medialinks.push({});
+			};
+
+			$scope.removeLink = function() {
+				$scope.medialinks.pop();
+			};
+
 			$scope.create = function() {
 
 				var post = new Posts({
 					title: this.title,
 					category: this.category,
 					content: this.content,
-					coverPhotoURL: this.coverPhotoURL
+					medialinks: this.medialinks
 				});
 
 				post.$save(function(res) {
@@ -47,6 +57,9 @@ angular.module('posts').controller('PostsController',
 			};
 
 			$scope.update = function() {
+				if(this.medialinks) {
+					$scope.post.medialinks = this.medialinks;
+				}
 				$scope.post.$update(function() {
 					$location.path('posts/' + $scope.post.category + "/" + $scope.post._id);
 				}, function(errRes) {

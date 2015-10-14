@@ -20,16 +20,34 @@
 				</select>
 			</div>
 			<div>
-				<label for="coverPhotoURL">Cover Photo URL</label>
-				<br>
-				<input type="text" data-ng-model="coverPhotoURL" id="coverPhotoURL" placeholder="Cover Photo URL">
-			</div>
+                <label for="coverPhotoURL">Cover Photo URL</label>
+                <br>
+                <input type="text" data-ng-model="post.coverPhotoURL" id="coverPhotoURL" placeholder="Cover Photo URL">
+            </div>
 			<div>
 				<label for="content">Content</label>
 				<div>
 					<textarea data-ng-model="content" id="content" cols="30" rows="10" placeholder="Content" required></textarea>
 				</div>
 			</div>
+			<ol>
+				<li ng-repeat="medialink in medialinks">
+					<label for="medialink">Media Link</label>
+					<input type="text" data-ng-model="medialink.url" id="mediaLinkURL" placeholder="Media Link URL">
+					<br>
+					<label for="medialink.media">Media Type</label>
+					<select data-ng-model="medialink.media" id="mediaLinkMedia">
+						<option value="article">Article</option>
+						<option value="youtube">YouTube</option>
+						<option value="photo">Photo</option>
+					</select>
+				</li>
+			</ol>
+			<div>
+				<input type="button" ng-click="addNewLink()" value="Add more media">
+				<input type="button" ng-show="medialinks.length > 0" ng-click="removeLink()" value="Remove">
+			</div>
+			<br>
 			<div>
 				<input type="submit">
 			</div>

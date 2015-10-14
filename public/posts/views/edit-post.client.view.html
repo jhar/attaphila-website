@@ -30,11 +30,26 @@
                     <textarea data-ng-model="post.content" id="content" cols="30" rows="10" placeholder="Content"></textarea>
                 </div>
             </div>
-
+            <ol>
+                <li ng-repeat="medialink in medialinks">
+                    <label for="medialink">Media Link</label>
+                    <input type="text" data-ng-model="medialink.url" id="mediaLinkURL" placeholder="Media Link URL">
+                    <br>
+                    <label for="medialink.media">Media Type</label>
+                    <select data-ng-model="medialink.media" id="mediaLinkMedia">
+                        <option value="article">Article</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="photo">Photo</option>
+                    </select>
+                </li>
+            </ol>
+            <div>
+                <input type="button" ng-click="addNewLink()" value="Add more media">
+                <input type="button" ng-show="medialinks.length > 0" ng-click="removeLink()" value="Remove">
+            </div>
             <div>
                 <input type="submit" value="Update">
             </div>
-
             <div data-ng-show="error">
                 <strong data-ng-bind="error"></strong>
             </div>

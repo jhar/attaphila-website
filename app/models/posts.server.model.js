@@ -1,6 +1,18 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
+var MediaLinksSchema = new Schema({
+	url: {
+		type: String,
+		required: true
+	},
+	media: {
+		type: String,
+		required: true,
+		enum: ['article', 'youtube', 'photo']
+	}
+});
+
 var PostsSchema = new Schema({
 	title: {
 		type: String,
@@ -15,7 +27,6 @@ var PostsSchema = new Schema({
 		required: true,
 		enum: ['articles', 'journal', 'photoalbum', 'scrapbook']
 	},
-	coverPhotoURL: String,
 	created: {
 		type: Date,
 		default: Date.now
@@ -23,7 +34,8 @@ var PostsSchema = new Schema({
 	creator: {
 		type: Schema.ObjectId,
 		ref: 'Users'
-	}
+	},
+	medialinks: [MediaLinksSchema]
 });
 
 mongoose.model('Posts', PostsSchema);
