@@ -109,6 +109,7 @@ exports.update = function(req, res) {
     post.title = req.body.title;
     post.category = req.body.category;
     post.content = req.body.content;
+    post.coverPhotoURL = req.body.coverPhotoURL;
     post.medialinks = req.body.medialinks;
 
     post.save(function(err) {

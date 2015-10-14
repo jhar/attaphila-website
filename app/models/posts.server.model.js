@@ -35,7 +35,8 @@ var PostsSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'Users'
 	},
-	medialinks: [MediaLinksSchema]
+	medialinks: [MediaLinksSchema],
+	coverPhotoURL: String
 });
 
 mongoose.model('Posts', PostsSchema);

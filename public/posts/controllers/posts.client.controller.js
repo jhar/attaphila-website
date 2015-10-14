@@ -28,6 +28,7 @@ angular.module('posts').controller('PostsController',
 					title: this.title,
 					category: this.category,
 					content: this.content,
+					coverPhotoURL: this.coverPhotoURL,
 					medialinks: this.medialinks
 				});
 
