@@ -1,5 +1,5 @@
-var port = 1337;
-var ip_address = '127.0.0.1';
+var port = process.env.PORT;
+var ip_address = process.env.IP;
 
 module.exports = {
 	port: port,

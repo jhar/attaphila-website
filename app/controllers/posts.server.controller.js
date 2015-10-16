@@ -103,8 +103,6 @@ exports.read = function(req, res) {
 
 exports.update = function(req, res) {
 
-    console.log(req.body);
-
     var post = req.post;
     post.title = req.body.title;
     post.category = req.body.category;

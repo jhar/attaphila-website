@@ -7,9 +7,7 @@ module.exports = function() {
                 replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };
 	var formatted = uriUtil.formatMongoose(config.db);
 	console.log(formatted + " is the formatted uri");
-	mongoose.connect(formatted, options);
-	var db = mongoose.connection;
-	db.on('error', console.error.bind(console, 'connection error:'));
+	var db = mongoose.connect(formatted, options);
 	require('../app/models/users.server.model.js');
 	require('../app/models/posts.server.model.js');
 	return db;
