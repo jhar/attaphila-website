@@ -25,7 +25,7 @@ var PostsSchema = new Schema({
 	category: {
 		type: String,
 		required: true,
-		enum: ['articles', 'journal', 'photoalbum', 'scrapbook']
+		enum: ['inside', 'outside', 'relatives', 'anthro']
 	},
 	created: {
 		type: Date,
