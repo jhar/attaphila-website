@@ -39,24 +39,6 @@ html, .container-fluid {
 	max-width: 128px;
 }
 
-nav.well {
-	padding: 10px;
-}
-
-.center-ul {
-	display: inline-block;
-	list-style-type: none;
-	margin-bottom: 0;
-	padding-left: 0;
-	text-align: center;
-	width: 90%;
-}
-
-.center-ul li {
-	display: inline-block;
-	width: 24%;
-}
-
 .well {
 	margin-bottom: 0;
 }
