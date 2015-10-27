@@ -9,6 +9,18 @@ body {
 	min-width: 350px;
 }
 
+html { 
+	background: url(/img/attaphilaHero.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+body, section, .jumbotron {
+	background-color: transparent;
+}
+
 html, .container-fluid {
 	margin: auto;
 	overflow-x: hidden;

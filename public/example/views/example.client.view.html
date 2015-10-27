@@ -1,45 +1,32 @@
 <section class="container-fluid" ng-controller="ExampleController">
 
-		<header class="row title text-center">
-			<div class="col-xs-6">
-				<h3>Attaphila</h3>
-			</div>
-			<div class="col-xs-6">
-				<h3><small>By Zach Phillips</small></h3>
-			</div>
-		</header>
-		
-		<nav>
-			<ul class="nav nav-tabs nav-justified">
-				<li><a class="" href="#!/posts/inside">Inside</a></li>
-				<li><a class="" href="#!/posts/outside">Outside</a></li>
-				<li><a class="" href="#!/posts/relatives">Distant Relatives</a></li>
-				<li><a class="" href="#!/posts/anthro">Anthropodicies</a></li>
-			</ul>
-		</nav>
-
-
-		<div class="row image">
-			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-			</div>
-			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-				<img class="img-responsive attaphila" src="/img/attaphila.png" />
-			</div>
-			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+		<div class="jumbotron">
+			<div class="col-xs-9 col-sm-4 pull-right">
+				<span class="h2">Attaphila</span>
+				<br>
+				<span class="h2"><small>By Zach Phillips</small></span>
+				<br>
+				<div class="list-group">
+					<a class="list-group-item" href="#!/posts/inside">Inside</a>
+					<a class="list-group-item" href="#!/posts/outside">Outside</a>
+					<a class="list-group-item" href="#!/posts/relatives">Distant Relatives</a>
+					<a class="list-group-item" href="#!/posts/anthro">Anthropodicies</a>
+				</div>
+				<div class="col-xs-12" data-ng-show="!authentication.user || authentication.user == 'null'">
+					Are you Zach? Then
+					<a href="/signin">Sign In</a>!
+				</div>
+				<div class="col-xs-12" data-ng-show="authentication.user && authentication.user != 'null'">
+					<h3>Hello <span data-ng-bind="authentication.user.username"></span></h3>
+					<a href="/signout">Signout</a><br>
+					<a href="/#!/posts/create">Create Post</a><br>
+					<a href="/#!/posts/">List All Posts</a>
+				</div>
 			</div>
 		</div>
 
-		<footer class="row well text-center">
-			<div class="col-xs-12" data-ng-show="!authentication.user || authentication.user == 'null'">
-				Are you Zach? Then
-				<a href="/signin">Sign In</a>!
-			</div>
-			<div class="col-xs-12" data-ng-show="authentication.user && authentication.user != 'null'">
-				<h3>Hello <span data-ng-bind="authentication.user.username"></span></h3>
-				<a href="/signout">Signout</a><br>
-				<a href="/#!/posts/create">Create Post</a><br>
-				<a href="/#!/posts/">List All Posts</a>
-			</div>
+		<footer class="row text-center">
+
 		</footer>
 
 </section>
