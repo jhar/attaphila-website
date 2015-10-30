@@ -1,24 +1,21 @@
 @import url(https://fonts.googleapis.com/css?family=Special+Elite);
 
+a {
+	min-width: 48px;
+	min-height: 48px;
+}
+
 article {
 	margin-bottom: 40px;
 }
 
 body {
 	font-family: 'Special Elite', cursive;
-	min-width: 350px;
+	min-width: 320px;
 }
 
-html { 
-	background: url(/img/attaphilaHero.jpg) no-repeat center center fixed; 
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-}
-
-body, section, .jumbotron {
-	background-color: transparent;
+html, body {
+	height: 100%;
 }
 
 html, .container-fluid {

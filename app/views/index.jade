@@ -6,7 +6,32 @@ html(lang="en", xmlns:ng="http://angularjs.org")
 		link(rel="stylesheet", media="screen", href="/lib/bootstrap/dist/css/bootstrap.min.css")
 		link(rel="stylesheet", media="screen", href="/css/main.css")
 	body
+		header
+			span(class="h2") Attaphila
+		nav
+			ul(class="nav nav-justified")
+				li
+					a(class="list-group-item", href="#!/posts/inside") Inside
+				li
+					a(class="list-group-item", href="#!/posts/outside") Outside
+				li
+					a(class="list-group-item", href="#!/posts/relatives") Distant Relatives
+				li
+					a(class="list-group-item", href="#!/posts/anthro") Anthropodicies
 		section(ng-view)
+		footer
+			div(class="col-xs-12", data-ng-show="!authentication.user || authentication.user == 'null'")
+				| Are you Zach? Then 
+				a(href="/signin") Sign In
+				| !
+			div(class="col-xs-12", data-ng-show="authentication.user && authentication.user != 'null'")
+				h3 Hello
+					span(data-ng-bind="authentication.user.username")
+				a(href="/signout") Signout
+				br
+				a(href="/#!/posts/create") Create Post
+				br
+				a(href="/#!/posts/") List All Posts
 
 		script(type="text/javascript")
 			if user
@@ -22,9 +47,6 @@ html(lang="en", xmlns:ng="http://angularjs.org")
 		script(type="text/javascript", src="/posts/controllers/posts.client.controller.js")
 		script(type="text/javascript", src="/posts/services/posts.client.service.js")
 		script(type="text/javascript", src="/posts/config/posts.client.routes.js")
-		script(type="text/javascript", src="/example/example.client.module.js")
-		script(type="text/javascript", src="/example/controllers/example.client.controller.js")
-		script(type="text/javascript", src="/example/config/example.client.routes.js")
 		script(type="text/javascript", src="/users/users.client.module.js")
 		script(type="text/javascript", src="/users/services/authentication.client.service.js")
 		script(type="text/javascript", src="/lib/jquery/dist/jquery.min.js")
