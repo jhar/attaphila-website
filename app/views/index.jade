@@ -5,52 +5,22 @@ html(lang="en", xmlns:ng="http://angularjs.org")
 		meta(name="viewport", content="width=device-width, initial-scale=1")
 		link(rel="stylesheet", media="screen", href="/lib/bootstrap/dist/css/bootstrap.min.css")
 		link(rel="stylesheet", media="screen", href="/css/main.css")
+		script(src="/lib/react/react.min.js")
+		script(src="/lib/react/react-dom.min.js")
+		// TODO: Implement with NPM/Browserify
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/react-router/0.13.4/ReactRouter.min.js")
+		// TODO: Implement with NPM/Browserify
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js")
+		script(src="/lib/jquery/dist/jquery.min.js")
 	body
-		header
-			span(class="h2") Attaphila
-		nav
-			ul(class="nav nav-justified")
-				li
-					a(class="list-group-item", href="#!/posts/inside") Inside
-				li
-					a(class="list-group-item", href="#!/posts/outside") Outside
-				li
-					a(class="list-group-item", href="#!/posts/relatives") Distant Relatives
-				li
-					a(class="list-group-item", href="#!/posts/anthro") Anthropodicies
-		section(ng-view)
-		footer
-			div(class="col-xs-12", data-ng-show="!authentication.user || authentication.user == 'null'")
-				| Are you Zach? Then 
-				a(href="/signin") Sign In
-				| !
-			div(class="col-xs-12", data-ng-show="authentication.user && authentication.user != 'null'")
-				h3 Hello
-					span(data-ng-bind="authentication.user.username")
-				a(href="/signout") Signout
-				br
-				a(href="/#!/posts/create") Create Post
-				br
-				a(href="/#!/posts/") List All Posts
-
+		div(id="app")
 		script(type="text/javascript")
 			if user
 				| window.user = !{user};
 			else
 				| window.user = 'null';
 
-		script(type="text/javascript", src="/lib/angular/angular.js")
-		script(type="text/javascript", src="/lib/angular-route/angular-route.js")
-		script(type="text/javascript", src="/lib/angular-resource/angular-resource.js")
-		script(type="text/javascript", src="/lib/angular-file-upload/dist/angular-file-upload.min.js")
-		script(type="text/javascript", src="/posts/posts.client.module.js")
-		script(type="text/javascript", src="/posts/controllers/posts.client.controller.js")
-		script(type="text/javascript", src="/posts/services/posts.client.service.js")
-		script(type="text/javascript", src="/posts/config/posts.client.routes.js")
-		script(type="text/javascript", src="/users/users.client.module.js")
-		script(type="text/javascript", src="/users/services/authentication.client.service.js")
-		script(type="text/javascript", src="/lib/jquery/dist/jquery.min.js")
-		script(type="text/javascript", src="/application.js")
+		script(type="text/babel", src="/app.js")
 
 
 

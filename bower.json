@@ -2,10 +2,7 @@
   "name": "zach_app",
   "version": "1.0.0",
   "dependencies": {
-    "angular": "latest",
-    "angular-resource": "~1.4.6",
-    "angular-route": "latest",
     "bootstrap": "~3.3.5",
-    "angular-file-upload": "~2.1.4"
+    "react": "~0.14.1"
   }
 }
