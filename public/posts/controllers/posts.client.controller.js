@@ -1,6 +1,3 @@
-angular.module('posts').controller('PostsController',
-	['$scope', '$routeParams', '$location', 'Authentication', 'FileUploader', 'Posts',
-		function($scope, $routeParams, $location, Authentication, FileUploader, Posts) {
 
 			$scope.authentication = Authentication;
 			var uploader = $scope.uploader = new FileUploader({
@@ -83,7 +80,3 @@ angular.module('posts').controller('PostsController',
 					});
 				}
 			};
-
-		}
-	]
-);
