@@ -23171,6 +23171,8 @@ module.exports = require('./lib/React');
 },{"./lib/React":72}],205:[function(require,module,exports){
 'use strict';
 
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -23179,386 +23181,101 @@ var _reactDom = require('react-dom');
 
 var _reactRouter = require('react-router');
 
+var _postsByCategory = require('./components/postsByCategory.js');
+
+var _singlePost = require('./components/singlePost.js');
+
+var _footer = require('./components/footer.js');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var App = _react2.default.createClass({
-	render: function render() {
-		var user = window.user;
-		return _react2.default.createElement(
-			'div',
-			{ className: 'container-fluid' },
-			_react2.default.createElement(
-				'header',
-				null,
-				_react2.default.createElement(
-					'span',
-					{ className: 'h2' },
-					'Attaphila'
-				)
-			),
-			_react2.default.createElement(
-				'nav',
-				null,
-				_react2.default.createElement(
-					'ul',
-					{ className: 'nav nav-justified' },
-					_react2.default.createElement(
-						'li',
-						null,
-						_react2.default.createElement(
-							_reactRouter.Link,
-							{ to: '/posts/inside' },
-							'Inside'
-						)
-					),
-					_react2.default.createElement(
-						'li',
-						null,
-						_react2.default.createElement(
-							_reactRouter.Link,
-							{ to: '/posts/outside' },
-							'Outside'
-						)
-					),
-					_react2.default.createElement(
-						'li',
-						null,
-						_react2.default.createElement(
-							_reactRouter.Link,
-							{ to: '/posts/relatives' },
-							'Distant Relatives'
-						)
-					),
-					_react2.default.createElement(
-						'li',
-						null,
-						_react2.default.createElement(
-							_reactRouter.Link,
-							{ to: '/posts/anthro' },
-							'Anthropodicies'
-						)
-					)
-				)
-			),
-			this.props.children,
-			_react2.default.createElement(
-				'footer',
-				null,
-				_react2.default.createElement(Footer, { user: user })
-			)
-		);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var App = (function (_React$Component) {
+	_inherits(App, _React$Component);
+
+	function App() {
+		_classCallCheck(this, App);
+
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
 	}
-});
 
-var Footer = _react2.default.createClass({
-	render: function render() {
-
-		if (this.props.user == 'null') {
-			return _react2.default.createElement(SignIn, null);
-		} else {
-			return _react2.default.createElement(SignOut, { username: this.props.user.username });
-		}
-	}
-});
-
-var SignIn = _react2.default.createClass({
-	render: function render() {
-		return _react2.default.createElement(
-			'div',
-			{ className: 'col-xs-12' },
-			'Are you Zach? Then ',
-			_react2.default.createElement(
-				'a',
-				{ href: '/signin' },
-				'Sign In'
-			),
-			' !'
-		);
-	}
-});
-
-var SignOut = _react2.default.createClass({
-	render: function render() {
-		return _react2.default.createElement(
-			'div',
-			{ className: 'col-xs-12' },
-			_react2.default.createElement(
-				'h3',
-				null,
-				'Hello ',
+	_createClass(App, [{
+		key: 'render',
+		value: function render() {
+			var user = window.user;
+			return _react2.default.createElement(
+				'div',
+				{ className: 'container-fluid' },
 				_react2.default.createElement(
-					'span',
+					'header',
 					null,
-					this.props.username
-				),
-				'!'
-			),
-			_react2.default.createElement(
-				'a',
-				{ href: '/signout' },
-				'Signout'
-			),
-			_react2.default.createElement('br', null),
-			_react2.default.createElement(
-				'a',
-				{ href: '/posts/create' },
-				'Create Post'
-			),
-			_react2.default.createElement('br', null),
-			_react2.default.createElement(
-				'a',
-				{ href: '/posts/' },
-				'List All Posts'
-			)
-		);
-	}
-});
-
-var PostsByCategory = _react2.default.createClass({
-	loadPostsFromServer: function loadPostsFromServer(cat) {
-		var url = "/api/posts/" + cat;
-		$.ajax({
-			url: url,
-			dataType: 'json',
-			cache: false,
-			success: (function (data) {
-				this.setState({
-					data: data
-				});
-			}).bind(this),
-			error: (function (xhr, status, err) {
-				console.error(url, status, err.toString());
-			}).bind(this)
-		});
-	},
-	getInitialState: function getInitialState() {
-		return {
-			data: []
-		};
-	},
-	componentDidMount: function componentDidMount() {
-		this.loadPostsFromServer(this.props.params.category);
-	},
-	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-		this.loadPostsFromServer(nextProps.params.category);
-	},
-	render: function render() {
-		var postPreviewNodes = this.state.data.map(function (post) {
-			return _react2.default.createElement(PostPreview, { post: post });
-		});
-		return _react2.default.createElement(
-			'section',
-			{ className: 'postsByCategory' },
-			postPreviewNodes
-		);
-	}
-});
-
-var PostPreview = _react2.default.createClass({
-	render: function render() {
-		return _react2.default.createElement(
-			'article',
-			{ className: 'row' },
-			_react2.default.createElement(
-				'div',
-				{ className: 'col-xs-12' },
-				_react2.default.createElement(
-					_reactRouter.Link,
-					{ to: "/posts/" + this.props.post.category + "/" + this.props.post._id },
 					_react2.default.createElement(
-						'div',
-						{ className: 'media' },
+						'span',
+						{ className: 'h2' },
+						'Attaphila'
+					)
+				),
+				_react2.default.createElement(
+					'nav',
+					null,
+					_react2.default.createElement(
+						'ul',
+						{ className: 'nav nav-justified' },
 						_react2.default.createElement(
-							'div',
-							{ className: 'media-left media-middle' },
-							_react2.default.createElement('img', { className: 'media-object', src: this.props.post.coverPhotoURL })
+							'li',
+							null,
+							_react2.default.createElement(
+								_reactRouter.Link,
+								{ to: '/posts/inside' },
+								'Inside'
+							)
 						),
 						_react2.default.createElement(
-							'div',
-							{ className: 'media-body' },
+							'li',
+							null,
 							_react2.default.createElement(
-								'h3',
-								{ className: 'media-heading' },
-								this.props.post.title
-							),
+								_reactRouter.Link,
+								{ to: '/posts/outside' },
+								'Outside'
+							)
+						),
+						_react2.default.createElement(
+							'li',
+							null,
 							_react2.default.createElement(
-								'p',
-								null,
-								this.props.post.content
-							),
+								_reactRouter.Link,
+								{ to: '/posts/relatives' },
+								'Distant Relatives'
+							)
+						),
+						_react2.default.createElement(
+							'li',
+							null,
 							_react2.default.createElement(
-								'span',
-								null,
-								'Click to read more.'
+								_reactRouter.Link,
+								{ to: '/posts/anthro' },
+								'Anthropodicies'
 							)
 						)
 					)
+				),
+				this.props.children,
+				_react2.default.createElement(
+					'footer',
+					null,
+					_react2.default.createElement(_footer.Footer, { user: user })
 				)
-			)
-		);
-	}
-});
+			);
+		}
+	}]);
 
-var SinglePost = _react2.default.createClass({
-	loadPostFromServer: function loadPostFromServer(cat, pid) {
-		var url = "/api/posts/" + cat + "/" + pid;
-		$.ajax({
-			url: url,
-			dataType: 'json',
-			cache: false,
-			success: (function (data) {
-				this.setState({
-					post: data
-				});
-			}).bind(this),
-			error: (function (xhr, status, err) {
-				console.error(url, status, err.toString());
-			}).bind(this)
-		});
-	},
-	componentDidMount: function componentDidMount() {
-		this.loadPostFromServer(this.props.params.category, this.props.params.postid);
-	},
-	getInitialState: function getInitialState() {
-		return {
-			post: {
-				creator: {},
-				medialinks: [{}]
-			}
-		};
-	},
-	render: function render() {
-		console.log(this.state.post.creator.username);
-		return _react2.default.createElement(
-			'section',
-			{ className: 'page' },
-			_react2.default.createElement(
-				'div',
-				{ className: 'row' },
-				_react2.default.createElement('div', { className: 'col-xs-0 col-sm-1 col-md-2 col-lg-2' }),
-				_react2.default.createElement(
-					'div',
-					{ className: 'col-xs-12 col-sm-10 col-md-8 col-lg-8' },
-					_react2.default.createElement('img', { className: 'img-responsive cover-photo', src: this.state.post.coverPhotoURL }),
-					_react2.default.createElement(
-						'h2',
-						null,
-						this.state.post.title
-					)
-				),
-				_react2.default.createElement('div', { className: 'col-xs-0 col-sm-1 col-md-2 col-lg-2' })
-			),
-			_react2.default.createElement(
-				'div',
-				{ className: 'row' },
-				_react2.default.createElement('div', { className: 'col-xs-0 col-sm-1 col-md-2 col-lg-2' }),
-				_react2.default.createElement(
-					'div',
-					{ className: 'col-xs-12 col-sm-10 col-md-8 col-lg-8' },
-					_react2.default.createElement(
-						'p',
-						null,
-						this.state.post.content
-					),
-					_react2.default.createElement(
-						'small',
-						null,
-						_react2.default.createElement(
-							'em',
-							null,
-							'Posted on '
-						),
-						_react2.default.createElement(
-							'em',
-							null,
-							_react2.default.createElement(FormattedDate, { date: this.state.post.created })
-						),
-						_react2.default.createElement(
-							'em',
-							null,
-							' by '
-						),
-						_react2.default.createElement(
-							'em',
-							null,
-							this.state.post.creator.username
-						)
-					),
-					_react2.default.createElement(
-						'div',
-						null,
-						'// TODO: Only show if user._id == post.creator._id',
-						_react2.default.createElement(
-							'a',
-							{ href: '/posts/{this.state.post.category}/{this.state.post._id}/edit' },
-							'edit'
-						),
-						'// TODO: Make this delete the post',
-						_react2.default.createElement(
-							'a',
-							{ href: '#' },
-							'delete'
-						)
-					)
-				),
-				_react2.default.createElement('div', { className: 'col-xs-0 col-sm-1 col-md-2 col-lg-2' })
-			),
-			_react2.default.createElement(
-				'div',
-				{ className: 'row' },
-				_react2.default.createElement('div', { className: 'col-xs-0 col-sm-1 col-md-2 col-lg-2' }),
-				_react2.default.createElement(
-					'div',
-					{ className: 'col-xs-12 col-sm-10 col-md-8 col-lg-8' },
-					'// TODO: media in post.medialinks',
-					_react2.default.createElement(
-						'div',
-						null,
-						_react2.default.createElement(
-							'div',
-							null,
-							_react2.default.createElement(
-								'h3',
-								null,
-								'// TODO: if media.media == \'article\', then a href=media.url Go to Page /a'
-							)
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'embed-responsive embed-responsive-16by9' },
-							_react2.default.createElement(
-								'iframe',
-								{ className: 'embed-responsive-item' },
-								'TODO: if media.media == \'youtube\', src=media.url'
-							)
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'img-responsive' },
-							'TODO: only display img src=media.url if media.media == \'photo\''
-						)
-					)
-				),
-				_react2.default.createElement('div', { className: 'col-xs-0 col-sm-1 col-md-2 col-lg-2' })
-			)
-		);
-	}
-});
-
-var FormattedDate = _react2.default.createClass({
-	render: function render() {
-		var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-		var date = new Date(this.props.date);
-		var day = date.getDate();
-		var monthIndex = date.getMonth();
-		var year = date.getFullYear();
-		return _react2.default.createElement(
-			'span',
-			null,
-			months[monthIndex] + ' ' + day + ', ' + year
-		);
-	}
-});
+	return App;
+})(_react2.default.Component);
 
 (0, _reactDom.render)(_react2.default.createElement(
 	_reactRouter.Router,
@@ -23566,9 +23283,511 @@ var FormattedDate = _react2.default.createClass({
 	_react2.default.createElement(
 		_reactRouter.Route,
 		{ path: '/', component: App },
-		_react2.default.createElement(_reactRouter.Route, { path: 'posts/:category', component: PostsByCategory }),
-		_react2.default.createElement(_reactRouter.Route, { path: 'posts/:category/:postid', component: SinglePost })
+		_react2.default.createElement(_reactRouter.Route, { path: 'posts/:category', component: _postsByCategory.PostsByCategory }),
+		_react2.default.createElement(_reactRouter.Route, { path: 'posts/:category/:postid', component: _singlePost.SinglePost })
 	)
 ), document.getElementById('app'));
 
-},{"react":204,"react-dom":2,"react-router":22}]},{},[205]);
+},{"./components/footer.js":206,"./components/postsByCategory.js":207,"./components/singlePost.js":209,"react":204,"react-dom":2,"react-router":22}],206:[function(require,module,exports){
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.Footer = undefined;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Footer = exports.Footer = (function (_React$Component) {
+	_inherits(Footer, _React$Component);
+
+	function Footer() {
+		_classCallCheck(this, Footer);
+
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(Footer).apply(this, arguments));
+	}
+
+	_createClass(Footer, [{
+		key: 'render',
+		value: function render() {
+
+			if (this.props.user == 'null') {
+				return _react2.default.createElement(SignIn, null);
+			} else {
+				return _react2.default.createElement(SignOut, { username: this.props.user.username });
+			}
+		}
+	}]);
+
+	return Footer;
+})(_react2.default.Component);
+
+var SignIn = (function (_React$Component2) {
+	_inherits(SignIn, _React$Component2);
+
+	function SignIn() {
+		_classCallCheck(this, SignIn);
+
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(SignIn).apply(this, arguments));
+	}
+
+	_createClass(SignIn, [{
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(
+				'div',
+				{ className: 'col-xs-12' },
+				'Are you Zach? Then ',
+				_react2.default.createElement(
+					'a',
+					{ href: '/signin' },
+					'Sign In'
+				),
+				' !'
+			);
+		}
+	}]);
+
+	return SignIn;
+})(_react2.default.Component);
+
+var SignOut = (function (_React$Component3) {
+	_inherits(SignOut, _React$Component3);
+
+	function SignOut() {
+		_classCallCheck(this, SignOut);
+
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(SignOut).apply(this, arguments));
+	}
+
+	_createClass(SignOut, [{
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(
+				'div',
+				{ className: 'col-xs-12' },
+				_react2.default.createElement(
+					'h3',
+					null,
+					'Hello ',
+					_react2.default.createElement(
+						'span',
+						null,
+						this.props.username
+					),
+					'!'
+				),
+				_react2.default.createElement(
+					'a',
+					{ href: '/signout' },
+					'Signout'
+				),
+				_react2.default.createElement('br', null),
+				_react2.default.createElement(
+					'a',
+					{ href: '/posts/create' },
+					'Create Post'
+				),
+				_react2.default.createElement('br', null),
+				_react2.default.createElement(
+					'a',
+					{ href: '/posts/' },
+					'List All Posts'
+				)
+			);
+		}
+	}]);
+
+	return SignOut;
+})(_react2.default.Component);
+
+},{"react":204}],207:[function(require,module,exports){
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.PostsByCategory = undefined;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PostsByCategory = exports.PostsByCategory = (function (_React$Component) {
+	_inherits(PostsByCategory, _React$Component);
+
+	function PostsByCategory(props) {
+		_classCallCheck(this, PostsByCategory);
+
+		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(PostsByCategory).call(this, props));
+
+		_this.state = {
+			data: []
+		};
+		return _this;
+	}
+
+	_createClass(PostsByCategory, [{
+		key: 'loadPostsFromServer',
+		value: function loadPostsFromServer(cat) {
+			var url = "/api/posts/" + cat;
+			$.ajax({
+				url: url,
+				dataType: 'json',
+				cache: false,
+				success: (function (data) {
+					this.setState({
+						data: data
+					});
+				}).bind(this),
+				error: (function (xhr, status, err) {
+					console.error(url, status, err.toString());
+				}).bind(this)
+			});
+		}
+	}, {
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			this.loadPostsFromServer(this.props.params.category);
+		}
+	}, {
+		key: 'componentWillReceiveProps',
+		value: function componentWillReceiveProps(nextProps) {
+			this.loadPostsFromServer(nextProps.params.category);
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var postPreviewNodes = this.state.data.map(function (post) {
+				return _react2.default.createElement(PostPreview, { post: post });
+			});
+			return _react2.default.createElement(
+				'section',
+				{ className: 'postsByCategory' },
+				postPreviewNodes
+			);
+		}
+	}]);
+
+	return PostsByCategory;
+})(_react2.default.Component);
+
+var PostPreview = (function (_React$Component2) {
+	_inherits(PostPreview, _React$Component2);
+
+	function PostPreview() {
+		_classCallCheck(this, PostPreview);
+
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(PostPreview).apply(this, arguments));
+	}
+
+	_createClass(PostPreview, [{
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(
+				'article',
+				{ className: 'row' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'col-xs-12' },
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: "/posts/" + this.props.post.category + "/" + this.props.post._id },
+						_react2.default.createElement(
+							'div',
+							{ className: 'media' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'media-left media-middle' },
+								_react2.default.createElement('img', { className: 'media-object', src: this.props.post.coverPhotoURL })
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'media-body' },
+								_react2.default.createElement(
+									'h3',
+									{ className: 'media-heading' },
+									this.props.post.title
+								),
+								_react2.default.createElement(
+									'p',
+									null,
+									this.props.post.content
+								),
+								_react2.default.createElement(
+									'span',
+									null,
+									'Click to read more.'
+								)
+							)
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return PostPreview;
+})(_react2.default.Component);
+
+},{"react":204,"react-router":22}],208:[function(require,module,exports){
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.FormattedDate = undefined;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormattedDate = exports.FormattedDate = (function (_React$Component) {
+	_inherits(FormattedDate, _React$Component);
+
+	function FormattedDate() {
+		_classCallCheck(this, FormattedDate);
+
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(FormattedDate).apply(this, arguments));
+	}
+
+	_createClass(FormattedDate, [{
+		key: 'render',
+		value: function render() {
+			var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+			var date = new Date(this.props.date);
+			var day = date.getDate();
+			var monthIndex = date.getMonth();
+			var year = date.getFullYear();
+			return _react2.default.createElement(
+				'span',
+				null,
+				months[monthIndex] + ' ' + day + ', ' + year
+			);
+		}
+	}]);
+
+	return FormattedDate;
+})(_react2.default.Component);
+
+},{"react":204}],209:[function(require,module,exports){
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.SinglePost = undefined;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reusable = require('./reusable.js');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SinglePost = exports.SinglePost = (function (_React$Component) {
+	_inherits(SinglePost, _React$Component);
+
+	function SinglePost(props) {
+		_classCallCheck(this, SinglePost);
+
+		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SinglePost).call(this, props));
+
+		_this.state = {
+			post: {
+				creator: {},
+				medialinks: [{}]
+			}
+		};
+		return _this;
+	}
+
+	_createClass(SinglePost, [{
+		key: 'loadPostFromServer',
+		value: function loadPostFromServer(cat, pid) {
+			var url = "/api/posts/" + cat + "/" + pid;
+			$.ajax({
+				url: url,
+				dataType: 'json',
+				cache: false,
+				success: (function (data) {
+					this.setState({
+						post: data
+					});
+				}).bind(this),
+				error: (function (xhr, status, err) {
+					console.error(url, status, err.toString());
+				}).bind(this)
+			});
+		}
+	}, {
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			this.loadPostFromServer(this.props.params.category, this.props.params.postid);
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(
+				'section',
+				{ className: 'page' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'row' },
+					_react2.default.createElement('div', { className: 'col-xs-0 col-sm-1 col-md-2 col-lg-2' }),
+					_react2.default.createElement(
+						'div',
+						{ className: 'col-xs-12 col-sm-10 col-md-8 col-lg-8' },
+						_react2.default.createElement('img', { className: 'img-responsive cover-photo', src: this.state.post.coverPhotoURL }),
+						_react2.default.createElement(
+							'h2',
+							null,
+							this.state.post.title
+						)
+					),
+					_react2.default.createElement('div', { className: 'col-xs-0 col-sm-1 col-md-2 col-lg-2' })
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'row' },
+					_react2.default.createElement('div', { className: 'col-xs-0 col-sm-1 col-md-2 col-lg-2' }),
+					_react2.default.createElement(
+						'div',
+						{ className: 'col-xs-12 col-sm-10 col-md-8 col-lg-8' },
+						_react2.default.createElement(
+							'p',
+							null,
+							this.state.post.content
+						),
+						_react2.default.createElement(
+							'small',
+							null,
+							_react2.default.createElement(
+								'em',
+								null,
+								'Posted on '
+							),
+							_react2.default.createElement(
+								'em',
+								null,
+								_react2.default.createElement(_reusable.FormattedDate, { date: this.state.post.created })
+							),
+							_react2.default.createElement(
+								'em',
+								null,
+								' by '
+							),
+							_react2.default.createElement(
+								'em',
+								null,
+								this.state.post.creator.username
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							null,
+							'// TODO: Only show if user._id == post.creator._id',
+							_react2.default.createElement(
+								'a',
+								{ href: '/posts/{this.state.post.category}/{this.state.post._id}/edit' },
+								'edit'
+							),
+							'// TODO: Make this delete the post',
+							_react2.default.createElement(
+								'a',
+								{ href: '#' },
+								'delete'
+							)
+						)
+					),
+					_react2.default.createElement('div', { className: 'col-xs-0 col-sm-1 col-md-2 col-lg-2' })
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'row' },
+					_react2.default.createElement('div', { className: 'col-xs-0 col-sm-1 col-md-2 col-lg-2' }),
+					_react2.default.createElement(
+						'div',
+						{ className: 'col-xs-12 col-sm-10 col-md-8 col-lg-8' },
+						'// TODO: media in post.medialinks',
+						_react2.default.createElement(
+							'div',
+							null,
+							_react2.default.createElement(
+								'div',
+								null,
+								_react2.default.createElement(
+									'h3',
+									null,
+									'// TODO: if media.media == \'article\', then a href=media.url Go to Page /a'
+								)
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'embed-responsive embed-responsive-16by9' },
+								_react2.default.createElement(
+									'iframe',
+									{ className: 'embed-responsive-item' },
+									'TODO: if media.media == \'youtube\', src=media.url'
+								)
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'img-responsive' },
+								'TODO: only display img src=media.url if media.media == \'photo\''
+							)
+						)
+					),
+					_react2.default.createElement('div', { className: 'col-xs-0 col-sm-1 col-md-2 col-lg-2' })
+				)
+			);
+		}
+	}]);
+
+	return SinglePost;
+})(_react2.default.Component);
+
+},{"./reusable.js":208,"react":204}]},{},[205]);
