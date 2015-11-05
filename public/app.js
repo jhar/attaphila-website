@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Router, Route, Link } from 'react-router'
+import { IndexRoute, Router, Route, Link } from 'react-router'
 import { PostsByCategory } from './components/postsByCategory.js'
 import { SinglePost } from './components/singlePost.js'
 import { Footer } from './components/footer.js'
@@ -10,14 +10,21 @@ class App extends React.Component {
     	var user = window.user;
         return (
             <div className="container-fluid">
-				<header>
-			    	<span className="h2">Attaphila</span>
+				<header className="col-xs-12 col-sm-3 text-center">
+					<Link to="/">
+						<div className="col-xs-6 col-sm-9">
+							<span className="atta-header">Attaphila</span>
+						</div>
+						<div className="col-xs-6 col-sm-3">
+							<img className="atta-brand" src="img/attaBrand.png" />
+						</div>
+					</Link>
 	            </header>
-			  	<nav>
+			  	<nav className="col-xs-12 col-sm-9">
 					<ul className="nav nav-justified">
 						<li><Link to="/posts/inside">Inside</Link></li>
 						<li><Link to="/posts/outside">Outside</Link></li>
-						<li><Link to="/posts/relatives">Distant Relatives</Link></li>
+						<li><Link to="/posts/relatives">Relatives</Link></li>
 						<li><Link to="/posts/anthro">Anthropodicies</Link></li>
 					</ul>
 				</nav>
@@ -30,9 +37,19 @@ class App extends React.Component {
     } 
 }
 
+class Hero extends React.Component {
+	render() {
+		return (
+			<section className="hero">
+			</section>
+		);
+	}
+}
+
 render(
 	<Router>
 		<Route path="/" component={App}>
+			<IndexRoute component={Hero} />
 			<Route path="posts/:category" component={PostsByCategory} />
 			<Route path="posts/:category/:postid" component={SinglePost} />
 		</Route>

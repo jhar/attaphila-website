@@ -15,7 +15,7 @@ export class Footer extends React.Component {
 class SignIn extends React.Component {
 	render() {
 		return (
-			<div className="col-xs-12">
+			<div className="col-xs-12 text-center">
 				Are you Zach? Then <a href="/signin">Sign In</a> !
 			</div>
 		);
@@ -25,14 +25,12 @@ class SignIn extends React.Component {
 class SignOut extends React.Component {
 	render() {
 		return (
-			<div className="col-xs-12">
-				<h3>Hello <span>{this.props.username}</span>!</h3>
-				<a href="/signout">Signout</a>
-				<br />
-				<a href="/posts/create">Create Post</a>
-				<br />
-				<a href="/posts/">List All Posts</a>
-			</div>
+			<ul className="nav nav-justified">
+				<li><a href="#">Hello {this.props.username}</a></li>
+				<li><a href="/signout">Signout</a></li>
+				<li><a href="/posts/create">Create Post</a></li>
+				<li><a href="/posts/">List All Posts</a></li>
+			</ul>
 		);
 	}	
 }

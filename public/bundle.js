@@ -23213,16 +23213,29 @@ var App = (function (_React$Component) {
 				{ className: 'container-fluid' },
 				_react2.default.createElement(
 					'header',
-					null,
+					{ className: 'col-xs-12 col-sm-3 text-center' },
 					_react2.default.createElement(
-						'span',
-						{ className: 'h2' },
-						'Attaphila'
+						_reactRouter.Link,
+						{ to: '/' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'col-xs-6 col-sm-9' },
+							_react2.default.createElement(
+								'span',
+								{ className: 'atta-header' },
+								'Attaphila'
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'col-xs-6 col-sm-3' },
+							_react2.default.createElement('img', { className: 'atta-brand', src: 'img/attaBrand.png' })
+						)
 					)
 				),
 				_react2.default.createElement(
 					'nav',
-					null,
+					{ className: 'col-xs-12 col-sm-9' },
 					_react2.default.createElement(
 						'ul',
 						{ className: 'nav nav-justified' },
@@ -23250,7 +23263,7 @@ var App = (function (_React$Component) {
 							_react2.default.createElement(
 								_reactRouter.Link,
 								{ to: '/posts/relatives' },
-								'Distant Relatives'
+								'Relatives'
 							)
 						),
 						_react2.default.createElement(
@@ -23277,12 +23290,32 @@ var App = (function (_React$Component) {
 	return App;
 })(_react2.default.Component);
 
+var Hero = (function (_React$Component2) {
+	_inherits(Hero, _React$Component2);
+
+	function Hero() {
+		_classCallCheck(this, Hero);
+
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(Hero).apply(this, arguments));
+	}
+
+	_createClass(Hero, [{
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement('section', { className: 'hero' });
+		}
+	}]);
+
+	return Hero;
+})(_react2.default.Component);
+
 (0, _reactDom.render)(_react2.default.createElement(
 	_reactRouter.Router,
 	null,
 	_react2.default.createElement(
 		_reactRouter.Route,
 		{ path: '/', component: App },
+		_react2.default.createElement(_reactRouter.IndexRoute, { component: Hero }),
 		_react2.default.createElement(_reactRouter.Route, { path: 'posts/:category', component: _postsByCategory.PostsByCategory }),
 		_react2.default.createElement(_reactRouter.Route, { path: 'posts/:category/:postid', component: _singlePost.SinglePost })
 	)
@@ -23348,7 +23381,7 @@ var SignIn = (function (_React$Component2) {
 		value: function render() {
 			return _react2.default.createElement(
 				'div',
-				{ className: 'col-xs-12' },
+				{ className: 'col-xs-12 text-center' },
 				'Are you Zach? Then ',
 				_react2.default.createElement(
 					'a',
@@ -23376,35 +23409,44 @@ var SignOut = (function (_React$Component3) {
 		key: 'render',
 		value: function render() {
 			return _react2.default.createElement(
-				'div',
-				{ className: 'col-xs-12' },
+				'ul',
+				{ className: 'nav nav-justified' },
 				_react2.default.createElement(
-					'h3',
+					'li',
 					null,
-					'Hello ',
 					_react2.default.createElement(
-						'span',
-						null,
+						'a',
+						{ href: '#' },
+						'Hello ',
 						this.props.username
-					),
-					'!'
+					)
 				),
 				_react2.default.createElement(
-					'a',
-					{ href: '/signout' },
-					'Signout'
+					'li',
+					null,
+					_react2.default.createElement(
+						'a',
+						{ href: '/signout' },
+						'Signout'
+					)
 				),
-				_react2.default.createElement('br', null),
 				_react2.default.createElement(
-					'a',
-					{ href: '/posts/create' },
-					'Create Post'
+					'li',
+					null,
+					_react2.default.createElement(
+						'a',
+						{ href: '/posts/create' },
+						'Create Post'
+					)
 				),
-				_react2.default.createElement('br', null),
 				_react2.default.createElement(
-					'a',
-					{ href: '/posts/' },
-					'List All Posts'
+					'li',
+					null,
+					_react2.default.createElement(
+						'a',
+						{ href: '/posts/' },
+						'List All Posts'
+					)
 				)
 			);
 		}
@@ -23487,7 +23529,7 @@ var PostsByCategory = exports.PostsByCategory = (function (_React$Component) {
 			});
 			return _react2.default.createElement(
 				'section',
-				{ className: 'postsByCategory' },
+				{ className: 'col-xs-12' },
 				postPreviewNodes
 			);
 		}
@@ -23673,7 +23715,7 @@ var SinglePost = exports.SinglePost = (function (_React$Component) {
 		value: function render() {
 			return _react2.default.createElement(
 				'section',
-				{ className: 'page' },
+				{ className: 'col-xs-12' },
 				_react2.default.createElement(
 					'div',
 					{ className: 'row' },
@@ -23745,49 +23787,70 @@ var SinglePost = exports.SinglePost = (function (_React$Component) {
 					),
 					_react2.default.createElement('div', { className: 'col-xs-0 col-sm-1 col-md-2 col-lg-2' })
 				),
-				_react2.default.createElement(
-					'div',
-					{ className: 'row' },
-					_react2.default.createElement('div', { className: 'col-xs-0 col-sm-1 col-md-2 col-lg-2' }),
-					_react2.default.createElement(
-						'div',
-						{ className: 'col-xs-12 col-sm-10 col-md-8 col-lg-8' },
-						'// TODO: media in post.medialinks',
-						_react2.default.createElement(
-							'div',
-							null,
-							_react2.default.createElement(
-								'div',
-								null,
-								_react2.default.createElement(
-									'h3',
-									null,
-									'// TODO: if media.media == \'article\', then a href=media.url Go to Page /a'
-								)
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'embed-responsive embed-responsive-16by9' },
-								_react2.default.createElement(
-									'iframe',
-									{ className: 'embed-responsive-item' },
-									'TODO: if media.media == \'youtube\', src=media.url'
-								)
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'img-responsive' },
-								'TODO: only display img src=media.url if media.media == \'photo\''
-							)
-						)
-					),
-					_react2.default.createElement('div', { className: 'col-xs-0 col-sm-1 col-md-2 col-lg-2' })
-				)
+				_react2.default.createElement(MediaLinks, { medialinks: this.state.post.medialinks })
 			);
 		}
 	}]);
 
 	return SinglePost;
+})(_react2.default.Component);
+
+var MediaLinks = (function (_React$Component2) {
+	_inherits(MediaLinks, _React$Component2);
+
+	function MediaLinks() {
+		_classCallCheck(this, MediaLinks);
+
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(MediaLinks).apply(this, arguments));
+	}
+
+	_createClass(MediaLinks, [{
+		key: 'render',
+		value: function render() {
+			var mediaLinkNodes = this.props.medialinks.map(function (media) {
+				if (media.media == 'article') {
+					return _react2.default.createElement(
+						'div',
+						null,
+						_react2.default.createElement(
+							'h3',
+							null,
+							_react2.default.createElement(
+								'a',
+								{ href: media.url },
+								'Go to Page'
+							)
+						)
+					);
+				} else if (media.media == 'youtube') {
+					return _react2.default.createElement(
+						'div',
+						{ className: 'embed-responsive embed-responsive-16by9' },
+						_react2.default.createElement('iframe', { className: 'embed-responsive-item', src: media.url })
+					);
+				} else if (media.media == 'photo') {
+					return _react2.default.createElement(
+						'div',
+						{ className: 'img-responsive' },
+						_react2.default.createElement('img', { src: media.url })
+					);
+				}
+			});
+			return _react2.default.createElement(
+				'div',
+				{ className: 'row' },
+				_react2.default.createElement('div', { className: 'col-xs-0 col-sm-1 col-md-2 col-lg-2' }),
+				_react2.default.createElement(
+					'div',
+					{ className: 'col-xs-12 col-sm-10 col-md-8 col-lg-8' },
+					mediaLinkNodes
+				),
+				_react2.default.createElement('div', { className: 'col-xs-0 col-sm-1 col-md-2 col-lg-2' })
+			);
+		}
+	}]);
+
+	return MediaLinks;
 })(_react2.default.Component);
 
 },{"./reusable.js":208,"react":204}]},{},[205]);

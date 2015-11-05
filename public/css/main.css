@@ -1,12 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Special+Elite);
 
+/* General */
+
 a {
 	min-width: 48px;
 	min-height: 48px;
-}
-
-article {
-	margin-bottom: 40px;
 }
 
 body {
@@ -14,8 +12,12 @@ body {
 	min-width: 320px;
 }
 
-html, body {
-	height: 100%;
+body, section {
+	background-color: rgb(217, 246, 187);
+}
+
+html, body, body > div, body > div > div {
+	height: 100% !important;
 }
 
 html, .container-fluid {
@@ -24,6 +26,74 @@ html, .container-fluid {
 	padding: 0;
 	width: 100%;
 }
+
+/* Header */
+
+header {
+	background-color: white;
+	height: 48px;
+}
+
+header a {
+	color: black;
+}
+
+.atta-header {
+	font-size: 24px;
+	float: right;
+	height: 48px;
+	margin: 0;
+	padding-top: 10px;
+}
+
+.atta-brand {
+	height: 48px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+/* Navigation */
+
+nav {
+	background-color: rgb(243, 249, 210);
+	padding: 0 !important;
+}
+
+nav a {
+	color: rgb(67, 57, 10);
+	padding-top: 14px !important;
+}
+
+/* Main Content Area */
+
+article {
+	margin-bottom: 40px;
+}
+
+.hero {
+	background-image: url("../img/attaphilaHero.jpg");
+	background-size: cover;
+	height: 100%;
+}
+
+section {
+	color: rgb(38, 51, 26);
+	padding: 5%;
+}
+
+/* Footer */
+
+footer {
+	background-color: rgb(42, 36, 3);
+	bottom: 0;
+	color: white;
+	height: 5%;
+	padding-top: 10px;
+	position: absolute;
+	width: 100%;
+}
+
+/* Misc */
 
 .attaphila {
 	margin-left: auto;
@@ -36,10 +106,6 @@ html, .container-fluid {
 	margin-right: auto;
 }
 
-.page {
-	margin: 5%;
-}
-
 .media {
 	max-width: 1024px;
 }
@@ -48,8 +114,10 @@ html, .container-fluid {
 	max-width: 128px;
 }
 
-.well {
-	margin-bottom: 0;
+/* Bootstrap Fixes */
+
+.nav-justified > li > a {
+	margin-bottom: 0 !important;
 }
 
 

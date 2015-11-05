@@ -38,7 +38,7 @@ export class PostsByCategory extends React.Component {
 			);	
 		});
 		return (
-			<section className="postsByCategory">
+			<section className="col-xs-12">
 				{postPreviewNodes}	
 			</section>	
 		);
