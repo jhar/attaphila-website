@@ -31,6 +31,8 @@ html, .container-fluid {
 
 header {
 	background-color: white;
+	border-bottom: 1px outset #e0e0e0;
+	border-right: 1px solid #e0e0e0;
 	height: 48px;
 }
 
@@ -56,12 +58,18 @@ header a {
 
 nav {
 	background-color: rgb(243, 249, 210);
+	border-bottom: 1px outset #e0e0e0;
+	height: 48px;
 	padding: 0 !important;
 }
 
 nav a {
 	color: rgb(67, 57, 10);
 	padding-top: 14px !important;
+}
+
+.nav > li > a:focus, .nav > li > a:hover {
+	border-bottom: 1px outset #e0e0e0;
 }
 
 /* Main Content Area */
@@ -84,13 +92,21 @@ section {
 /* Footer */
 
 footer {
-	background-color: rgb(42, 36, 3);
+	background-color: #3f2927;
+	border-top: 1px inset #e0e0e0;
 	bottom: 0;
 	color: white;
-	height: 5%;
-	padding-top: 10px;
+	height: 50px;
 	position: absolute;
 	width: 100%;
+}
+
+footer a {
+	color: #3a9dd7;
+}
+
+footer > .text-center {
+	padding-top: 10px;
 }
 
 /* Misc */
@@ -120,6 +136,13 @@ footer {
 	margin-bottom: 0 !important;
 }
 
+.modal-dialog {
+	width: 250px;
+}
+
+.modal-content {
+	padding: 5%;
+}
 
 
 
