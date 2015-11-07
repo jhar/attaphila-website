@@ -65,6 +65,8 @@ exports.listByCategory = function(req, res, next, cat) {
 };
 
 exports.create = function(req, res, next) {
+    
+    console.log(req.body);
 
     var post = new Post({
         title: req.body.title,
@@ -73,12 +75,14 @@ exports.create = function(req, res, next) {
         coverPhotoURL: req.body.coverPhotoURL,
         medialinks: []
     });
-
-    for (i = 0; i < req.body.medialinks.length; i++) {
-        post.medialinks.push({
-            url: req.body.medialinks[i].url,
-            media: req.body.medialinks[i].media
-        });
+    
+    if (req.body.medialinks) {
+        for (i = 0; i < req.body.medialinks.length; i++) {
+            post.medialinks.push({
+                url: req.body.medialinks[i].url,
+                media: req.body.medialinks[i].media
+            });
+        }
     }
 
     post.creator = req.user;
@@ -89,6 +93,7 @@ exports.create = function(req, res, next) {
                 message: getErrorMessage(err)
             });
         } else {
+            return res.redirect('/#/posts/' + post.category + "/" + post._id);
             res.json(post);
         }
     });

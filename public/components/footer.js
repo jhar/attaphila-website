@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 export class Footer extends React.Component {
 	render() {
@@ -40,10 +41,10 @@ class SignOut extends React.Component {
 	render() {
 		return (
 			<ul className="nav nav-justified">
-				<li><a href="#">Hello {this.props.username}</a></li>
 				<li><a href="/signout">Signout</a></li>
-				<li><a href="/posts/create">Create Post</a></li>
+				<li><Link to="/posts/create">Create Post</Link></li>
 				<li><a href="/posts/">List All Posts</a></li>
+				<li><Link to="/images">Upload Images</Link></li>
 			</ul>
 		);
 	}	

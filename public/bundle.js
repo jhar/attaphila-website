@@ -23309,6 +23309,237 @@ var Hero = (function (_React$Component2) {
 	return Hero;
 })(_react2.default.Component);
 
+var CreatePost = (function (_React$Component3) {
+	_inherits(CreatePost, _React$Component3);
+
+	function CreatePost() {
+		_classCallCheck(this, CreatePost);
+
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(CreatePost).apply(this, arguments));
+	}
+
+	_createClass(CreatePost, [{
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(
+				'section',
+				{ className: 'page' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'col-xs-12' },
+					_react2.default.createElement(
+						'h1',
+						null,
+						'New Post'
+					),
+					_react2.default.createElement(
+						'form',
+						{ action: '/api/posts', method: 'post' },
+						_react2.default.createElement(
+							'div',
+							null,
+							_react2.default.createElement(
+								'label',
+								null,
+								'Title'
+							),
+							_react2.default.createElement(
+								'div',
+								null,
+								_react2.default.createElement('input', { type: 'text', name: 'title', placeholder: 'Title', required: true })
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							null,
+							_react2.default.createElement(
+								'label',
+								null,
+								'Category'
+							),
+							_react2.default.createElement('br', null),
+							_react2.default.createElement(
+								'select',
+								{ name: 'category' },
+								_react2.default.createElement(
+									'option',
+									{ value: 'inside' },
+									'Inside'
+								),
+								_react2.default.createElement(
+									'option',
+									{ value: 'outside' },
+									'Outside'
+								),
+								_react2.default.createElement(
+									'option',
+									{ value: 'relatives' },
+									'Relatives'
+								),
+								_react2.default.createElement(
+									'option',
+									{ value: 'anthro' },
+									'Anthropodicies'
+								)
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							null,
+							_react2.default.createElement(
+								'label',
+								null,
+								'Cover Photo URL'
+							),
+							_react2.default.createElement('br', null),
+							_react2.default.createElement('input', { type: 'text', name: 'coverPhotoURL', placeholder: 'Cover Photo URL' })
+						),
+						_react2.default.createElement(
+							'div',
+							null,
+							_react2.default.createElement(
+								'label',
+								null,
+								'Content'
+							),
+							_react2.default.createElement(
+								'div',
+								null,
+								_react2.default.createElement('textarea', { cols: '30', rows: '10', name: 'content', placeholder: 'Content', required: true })
+							)
+						),
+						_react2.default.createElement(
+							'ol',
+							null,
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'label',
+									null,
+									'Media Link'
+								),
+								_react2.default.createElement('input', { type: 'text', name: 'mediaLinkURL', placeholder: 'Media Link URL' }),
+								_react2.default.createElement('br', null),
+								_react2.default.createElement(
+									'label',
+									null,
+									'Media Type'
+								),
+								_react2.default.createElement(
+									'select',
+									{ name: 'mediaLinkMedia' },
+									_react2.default.createElement(
+										'option',
+										{ value: 'article' },
+										'Link'
+									),
+									_react2.default.createElement(
+										'option',
+										{ value: 'youtube' },
+										'YouTube'
+									),
+									_react2.default.createElement(
+										'option',
+										{ value: 'photo' },
+										'Photo'
+									)
+								)
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							null,
+							_react2.default.createElement('input', { type: 'button', value: 'Add more media' }),
+							_react2.default.createElement('input', { type: 'button', value: 'Remove' })
+						),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement(
+							'div',
+							null,
+							_react2.default.createElement('input', { type: 'submit' })
+						),
+						_react2.default.createElement(
+							'div',
+							null,
+							_react2.default.createElement(
+								'strong',
+								null,
+								'Errors'
+							)
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return CreatePost;
+})(_react2.default.Component);
+
+var UploadImages = (function (_React$Component4) {
+	_inherits(UploadImages, _React$Component4);
+
+	function UploadImages() {
+		_classCallCheck(this, UploadImages);
+
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(UploadImages).apply(this, arguments));
+	}
+
+	_createClass(UploadImages, [{
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(
+				'section',
+				{ className: 'page' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'col-xs-12' },
+					_react2.default.createElement(
+						'h1',
+						null,
+						'Upload Images'
+					),
+					_react2.default.createElement('input', { type: 'file' }),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement(
+						'div',
+						null,
+						'Name: ',
+						_react2.default.createElement('span', null),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement(
+							'button',
+							null,
+							'upload'
+						),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement(
+							'span',
+							null,
+							'Successfully uploaded to:',
+							_react2.default.createElement('br', null),
+							_react2.default.createElement('span', null)
+						),
+						_react2.default.createElement(
+							'span',
+							null,
+							'Canceled'
+						),
+						_react2.default.createElement(
+							'span',
+							null,
+							'Error'
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return UploadImages;
+})(_react2.default.Component);
+
 (0, _reactDom.render)(_react2.default.createElement(
 	_reactRouter.Router,
 	null,
@@ -23316,8 +23547,10 @@ var Hero = (function (_React$Component2) {
 		_reactRouter.Route,
 		{ path: '/', component: App },
 		_react2.default.createElement(_reactRouter.IndexRoute, { component: Hero }),
+		_react2.default.createElement(_reactRouter.Route, { path: 'posts/create', component: CreatePost }),
 		_react2.default.createElement(_reactRouter.Route, { path: 'posts/:category', component: _postsByCategory.PostsByCategory }),
-		_react2.default.createElement(_reactRouter.Route, { path: 'posts/:category/:postid', component: _singlePost.SinglePost })
+		_react2.default.createElement(_reactRouter.Route, { path: 'posts/:category/:postid', component: _singlePost.SinglePost }),
+		_react2.default.createElement(_reactRouter.Route, { path: '/images', component: UploadImages })
 	)
 ), document.getElementById('app'));
 
@@ -23334,6 +23567,8 @@ exports.Footer = undefined;
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23439,16 +23674,6 @@ var SignOut = (function (_React$Component3) {
 					null,
 					_react2.default.createElement(
 						'a',
-						{ href: '#' },
-						'Hello ',
-						this.props.username
-					)
-				),
-				_react2.default.createElement(
-					'li',
-					null,
-					_react2.default.createElement(
-						'a',
 						{ href: '/signout' },
 						'Signout'
 					)
@@ -23457,8 +23682,8 @@ var SignOut = (function (_React$Component3) {
 					'li',
 					null,
 					_react2.default.createElement(
-						'a',
-						{ href: '/posts/create' },
+						_reactRouter.Link,
+						{ to: '/posts/create' },
 						'Create Post'
 					)
 				),
@@ -23470,6 +23695,15 @@ var SignOut = (function (_React$Component3) {
 						{ href: '/posts/' },
 						'List All Posts'
 					)
+				),
+				_react2.default.createElement(
+					'li',
+					null,
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: '/images' },
+						'Upload Images'
+					)
 				)
 			);
 		}
@@ -23478,7 +23712,7 @@ var SignOut = (function (_React$Component3) {
 	return SignOut;
 })(_react2.default.Component);
 
-},{"react":204}],207:[function(require,module,exports){
+},{"react":204,"react-router":22}],207:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
