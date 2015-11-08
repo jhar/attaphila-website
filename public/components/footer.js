@@ -43,7 +43,7 @@ class SignOut extends React.Component {
 			<ul className="nav nav-justified">
 				<li><a href="/signout">Signout</a></li>
 				<li><Link to="/posts/create">Create Post</Link></li>
-				<li><a href="/posts/">List All Posts</a></li>
+				<li><Link to="/posts/all">List All Posts</Link></li>
 				<li><Link to="/images">Upload Images</Link></li>
 			</ul>
 		);

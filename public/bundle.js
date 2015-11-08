@@ -23691,8 +23691,8 @@ var SignOut = (function (_React$Component3) {
 					'li',
 					null,
 					_react2.default.createElement(
-						'a',
-						{ href: '/posts/' },
+						_reactRouter.Link,
+						{ to: '/posts/all' },
 						'List All Posts'
 					)
 				),
@@ -23753,7 +23753,12 @@ var PostsByCategory = exports.PostsByCategory = (function (_React$Component) {
 	_createClass(PostsByCategory, [{
 		key: 'loadPostsFromServer',
 		value: function loadPostsFromServer(cat) {
-			var url = "/api/posts/" + cat;
+			var url;
+			if (cat == 'all') {
+				url = "/api/posts";
+			} else {
+				url = "/api/posts/" + cat;
+			}
 			$.ajax({
 				url: url,
 				dataType: 'json',

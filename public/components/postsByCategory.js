@@ -9,7 +9,12 @@ export class PostsByCategory extends React.Component {
         };
     }
 	loadPostsFromServer(cat) {
-		var url = "/api/posts/" + cat;
+		var url;
+		if (cat == 'all') {
+			url = "/api/posts";
+		} else {
+			url = "/api/posts/" + cat
+		} 
 		$.ajax({
 			url: url,
 			dataType: 'json',
