@@ -94,7 +94,6 @@ exports.create = function(req, res, next) {
             });
         } else {
             return res.redirect('/#/posts/' + post.category + "/" + post._id);
-            res.json(post);
         }
     });
 

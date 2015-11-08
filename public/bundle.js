@@ -23970,6 +23970,13 @@ var SinglePost = exports.SinglePost = (function (_React$Component) {
 	}, {
 		key: 'render',
 		value: function render() {
+			var adminOptions;
+			var user = window.user;
+			if (user._id == this.state.post.creator._id) {
+				adminOptions = _react2.default.createElement(SinglePostAdmin, { post: this.state.post });
+			} else {
+				adminOptions = '';
+			}
 			return _react2.default.createElement(
 				'section',
 				{ className: 'col-xs-12' },
@@ -24025,22 +24032,7 @@ var SinglePost = exports.SinglePost = (function (_React$Component) {
 								this.state.post.creator.username
 							)
 						),
-						_react2.default.createElement(
-							'div',
-							null,
-							'// TODO: Only show if user._id == post.creator._id',
-							_react2.default.createElement(
-								'a',
-								{ href: '/posts/{this.state.post.category}/{this.state.post._id}/edit' },
-								'edit'
-							),
-							'// TODO: Make this delete the post',
-							_react2.default.createElement(
-								'a',
-								{ href: '#' },
-								'delete'
-							)
-						)
+						adminOptions
 					),
 					_react2.default.createElement('div', { className: 'col-xs-0 col-sm-1 col-md-2 col-lg-2' })
 				),
@@ -24052,8 +24044,41 @@ var SinglePost = exports.SinglePost = (function (_React$Component) {
 	return SinglePost;
 })(_react2.default.Component);
 
-var MediaLinks = (function (_React$Component2) {
-	_inherits(MediaLinks, _React$Component2);
+var SinglePostAdmin = (function (_React$Component2) {
+	_inherits(SinglePostAdmin, _React$Component2);
+
+	function SinglePostAdmin() {
+		_classCallCheck(this, SinglePostAdmin);
+
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(SinglePostAdmin).apply(this, arguments));
+	}
+
+	_createClass(SinglePostAdmin, [{
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(
+				'div',
+				null,
+				_react2.default.createElement(
+					'a',
+					{ href: '/posts/{this.state.post.category}/{this.state.post._id}/edit' },
+					'edit '
+				),
+				'or',
+				_react2.default.createElement(
+					'a',
+					{ href: '#' },
+					' delete'
+				)
+			);
+		}
+	}]);
+
+	return SinglePostAdmin;
+})(_react2.default.Component);
+
+var MediaLinks = (function (_React$Component3) {
+	_inherits(MediaLinks, _React$Component3);
 
 	function MediaLinks() {
 		_classCallCheck(this, MediaLinks);

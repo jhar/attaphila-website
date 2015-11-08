@@ -31,6 +31,13 @@ export class SinglePost extends React.Component {
 		this.loadPostFromServer(this.props.params.category, this.props.params.postid);		
 	}
 	render() {
+		var adminOptions;
+		var user = window.user;
+		if (user._id == this.state.post.creator._id) {
+			adminOptions = <SinglePostAdmin post={this.state.post} />
+		} else {
+			adminOptions = '';
+		}
 		return (
 			<section className="col-xs-12">
 				<div className="row">
@@ -53,17 +60,23 @@ export class SinglePost extends React.Component {
 							<em> by </em>
 							<em>{this.state.post.creator.username}</em>
 						</small>
-						<div>
-							// TODO: Only show if user._id == post.creator._id
-							<a href="/posts/{this.state.post.category}/{this.state.post._id}/edit">edit</a>
-							// TODO: Make this delete the post
-							<a href="#">delete</a>
-						</div>
+						{adminOptions}
 					</div>
 					<div className="col-xs-0 col-sm-1 col-md-2 col-lg-2"></div>
 				</div>
 				<MediaLinks medialinks={this.state.post.medialinks} />
 			</section>	
+		);
+	}	
+}
+
+class SinglePostAdmin extends React.Component {
+	render() {
+		return (
+			<div>
+				<a href="/posts/{this.state.post.category}/{this.state.post._id}/edit">edit </a>or
+				<a href="#"> delete</a>
+			</div>
 		);
 	}	
 }
