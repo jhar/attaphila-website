@@ -93,7 +93,7 @@ exports.create = function(req, res, next) {
                 message: getErrorMessage(err)
             });
         } else {
-            return res.redirect('/#/posts/' + post.category + "/" + post._id);
+            res.json(post);
         }
     });
 

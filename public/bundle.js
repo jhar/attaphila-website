@@ -23941,6 +23941,7 @@ var SinglePost = exports.SinglePost = (function (_React$Component) {
 		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SinglePost).call(this, props));
 
 		_this.state = {
+			url: "/api/posts/" + _this.props.params.category + "/" + _this.props.params.postid,
 			post: {
 				creator: {},
 				medialinks: [{}]
@@ -23952,9 +23953,8 @@ var SinglePost = exports.SinglePost = (function (_React$Component) {
 	_createClass(SinglePost, [{
 		key: 'loadPostFromServer',
 		value: function loadPostFromServer(cat, pid) {
-			var url = "/api/posts/" + cat + "/" + pid;
 			$.ajax({
-				url: url,
+				url: this.state.url,
 				dataType: 'json',
 				cache: false,
 				success: (function (data) {
@@ -23963,14 +23963,14 @@ var SinglePost = exports.SinglePost = (function (_React$Component) {
 					});
 				}).bind(this),
 				error: (function (xhr, status, err) {
-					console.error(url, status, err.toString());
+					console.error(this.state.url, status, err.toString());
 				}).bind(this)
 			});
 		}
 	}, {
 		key: 'componentDidMount',
 		value: function componentDidMount() {
-			this.loadPostFromServer(this.props.params.category, this.props.params.postid);
+			this.loadPostFromServer();
 		}
 	}, {
 		key: 'render',
@@ -23978,7 +23978,7 @@ var SinglePost = exports.SinglePost = (function (_React$Component) {
 			var adminOptions;
 			var user = window.user;
 			if (user._id == this.state.post.creator._id) {
-				adminOptions = _react2.default.createElement(SinglePostAdmin, { post: this.state.post });
+				adminOptions = _react2.default.createElement(SinglePostAdmin, { url: this.state.url, post: this.state.post });
 			} else {
 				adminOptions = '';
 			}
@@ -24052,13 +24052,27 @@ var SinglePost = exports.SinglePost = (function (_React$Component) {
 var SinglePostAdmin = (function (_React$Component2) {
 	_inherits(SinglePostAdmin, _React$Component2);
 
-	function SinglePostAdmin() {
+	function SinglePostAdmin(props) {
 		_classCallCheck(this, SinglePostAdmin);
 
-		return _possibleConstructorReturn(this, Object.getPrototypeOf(SinglePostAdmin).apply(this, arguments));
+		var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(SinglePostAdmin).call(this, props));
+
+		_this2.deletePostFromServer = _this2.deletePostFromServer.bind(_this2);
+		return _this2;
 	}
 
 	_createClass(SinglePostAdmin, [{
+		key: 'deletePostFromServer',
+		value: function deletePostFromServer() {
+			$.ajax({
+				url: this.props.url,
+				type: 'DELETE',
+				complete: function complete() {
+					window.location.href = "/";
+				}
+			});
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			return _react2.default.createElement(
@@ -24066,14 +24080,13 @@ var SinglePostAdmin = (function (_React$Component2) {
 				null,
 				_react2.default.createElement(
 					'a',
-					{ href: '/posts/{this.state.post.category}/{this.state.post._id}/edit' },
-					'edit '
+					{ className: 'btn btn-primary btn-xs', href: '/posts/{this.props.post.category}/{this.props.post._id}/edit' },
+					'Edit'
 				),
-				'or',
 				_react2.default.createElement(
-					'a',
-					{ href: '#' },
-					' delete'
+					'button',
+					{ className: 'btn btn-primary btn-xs', onClick: this.deletePostFromServer },
+					'Delete'
 				)
 			);
 		}

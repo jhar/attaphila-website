@@ -5,6 +5,7 @@ export class SinglePost extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+        	url: "/api/posts/" + this.props.params.category + "/" + this.props.params.postid,
             post: {
                 creator: {},
                 medialinks: [{}]
@@ -12,9 +13,8 @@ export class SinglePost extends React.Component {
         };
     }
 	loadPostFromServer(cat, pid) {
-		var url = "/api/posts/" + cat + "/" + pid;
 		$.ajax({
-			url: url,
+			url: this.state.url,
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
@@ -23,18 +23,18 @@ export class SinglePost extends React.Component {
 				});
 			}.bind(this),
 			error: function(xhr, status, err) {
-				console.error(url, status, err.toString());
+				console.error(this.state.url, status, err.toString());
 			}.bind(this)
 		});	
 	}
 	componentDidMount() {
-		this.loadPostFromServer(this.props.params.category, this.props.params.postid);		
+		this.loadPostFromServer();		
 	}
 	render() {
 		var adminOptions;
 		var user = window.user;
 		if (user._id == this.state.post.creator._id) {
-			adminOptions = <SinglePostAdmin post={this.state.post} />
+			adminOptions = <SinglePostAdmin url={this.state.url} post={this.state.post} />
 		} else {
 			adminOptions = '';
 		}
@@ -71,11 +71,24 @@ export class SinglePost extends React.Component {
 }
 
 class SinglePostAdmin extends React.Component {
+	constructor(props) {
+		super(props);
+		this.deletePostFromServer = this.deletePostFromServer.bind(this);
+	}
+	deletePostFromServer() {
+		$.ajax({
+			url: this.props.url,
+			type: 'DELETE',
+			complete: function() {
+				window.location.href="/";
+			}
+		});
+	}
 	render() {
 		return (
 			<div>
-				<a href="/posts/{this.state.post.category}/{this.state.post._id}/edit">edit </a>or
-				<a href="#"> delete</a>
+				<a className="btn btn-primary btn-xs" href="/posts/{this.props.post.category}/{this.props.post._id}/edit">Edit</a>
+				<button className="btn btn-primary btn-xs" onClick={this.deletePostFromServer}>Delete</button>
 			</div>
 		);
 	}	

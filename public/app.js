@@ -106,9 +106,6 @@ class CreatePost extends React.Component {
 						</div>
 					</form>
 				</div>
-			
-	
-			
 			</section>	
 		);
 	}
