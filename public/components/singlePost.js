@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 import { FormattedDate } from './reusable.js'
 
 export class SinglePost extends React.Component {
@@ -12,7 +13,7 @@ export class SinglePost extends React.Component {
             }
         };
     }
-	loadPostFromServer(cat, pid) {
+	loadPostFromServer() {
 		$.ajax({
 			url: this.state.url,
 			dataType: 'json',
@@ -87,8 +88,7 @@ class SinglePostAdmin extends React.Component {
 	render() {
 		return (
 			<div>
-				<a className="btn btn-primary btn-xs" href="/posts/{this.props.post.category}/{this.props.post._id}/edit">Edit</a>
-				<button className="btn btn-primary btn-xs" onClick={this.deletePostFromServer}>Delete</button>
+				<button className="btn btn-primary btn-sm"><Link to={"/posts/" + this.props.post.category + "/" + this.props.post._id + "/edit"}>Edit</Link></button> or <button className="btn btn-primary btn-sm" onClick={this.deletePostFromServer}>Delete</button>
 			</div>
 		);
 	}	

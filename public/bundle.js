@@ -23185,6 +23185,12 @@ var _postsByCategory = require('./components/postsByCategory.js');
 
 var _singlePost = require('./components/singlePost.js');
 
+var _createPost = require('./components/createPost.js');
+
+var _editPost = require('./components/editPost.js');
+
+var _uploadImages = require('./components/uploadImages.js');
+
 var _footer = require('./components/footer.js');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -23309,8 +23315,45 @@ var Hero = (function (_React$Component2) {
 	return Hero;
 })(_react2.default.Component);
 
-var CreatePost = (function (_React$Component3) {
-	_inherits(CreatePost, _React$Component3);
+(0, _reactDom.render)(_react2.default.createElement(
+	_reactRouter.Router,
+	null,
+	_react2.default.createElement(
+		_reactRouter.Route,
+		{ path: '/', component: App },
+		_react2.default.createElement(_reactRouter.IndexRoute, { component: Hero }),
+		_react2.default.createElement(_reactRouter.Route, { path: 'posts/create', component: _createPost.CreatePost }),
+		_react2.default.createElement(_reactRouter.Route, { path: 'posts/:category', component: _postsByCategory.PostsByCategory }),
+		_react2.default.createElement(_reactRouter.Route, { path: 'posts/:category/:postid', component: _singlePost.SinglePost }),
+		_react2.default.createElement(_reactRouter.Route, { path: 'posts/:category/:postid/edit', component: _editPost.EditPost }),
+		_react2.default.createElement(_reactRouter.Route, { path: '/images', component: _uploadImages.UploadImages })
+	)
+), document.getElementById('app'));
+
+},{"./components/createPost.js":206,"./components/editPost.js":207,"./components/footer.js":208,"./components/postsByCategory.js":209,"./components/singlePost.js":211,"./components/uploadImages.js":212,"react":204,"react-dom":2,"react-router":22}],206:[function(require,module,exports){
+"use strict";
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.CreatePost = undefined;
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CreatePost = exports.CreatePost = (function (_React$Component) {
+	_inherits(CreatePost, _React$Component);
 
 	function CreatePost() {
 		_classCallCheck(this, CreatePost);
@@ -23319,153 +23362,153 @@ var CreatePost = (function (_React$Component3) {
 	}
 
 	_createClass(CreatePost, [{
-		key: 'render',
+		key: "render",
 		value: function render() {
 			return _react2.default.createElement(
-				'section',
-				{ className: 'page' },
+				"section",
+				{ className: "page" },
 				_react2.default.createElement(
-					'div',
-					{ className: 'col-xs-12' },
+					"div",
+					{ className: "col-xs-12" },
 					_react2.default.createElement(
-						'h1',
+						"h1",
 						null,
-						'New Post'
+						"New Post"
 					),
 					_react2.default.createElement(
-						'form',
-						{ action: '/api/posts', method: 'post' },
+						"form",
+						{ action: "/api/posts", method: "post" },
 						_react2.default.createElement(
-							'div',
+							"div",
 							null,
 							_react2.default.createElement(
-								'label',
+								"label",
 								null,
-								'Title'
+								"Title"
 							),
 							_react2.default.createElement(
-								'div',
+								"div",
 								null,
-								_react2.default.createElement('input', { type: 'text', name: 'title', placeholder: 'Title', required: true })
+								_react2.default.createElement("input", { type: "text", name: "title", placeholder: "Title", required: true })
 							)
 						),
 						_react2.default.createElement(
-							'div',
+							"div",
 							null,
 							_react2.default.createElement(
-								'label',
+								"label",
 								null,
-								'Category'
+								"Category"
 							),
-							_react2.default.createElement('br', null),
+							_react2.default.createElement("br", null),
 							_react2.default.createElement(
-								'select',
-								{ name: 'category' },
+								"select",
+								{ name: "category" },
 								_react2.default.createElement(
-									'option',
-									{ value: 'inside' },
-									'Inside'
+									"option",
+									{ value: "inside" },
+									"Inside"
 								),
 								_react2.default.createElement(
-									'option',
-									{ value: 'outside' },
-									'Outside'
+									"option",
+									{ value: "outside" },
+									"Outside"
 								),
 								_react2.default.createElement(
-									'option',
-									{ value: 'relatives' },
-									'Relatives'
+									"option",
+									{ value: "relatives" },
+									"Relatives"
 								),
 								_react2.default.createElement(
-									'option',
-									{ value: 'anthro' },
-									'Anthropodicies'
+									"option",
+									{ value: "anthro" },
+									"Anthropodicies"
 								)
 							)
 						),
 						_react2.default.createElement(
-							'div',
+							"div",
 							null,
 							_react2.default.createElement(
-								'label',
+								"label",
 								null,
-								'Cover Photo URL'
+								"Cover Photo URL"
 							),
-							_react2.default.createElement('br', null),
-							_react2.default.createElement('input', { type: 'text', name: 'coverPhotoURL', placeholder: 'Cover Photo URL' })
+							_react2.default.createElement("br", null),
+							_react2.default.createElement("input", { type: "text", name: "coverPhotoURL", placeholder: "Cover Photo URL" })
 						),
 						_react2.default.createElement(
-							'div',
+							"div",
 							null,
 							_react2.default.createElement(
-								'label',
+								"label",
 								null,
-								'Content'
+								"Content"
 							),
 							_react2.default.createElement(
-								'div',
+								"div",
 								null,
-								_react2.default.createElement('textarea', { cols: '30', rows: '10', name: 'content', placeholder: 'Content', required: true })
+								_react2.default.createElement("textarea", { cols: "30", rows: "10", name: "content", placeholder: "Content", required: true })
 							)
 						),
 						_react2.default.createElement(
-							'ol',
+							"ol",
 							null,
 							_react2.default.createElement(
-								'li',
+								"li",
 								null,
 								_react2.default.createElement(
-									'label',
+									"label",
 									null,
-									'Media Link'
+									"Media Link"
 								),
-								_react2.default.createElement('input', { type: 'text', name: 'mediaLinkURL', placeholder: 'Media Link URL' }),
-								_react2.default.createElement('br', null),
+								_react2.default.createElement("input", { type: "text", name: "mediaLinkURL", placeholder: "Media Link URL" }),
+								_react2.default.createElement("br", null),
 								_react2.default.createElement(
-									'label',
+									"label",
 									null,
-									'Media Type'
+									"Media Type"
 								),
 								_react2.default.createElement(
-									'select',
-									{ name: 'mediaLinkMedia' },
+									"select",
+									{ name: "mediaLinkMedia" },
 									_react2.default.createElement(
-										'option',
-										{ value: 'article' },
-										'Link'
+										"option",
+										{ value: "article" },
+										"Link"
 									),
 									_react2.default.createElement(
-										'option',
-										{ value: 'youtube' },
-										'YouTube'
+										"option",
+										{ value: "youtube" },
+										"YouTube"
 									),
 									_react2.default.createElement(
-										'option',
-										{ value: 'photo' },
-										'Photo'
+										"option",
+										{ value: "photo" },
+										"Photo"
 									)
 								)
 							)
 						),
 						_react2.default.createElement(
-							'div',
+							"div",
 							null,
-							_react2.default.createElement('input', { type: 'button', value: 'Add more media' }),
-							_react2.default.createElement('input', { type: 'button', value: 'Remove' })
+							_react2.default.createElement("input", { type: "button", value: "Add more media" }),
+							_react2.default.createElement("input", { type: "button", value: "Remove" })
 						),
-						_react2.default.createElement('br', null),
+						_react2.default.createElement("br", null),
 						_react2.default.createElement(
-							'div',
+							"div",
 							null,
-							_react2.default.createElement('input', { type: 'submit' })
+							_react2.default.createElement("input", { type: "submit" })
 						),
 						_react2.default.createElement(
-							'div',
+							"div",
 							null,
 							_react2.default.createElement(
-								'strong',
+								"strong",
 								null,
-								'Errors'
+								"Errors"
 							)
 						)
 					)
@@ -23477,59 +23520,205 @@ var CreatePost = (function (_React$Component3) {
 	return CreatePost;
 })(_react2.default.Component);
 
-var UploadImages = (function (_React$Component4) {
-	_inherits(UploadImages, _React$Component4);
+},{"react":204}],207:[function(require,module,exports){
+"use strict";
 
-	function UploadImages() {
-		_classCallCheck(this, UploadImages);
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-		return _possibleConstructorReturn(this, Object.getPrototypeOf(UploadImages).apply(this, arguments));
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.EditPost = undefined;
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var EditPost = exports.EditPost = (function (_React$Component) {
+	_inherits(EditPost, _React$Component);
+
+	function EditPost(props) {
+		_classCallCheck(this, EditPost);
+
+		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(EditPost).call(this, props));
+
+		_this.state = {
+			url: "/api/posts/" + _this.props.params.category + "/" + _this.props.params.postid,
+			post: {
+				creator: {},
+				medialinks: [{}]
+			},
+			title: ""
+		};
+		_this.sendPutRequest = _this.sendPutRequest.bind(_this);
+		_this.handleChanges = _this.handleChanges.bind(_this);
+		return _this;
 	}
 
-	_createClass(UploadImages, [{
-		key: 'render',
+	_createClass(EditPost, [{
+		key: "handleChanges",
+		value: function handleChanges(event) {
+			this.setState({
+				post: {
+					title: event.target.title.value
+				}
+			});
+		}
+	}, {
+		key: "loadPostFromServer",
+		value: function loadPostFromServer() {
+			$.ajax({
+				url: this.state.url,
+				dataType: 'json',
+				cache: false,
+				success: (function (data) {
+					this.setState({
+						post: data,
+						title: data.title
+					});
+				}).bind(this),
+				error: (function (xhr, status, err) {
+					console.error(this.state.url, status, err.toString());
+				}).bind(this)
+			});
+		}
+	}, {
+		key: "componentDidMount",
+		value: function componentDidMount() {
+			this.loadPostFromServer();
+		}
+	}, {
+		key: "sendPutRequest",
+		value: function sendPutRequest() {
+			console.info(this);
+			$.ajax({
+				url: this.state.url,
+				dataType: 'json',
+				method: 'PUT',
+				success: function success(data) {
+					window.location.href = "/posts/" + data.category + "/" + data._id;
+				},
+				error: (function (xhr, status, err) {
+					console.error(this.state.url, status, err.toString());
+				}).bind(this)
+			});
+		}
+	}, {
+		key: "render",
 		value: function render() {
 			return _react2.default.createElement(
-				'section',
-				{ className: 'page' },
+				"section",
+				{ className: "page" },
 				_react2.default.createElement(
-					'div',
-					{ className: 'col-xs-12' },
+					"div",
+					{ className: "col-xs-12" },
 					_react2.default.createElement(
-						'h1',
-						null,
-						'Upload Images'
-					),
-					_react2.default.createElement('input', { type: 'file' }),
-					_react2.default.createElement('br', null),
-					_react2.default.createElement(
-						'div',
-						null,
-						'Name: ',
-						_react2.default.createElement('span', null),
-						_react2.default.createElement('br', null),
+						"form",
+						{ onChange: this.handleChanges },
 						_react2.default.createElement(
-							'button',
+							"h1",
 							null,
-							'upload'
-						),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement(
-							'span',
-							null,
-							'Successfully uploaded to:',
-							_react2.default.createElement('br', null),
-							_react2.default.createElement('span', null)
+							"Edit Post"
 						),
 						_react2.default.createElement(
-							'span',
+							"div",
 							null,
-							'Canceled'
+							_react2.default.createElement(
+								"label",
+								null,
+								"Title"
+							),
+							_react2.default.createElement(
+								"div",
+								null,
+								_react2.default.createElement("input", { type: "text", name: "title", value: this.state.post.title, required: true })
+							)
 						),
 						_react2.default.createElement(
-							'span',
+							"div",
 							null,
-							'Error'
+							_react2.default.createElement(
+								"label",
+								null,
+								"Category"
+							),
+							_react2.default.createElement("br", null),
+							_react2.default.createElement(
+								"select",
+								{ name: "category", selected: this.state.post.category },
+								_react2.default.createElement(
+									"option",
+									{ value: "inside" },
+									"Inside"
+								),
+								_react2.default.createElement(
+									"option",
+									{ value: "outside" },
+									"Outside"
+								),
+								_react2.default.createElement(
+									"option",
+									{ value: "relatives" },
+									"Relatives"
+								),
+								_react2.default.createElement(
+									"option",
+									{ value: "anthro" },
+									"Anthropodicies"
+								)
+							)
+						),
+						_react2.default.createElement(
+							"div",
+							null,
+							_react2.default.createElement(
+								"label",
+								null,
+								"Cover Photo URL"
+							),
+							_react2.default.createElement("br", null),
+							_react2.default.createElement("input", { type: "text", name: "coverPhotoURL", placeholder: this.state.post.coverPhotoURL })
+						),
+						_react2.default.createElement(
+							"div",
+							null,
+							_react2.default.createElement(
+								"label",
+								null,
+								"Content"
+							),
+							_react2.default.createElement(
+								"div",
+								null,
+								_react2.default.createElement("textarea", { cols: "30", rows: "10", name: "content", placeholder: this.state.post.content, required: true })
+							)
+						),
+						_react2.default.createElement("br", null),
+						_react2.default.createElement(
+							"div",
+							null,
+							_react2.default.createElement(
+								"button",
+								{ className: "btn btn-primary", onClick: this.sendPutRequest },
+								"Edit"
+							)
+						),
+						_react2.default.createElement(
+							"div",
+							null,
+							_react2.default.createElement(
+								"strong",
+								null,
+								"Errors"
+							)
 						)
 					)
 				)
@@ -23537,24 +23726,10 @@ var UploadImages = (function (_React$Component4) {
 		}
 	}]);
 
-	return UploadImages;
+	return EditPost;
 })(_react2.default.Component);
 
-(0, _reactDom.render)(_react2.default.createElement(
-	_reactRouter.Router,
-	null,
-	_react2.default.createElement(
-		_reactRouter.Route,
-		{ path: '/', component: App },
-		_react2.default.createElement(_reactRouter.IndexRoute, { component: Hero }),
-		_react2.default.createElement(_reactRouter.Route, { path: 'posts/create', component: CreatePost }),
-		_react2.default.createElement(_reactRouter.Route, { path: 'posts/:category', component: _postsByCategory.PostsByCategory }),
-		_react2.default.createElement(_reactRouter.Route, { path: 'posts/:category/:postid', component: _singlePost.SinglePost }),
-		_react2.default.createElement(_reactRouter.Route, { path: '/images', component: UploadImages })
-	)
-), document.getElementById('app'));
-
-},{"./components/footer.js":206,"./components/postsByCategory.js":207,"./components/singlePost.js":209,"react":204,"react-dom":2,"react-router":22}],206:[function(require,module,exports){
+},{"react":204}],208:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -23635,7 +23810,7 @@ var SignIn = (function (_React$Component2) {
 							_react2.default.createElement(
 								'form',
 								{ action: '/signin', className: 'form-sign-in', method: 'post' },
-								_react2.default.createElement('img', { className: 'img-responsive', src: '/img/scrapbook.png' }),
+								_react2.default.createElement('img', { className: 'img-responsive signinImage', src: '/img/scrapbook.png' }),
 								_react2.default.createElement('input', { className: 'form-control', type: 'text', name: 'username', placeholder: 'Username', required: true, autofocus: true }),
 								_react2.default.createElement('input', { className: 'form-control', type: 'password', name: 'password', placeholder: 'Password', required: true }),
 								_react2.default.createElement(
@@ -23712,7 +23887,7 @@ var SignOut = (function (_React$Component3) {
 	return SignOut;
 })(_react2.default.Component);
 
-},{"react":204,"react-router":22}],207:[function(require,module,exports){
+},{"react":204,"react-router":22}],209:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -23858,7 +24033,7 @@ var PostPreview = (function (_React$Component2) {
 	return PostPreview;
 })(_react2.default.Component);
 
-},{"react":204,"react-router":22}],208:[function(require,module,exports){
+},{"react":204,"react-router":22}],210:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -23908,7 +24083,7 @@ var FormattedDate = exports.FormattedDate = (function (_React$Component) {
 	return FormattedDate;
 })(_react2.default.Component);
 
-},{"react":204}],209:[function(require,module,exports){
+},{"react":204}],211:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -23921,6 +24096,8 @@ exports.SinglePost = undefined;
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
 
 var _reusable = require('./reusable.js');
 
@@ -23952,7 +24129,7 @@ var SinglePost = exports.SinglePost = (function (_React$Component) {
 
 	_createClass(SinglePost, [{
 		key: 'loadPostFromServer',
-		value: function loadPostFromServer(cat, pid) {
+		value: function loadPostFromServer() {
 			$.ajax({
 				url: this.state.url,
 				dataType: 'json',
@@ -24079,13 +24256,18 @@ var SinglePostAdmin = (function (_React$Component2) {
 				'div',
 				null,
 				_react2.default.createElement(
-					'a',
-					{ className: 'btn btn-primary btn-xs', href: '/posts/{this.props.post.category}/{this.props.post._id}/edit' },
-					'Edit'
+					'button',
+					{ className: 'btn btn-primary btn-sm' },
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: "/posts/" + this.props.post.category + "/" + this.props.post._id + "/edit" },
+						'Edit'
+					)
 				),
+				' or ',
 				_react2.default.createElement(
 					'button',
-					{ className: 'btn btn-primary btn-xs', onClick: this.deletePostFromServer },
+					{ className: 'btn btn-primary btn-sm', onClick: this.deletePostFromServer },
 					'Delete'
 				)
 			);
@@ -24153,4 +24335,84 @@ var MediaLinks = (function (_React$Component3) {
 	return MediaLinks;
 })(_react2.default.Component);
 
-},{"./reusable.js":208,"react":204}]},{},[205]);
+},{"./reusable.js":210,"react":204,"react-router":22}],212:[function(require,module,exports){
+"use strict";
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var UploadImages = (function (_React$Component) {
+	_inherits(UploadImages, _React$Component);
+
+	function UploadImages() {
+		_classCallCheck(this, UploadImages);
+
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(UploadImages).apply(this, arguments));
+	}
+
+	_createClass(UploadImages, [{
+		key: "render",
+		value: function render() {
+			return _react2.default.createElement(
+				"section",
+				{ className: "page" },
+				_react2.default.createElement(
+					"div",
+					{ className: "col-xs-12" },
+					_react2.default.createElement(
+						"h1",
+						null,
+						"Upload Images"
+					),
+					_react2.default.createElement("input", { type: "file" }),
+					_react2.default.createElement("br", null),
+					_react2.default.createElement(
+						"div",
+						null,
+						"Name: ",
+						_react2.default.createElement("span", null),
+						_react2.default.createElement("br", null),
+						_react2.default.createElement(
+							"button",
+							null,
+							"upload"
+						),
+						_react2.default.createElement("br", null),
+						_react2.default.createElement(
+							"span",
+							null,
+							"Successfully uploaded to:",
+							_react2.default.createElement("br", null),
+							_react2.default.createElement("span", null)
+						),
+						_react2.default.createElement(
+							"span",
+							null,
+							"Canceled"
+						),
+						_react2.default.createElement(
+							"span",
+							null,
+							"Error"
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return UploadImages;
+})(_react2.default.Component);
+
+},{"react":204}]},{},[205]);

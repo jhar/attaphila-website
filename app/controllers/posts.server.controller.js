@@ -65,8 +65,6 @@ exports.listByCategory = function(req, res, next, cat) {
 };
 
 exports.create = function(req, res, next) {
-    
-    console.log(req.body);
 
     var post = new Post({
         title: req.body.title,

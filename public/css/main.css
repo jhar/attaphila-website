@@ -33,7 +33,7 @@ header {
 	background-color: white;
 	border-bottom: 1px outset #e0e0e0;
 	border-right: 1px solid #e0e0e0;
-	height: 48px;
+	min-height: 48px;
 }
 
 header a {
@@ -59,7 +59,7 @@ header a {
 nav {
 	background-color: rgb(243, 249, 210);
 	border-bottom: 1px outset #e0e0e0;
-	height: 48px;
+	min-height: 48px;
 	padding: 0 !important;
 }
 
@@ -133,16 +133,25 @@ footer > .text-center {
 
 /* Bootstrap Fixes */
 
+.form-control {
+	margin: 5% 0;
+}
+
 .nav-justified > li > a {
 	margin-bottom: 0 !important;
 }
 
 .modal-dialog {
+	margin-top: 200px;
 	width: 250px;
 }
 
 .modal-content {
-	padding: 5%;
+	padding: 10%;
+}
+
+button > a {
+	color: white;
 }
 
 
