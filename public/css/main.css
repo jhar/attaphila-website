@@ -97,7 +97,7 @@ footer {
 	border-top: 1px inset #e0e0e0;
 	bottom: 0;
 	color: white;
-	height: 50px;
+	min-height: 50px;
 	position: absolute;
 	width: 100%;
 }
