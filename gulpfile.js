@@ -9,6 +9,7 @@ var util = require('gulp-util');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var uglifycss = require('gulp-uglifycss');
+var imageop = require('gulp-image-optimization');
 
 /* Compile Less Files */
 
@@ -48,5 +49,13 @@ gulp.task('styles', function() {
         .pipe(gulp.dest('./public/dist'));
 });
 
+/* Optimize Images */
+
+gulp.task('images', function() {
+    return gulp.src(['./public/src/img/*.png','./public/src/img/*.jpg','./public/src/img/*.gif','./public/src/img/*.jpeg'])
+        .pipe(imageop({ optimizationLevel: 5, progressive: true, interlaced: true }))
+        .pipe(gulp.dest('./public/dist/img/'));
+})
+
 gulp.task('compile', ['compile-less', 'transpile-js']);
-gulp.task('package', ['scripts', 'styles']);
+gulp.task('package', ['scripts', 'styles', 'images']);
