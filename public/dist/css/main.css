@@ -1,0 +1,129 @@
+@import url(https://fonts.googleapis.com/css?family=Special+Elite);
+/* General */
+a {
+  min-width: 48px;
+  min-height: 48px;
+}
+body {
+  font-family: 'Special Elite', cursive;
+  min-width: 320px;
+}
+body,
+section {
+  background-color: #d9f6bb;
+}
+html,
+body,
+body > div,
+body > div > div {
+  height: 100% !important;
+}
+html,
+.container-fluid {
+  margin: auto;
+  overflow-x: hidden;
+  padding: 0;
+  width: 100%;
+}
+/* Header */
+header {
+  background-color: white;
+  border-bottom: 1px outset #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  min-height: 48px;
+  position: static !important;
+}
+header a {
+  color: black;
+}
+header .atta-header {
+  font-size: 24px;
+  float: right;
+  height: 48px;
+  margin: 0;
+  padding-top: 10px;
+}
+header .atta-brand {
+  height: 48px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+/* Navigation */
+nav {
+  background-color: #f3f9d2;
+  border-bottom: 1px outset #e0e0e0;
+  min-height: 48px;
+  padding: 0 !important;
+}
+nav a {
+  color: #43390a;
+  padding-top: 14px !important;
+}
+.nav > li > a:focus,
+.nav > li > a:hover {
+  border-bottom: 1px outset #e0e0e0;
+}
+/* Main Content Area */
+article {
+  margin-bottom: 40px;
+}
+.hero {
+  background-image: url("../img/attaphilaHero.jpg");
+  background-size: cover;
+  display: block;
+  height: 100%;
+}
+section {
+  color: #26331a;
+  margin-bottom: 50px;
+  padding: 5%;
+}
+/* Footer */
+footer {
+  background-color: #3f2927;
+  border-top: 1px inset #e0e0e0;
+  bottom: 0;
+  color: white;
+  min-height: 50px;
+  position: absolute;
+  width: 100%;
+}
+footer a {
+  color: #3a9dd7;
+}
+footer .text-center {
+  padding-top: 10px;
+}
+/* Misc */
+.attaphila {
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 750px;
+}
+.cover-photo {
+  margin-left: auto;
+  margin-right: auto;
+}
+.media {
+  max-width: 1024px;
+}
+.media-object {
+  max-width: 128px;
+}
+/* Bootstrap Fixes */
+.form-control {
+  margin: 5% 0;
+}
+.nav-justified > li > a {
+  margin-bottom: 0 !important;
+}
+.modal-dialog {
+  margin: 25% auto;
+  width: 250px;
+}
+.modal-content {
+  padding: 10%;
+}
+button > a {
+  color: white;
+}
