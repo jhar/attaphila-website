@@ -17,7 +17,7 @@ module.exports = function() {
 	}));
 	app.use(bodyParser.json());
 	app.use(methodOverride());
-	app.use(express.static('./public'));
+	app.use(express.static('./public/dist/'));
 	app.use(session({
 		saveUninitialized: true,
 		resave: true,
