@@ -7,6 +7,8 @@ var source = require('vinyl-source-stream');
 var less = require('gulp-less');
 var util = require('gulp-util');
 var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var uglifycss = require('gulp-uglifycss');
 
 /* Compile Less Files */
 
@@ -33,6 +35,7 @@ gulp.task('transpile-js', function() {
 gulp.task('scripts', function() {
     return gulp.src(['./public/src/lib/jquery/dist/jquery.min.js', './public/src/lib/bootstrap/js/modal.js', './public/src/bundle.js'])
         .pipe(concat('all.js'))
+        .pipe(uglify())
         .pipe(gulp.dest('./public/dist/'));
 });
 
@@ -41,6 +44,7 @@ gulp.task('scripts', function() {
 gulp.task('styles', function() {
     return gulp.src(['./public/src/lib/bootstrap/dist/css/bootstrap.min.css', './public/src/css/main.css'])
         .pipe(concat('all.css'))
+        .pipe(uglifycss())
         .pipe(gulp.dest('./public/dist'));
 });
 
