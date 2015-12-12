@@ -5,6 +5,8 @@
   src: local('Special Elite'), local('SpecialElite-Regular'), url(https://fonts.gstatic.com/s/specialelite/v6/9-wW4zu3WNoD5Fjka35JmwYWpCd0FFfjqwFBDnEN0bM.woff2) format('woff2');
 }
 
+@desktop:     ~"only screen and (min-width: 1024px)";
+
 /* General */
 
 a {
@@ -140,23 +142,52 @@ footer {
 	max-width: 128px;
 }
 
-/* Bootstrap Fixes */
+/* Sign In Modal */
 
-.form-control {
-	margin: 5% 0;
+.modal-dialog {
+	margin: 156px auto;
+	width: 250px;
+	@media @desktop {
+		width: 640px;
+	}
+	.modal-content {
+		padding: 10%;
+		@media @desktop {
+			padding: 5%;
+		}
+		.form-sign-in {
+			.img-responsive {
+				margin-bottom: 12px;
+				@media @desktop {
+					float: left;
+					margin: 24px;
+				}
+			}
+			.form-control {
+				height: 48px;
+				margin-bottom: 8px;
+				@media @desktop {
+					float: right;
+					height: 36px;
+					margin: 3% 0;
+					width: 38%;
+				}
+			}
+			.btn-primary {
+				@media @desktop {
+					margin: 0 auto;
+					width: 62%;
+				}
+			}
+		}
+	}
 }
+
+
+/* Bootstrap Fixes */
 
 .nav-justified > li > a {
 	margin-bottom: 0 !important;
-}
-
-.modal-dialog {
-	margin: 25% auto;
-	width: 250px;
-}
-
-.modal-content {
-	padding: 10%;
 }
 
 button > a {

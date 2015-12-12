@@ -115,19 +115,54 @@ footer .text-center {
 .media-object {
   max-width: 128px;
 }
-/* Bootstrap Fixes */
-.form-control {
-  margin: 5% 0;
-}
-.nav-justified > li > a {
-  margin-bottom: 0 !important;
-}
+/* Sign In Modal */
 .modal-dialog {
-  margin: 25% auto;
+  margin: 156px auto;
   width: 250px;
 }
-.modal-content {
+@media only screen and (min-width: 1024px) {
+  .modal-dialog {
+    width: 640px;
+  }
+}
+.modal-dialog .modal-content {
   padding: 10%;
+}
+@media only screen and (min-width: 1024px) {
+  .modal-dialog .modal-content {
+    padding: 5%;
+  }
+}
+.modal-dialog .modal-content .form-sign-in .img-responsive {
+  margin-bottom: 12px;
+}
+@media only screen and (min-width: 1024px) {
+  .modal-dialog .modal-content .form-sign-in .img-responsive {
+    float: left;
+    margin: 24px;
+  }
+}
+.modal-dialog .modal-content .form-sign-in .form-control {
+  height: 48px;
+  margin-bottom: 8px;
+}
+@media only screen and (min-width: 1024px) {
+  .modal-dialog .modal-content .form-sign-in .form-control {
+    float: right;
+    height: 36px;
+    margin: 3% 0;
+    width: 38%;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .modal-dialog .modal-content .form-sign-in .btn-primary {
+    margin: 0 auto;
+    width: 62%;
+  }
+}
+/* Bootstrap Fixes */
+.nav-justified > li > a {
+  margin-bottom: 0 !important;
 }
 button > a {
   color: white;
