@@ -31,7 +31,7 @@ class App extends React.Component {
     render() {
         var viewControl;
         if (this.state.view == 'post') {
-            viewControl = <Post params={this.state.params} changeView={this.changeView.bind(this)}/>;
+            viewControl = <Post user={this.props.user} params={this.state.params} changeView={this.changeView.bind(this)}/>;
         } else if (this.state.view == 'posts') {
             viewControl = <Posts params={this.state.params} changeView={this.changeView.bind(this)} />;
         } else {
