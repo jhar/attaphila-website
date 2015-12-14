@@ -1,5 +1,6 @@
 import React from 'react'
 import { FormattedDate } from './reusable.js'
+import { CreatePost } from './createPost.js'
 
 export class Post extends React.Component {
     constructor(props) {
@@ -33,11 +34,14 @@ export class Post extends React.Component {
         }
 	}
 	render() {
-	    return (
-	        <ul>
-	            <li>Category: {this.props.params.category}</li>
-	            <li>Mode: {this.state.mode}</li>
-	       </ul>
-	    );
+	    if (this.state.mode == 'create') {
+	        return (
+	            <CreatePost />  
+	        );
+	    } else {
+	        return (
+	            <div>Blew blew blew.</div>  
+	        );
+	    }
 	}
 }

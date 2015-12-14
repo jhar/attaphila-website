@@ -57,7 +57,7 @@ class PostPreview extends React.Component {
 		return (
 			<article className="row">
 				<div className="col-xs-12">
-					<a onClick={this.props.changeView.bind(this, 'post', {category:this.props.post.category, postid:this.props.post._id, mode: 'view'})}>
+					<a onClick={this.props.changeView.bind(this, 'post', {category:this.props.post.category, postid:this.props.post._id, mode: 'read'})}>
 						<div className="media">
 							<div className="media-left media-middle">
 								<img className="media-object" src={this.props.post.coverPhotoURL} />
