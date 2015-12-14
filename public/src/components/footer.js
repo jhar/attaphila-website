@@ -41,7 +41,7 @@ class SignOut extends React.Component {
 			<ul className="nav nav-justified">
 				<li><a href="/signout">Signout</a></li>
 				<li><a onClick={this.props.changeView.bind(this, 'post', {mode: 'create'})}>Create Post</a></li>
-				<li><a>List All Posts</a></li>
+				<li><a onClick={this.props.changeView.bind(this, 'posts', {category: 'all'})}>List All Posts</a></li>
 				<li><a>Upload Images</a></li>
 			</ul>
 		);
