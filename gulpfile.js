@@ -26,6 +26,7 @@ gulp.task('compile-less', function() {
 gulp.task('transpile-js', function() {
     return browserify({ entries: './public/src/app.js', debug: true })
         .transform('babelify', { presets: ['es2015', 'react']})
+        .on('error', util.log)
         .bundle()
         .pipe(source('bundle.js'))
         .pipe(gulp.dest('./public/src/'));
