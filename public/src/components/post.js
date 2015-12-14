@@ -5,6 +5,7 @@ export class Post extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            mode: this.props.params.mode,
             post: {
                 creator: {},
                 medialinks: [{}]
@@ -17,7 +18,6 @@ export class Post extends React.Component {
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-			    console.log(data);
 				this.setState({
 					post: data
 				});
@@ -28,11 +28,16 @@ export class Post extends React.Component {
 		});	
     }
     componentDidMount() {
-		this.loadPostFromServer(this.props.category, this.props.postid);		
+        if (this.state.mode == 'read') {
+		    this.loadPostFromServer(this.props.params.category, this.props.params.postid);
+        }
 	}
 	render() {
 	    return (
-	        <span>Post</span>   
+	        <ul>
+	            <li>Category: {this.props.params.category}</li>
+	            <li>Mode: {this.state.mode}</li>
+	       </ul>
 	    );
 	}
 }

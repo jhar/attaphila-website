@@ -7,7 +7,7 @@ export class Footer extends React.Component {
 		if (this.props.user == 'null') {
 			return <SignIn />;
 		} else {
-			return <SignOut username={this.props.user.username} />;
+			return <SignOut username={this.props.user.username} changeView={this.props.changeView.bind(this)} />;
 		}
 		
 	}	
@@ -40,9 +40,9 @@ class SignOut extends React.Component {
 		return (
 			<ul className="nav nav-justified">
 				<li><a href="/signout">Signout</a></li>
-				<li><Link to="/posts/create">Create Post</Link></li>
-				<li><Link to="/posts/all">List All Posts</Link></li>
-				<li><Link to="/images">Upload Images</Link></li>
+				<li><a onClick={this.props.changeView.bind(this, 'post', {mode: 'create'})}>Create Post</a></li>
+				<li><a>List All Posts</a></li>
+				<li><a>Upload Images</a></li>
 			</ul>
 		);
 	}	

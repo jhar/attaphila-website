@@ -19,8 +19,6 @@ export class Posts extends React.Component {
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-			    console.info(this);
-			    console.log(data);
 				this.setState({
 					data: data
 				});
@@ -31,18 +29,18 @@ export class Posts extends React.Component {
 		});	
     }
 	componentDidMount() {
-		this.loadPostsFromServer(this.props.category);		
+		this.loadPostsFromServer(this.props.params.category);		
 	}
 	componentWillReceiveProps(nextProps) {
-		this.loadPostsFromServer(nextProps.category);
+		this.loadPostsFromServer(nextProps.params.category);
 	}
 	render() {
 		var postPreviewNodes = this.state.data.map(function (post) {
 			return (
-				<PostPreview post={post}>
+				<PostPreview post={post} changeView={this.props.changeView.bind(this)}>
 				</PostPreview>
 			);	
-		});
+		}.bind(this));
 		return (
 			<section className="col-xs-12">
 				{postPreviewNodes}	
@@ -52,11 +50,14 @@ export class Posts extends React.Component {
 }
 
 class PostPreview extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 	render() {
 		return (
 			<article className="row">
 				<div className="col-xs-12">
-					<a href="#">
+					<a onClick={this.props.changeView.bind(this, 'post', {category:this.props.post.category, postid:this.props.post._id, mode: 'view'})}>
 						<div className="media">
 							<div className="media-left media-middle">
 								<img className="media-object" src={this.props.post.coverPhotoURL} />
