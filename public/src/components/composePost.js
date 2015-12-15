@@ -61,10 +61,8 @@ export class ComposePost extends React.Component {
 		}
 	}
 	render() {
-		var comHeader, comMethod, comTitle, comCat, comCover, comContent, comMedia;
+		var comTitle, comCat, comCover, comContent, comMedia;
 		if (this.props.mode == 'create') {
-			comHeader = "Create New Post";
-			comMethod = "post";
 			comTitle = <input type="text" name="title" placeholder="Title" required />;
 			comCat = <select name="category" required>
 					 	<option value="inside">Inside</option>
@@ -75,8 +73,6 @@ export class ComposePost extends React.Component {
 			comCover = <input type="text" name="coverPhotoURL" placeholder="Cover Photo URL" />;
 			comContent = <textarea cols="30" rows="10" name="content" placeholder="Content" required></textarea>;
 		} else {
-			comHeader = "Edit Existing Post";
-			comMethod = "";
 			comTitle = <input type="text" name="title" value={this.state.post.title} onChange={this.handleChange} required />;
 			comCat = <select name="category" value={this.state.post.category} onChange={this.handleChange} required>
 					 	<option value="inside">Inside</option>
@@ -90,39 +86,37 @@ export class ComposePost extends React.Component {
 		return (
 			<section className="page">
 				<div className="col-xs-12">
-					<h1>{comHeader}</h1>
-					<form action="/api/posts" method={comMethod}>
+					<h1>Compose Post</h1>
+					<div>
+						<label>Title</label>
 						<div>
-							<label>Title</label>
-							<div>
-								{comTitle}
-							</div>
+							{comTitle}
 						</div>
-						<div>
-							<label>Category</label>
-							<br />
-							{comCat}
-						</div>
-						<div>
-			                <label>Cover Photo URL</label>
-			                <br />
-			                {comCover}
-			            </div>
-						<div>
-							<label>Content</label>
-							<div>
-								{comContent}
-							</div>
-						</div>
-						<ComposeMediaLinks mode={this.props.mode} post={this.state.post} handleChange={this.handleChange.bind(this)}/>
+					</div>
+					<div>
+						<label>Category</label>
 						<br />
+						{comCat}
+					</div>
+					<div>
+		                <label>Cover Photo URL</label>
+		                <br />
+		                {comCover}
+		            </div>
+					<div>
+						<label>Content</label>
 						<div>
-							<input type="submit" />
+							{comContent}
 						</div>
-						<div>
-							<strong>Errors</strong>
-						</div>
-					</form>
+					</div>
+					<ComposeMediaLinks mode={this.props.mode} post={this.state.post} handleChange={this.handleChange.bind(this)}/>
+					<br />
+					<div>
+						<button className="btn btn-sm btn-success">Submit</button>
+					</div>
+					<div>
+						<strong>Errors</strong>
+					</div>
 				</div>
 			</section>	
 		);
@@ -136,9 +130,9 @@ class ComposeMediaLinks extends React.Component {
 			post: this.props.post
 		};
 		this.handleAdd = this.handleAdd.bind(this);
+		this.handleRemove = this.handleRemove.bind(this);
 	}
 	handleAdd() {
-		console.log(this.state.post);
 		var postCopy = this.state.post;
 		if (this.state.post.medialinks) {
 			var mediaLinksCopy = this.state.post.medialinks;
@@ -150,7 +144,21 @@ class ComposeMediaLinks extends React.Component {
 			post: postCopy	
 		});
 	}
+	handleRemove() {
+		var postCopy = this.state.post;
+		var mediaLinksCopy = this.state.post.medialinks;
+		mediaLinksCopy.pop();
+		postCopy['medialinks'] = mediaLinksCopy;
+		this.setState({
+			post: postCopy	
+		});
+	}
 	render() {
+		if (this.state.post.medialinks) {
+			var removeButton = <button className="btn btn-xs btn-danger" onClick={this.handleRemove}>Remove Last</button>;
+		} else {
+			removeButton = '';
+		}
 		var mediaLinkNodes = this.state.post.medialinks.map(function (mediaLink) {
 			return (
 				<li>
@@ -162,7 +170,7 @@ class ComposeMediaLinks extends React.Component {
 						<option value="article">Link</option>
 						<option value="youtube">YouTube</option>
 						<option value="photo">Photo</option>
-					</select>
+					</select> 
 				</li>
 			);	
 		}.bind(this));
@@ -172,8 +180,8 @@ class ComposeMediaLinks extends React.Component {
 				{mediaLinkNodes}
 				</ol>
 				<div>
-					<input type="button" value="Add more media" onClick={this.handleAdd} />
-					<input type="button" value="Remove" />
+					<button className="btn btn-xs btn-primary" onClick={this.handleAdd}>Add Media</button>
+					{removeButton}
 				</div>
 			</div>
 		);
