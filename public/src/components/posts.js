@@ -29,10 +29,10 @@ export class Posts extends React.Component {
 		});	
     }
 	componentDidMount() {
-		this.loadPostsFromServer(this.props.params.category);		
+		this.loadPostsFromServer(this.props.category);		
 	}
 	componentWillReceiveProps(nextProps) {
-		this.loadPostsFromServer(nextProps.params.category);
+		this.loadPostsFromServer(nextProps.category);
 	}
 	render() {
 		var postPreviewNodes = this.state.data.map(function (post) {

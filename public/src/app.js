@@ -10,30 +10,27 @@ class App extends React.Component {
         super(props);
         this.state = {
             view: 'hero',
-            params: {
-                category: 'null',
-                postid: 'null',
-                mode: 'null'
-            }
+            category: 'null',
+            postid: 'null',
+            mode: 'null'
         }
         this.changeView = this.changeView.bind(this);
     }
     changeView(view, params) {
+        console.log("changeView called with: " + view + ", " + params);
         this.setState({
             view: view,
-            params: {
-                category: params.category,
-                postid: params.postid,
-                mode: params.mode
-            }
+            category: params.category,
+            postid: params.postid,
+            mode: params.mode
         });
     }
     render() {
         var viewControl;
         if (this.state.view == 'post') {
-            viewControl = <Post user={this.props.user} params={this.state.params} changeView={this.changeView.bind(this)}/>;
+            viewControl = <Post user={this.props.user} category={this.state.category} postid={this.state.postid} mode={this.state.mode} changeView={this.changeView.bind(this)}/>;
         } else if (this.state.view == 'posts') {
-            viewControl = <Posts params={this.state.params} changeView={this.changeView.bind(this)} />;
+            viewControl = <Posts category={this.state.category} changeView={this.changeView.bind(this)} />;
         } else {
             viewControl = <Hero />;
         }

@@ -1,12 +1,11 @@
 import React from 'react'
 import { FormattedDate } from './reusable.js'
-import { CreatePost } from './createPost.js'
+import { CreateOrEditPost } from './createOrEditPost.js'
 
 export class Post extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            mode: this.props.params.mode,
             post: {
                 creator: {},
                 medialinks: [{}]
@@ -29,14 +28,18 @@ export class Post extends React.Component {
 		});	
     }
     componentDidMount() {
-        if (this.state.mode == 'read') {
-		    this.loadPostFromServer(this.props.params.category, this.props.params.postid);
+        if (this.props.mode == 'read' || this.props.mode == 'edit') {
+		    this.loadPostFromServer(this.props.category, this.props.postid);
         }
 	}
 	render() {
-	    if (this.state.mode == 'create') {
+	    if (this.props.mode == 'create') {
 	        return (
-	            <CreatePost />  
+	            <CreateOrEditPost mode="create"/>  
+	        );
+	    } else if (this.props.mode == 'edit') {
+	        return (
+	            <CreateOrEditPost mode="edit" post={this.state.post}/>  
 	        );
 	    } else {
 	        var adminOptions;
@@ -97,8 +100,7 @@ class PostAdmin extends React.Component {
 			<div>
 				<button className="btn btn-primary btn-sm">
 				    <a onClick={this.props.changeView.bind(this, 'post', {category:this.props.post.category, postid:this.props.post._id, mode: 'edit'})}>Edit</a>
-				</button> or 
-				<button className="btn btn-primary btn-sm" onClick={this.deletePostFromServer}>Delete</button>
+				</button> or <button className="btn btn-primary btn-sm" onClick={this.deletePostFromServer}>Delete</button>
 			</div>
 		);
 	}	
