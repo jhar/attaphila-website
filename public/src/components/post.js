@@ -1,6 +1,6 @@
 import React from 'react'
 import { FormattedDate } from './reusable.js'
-import { CreateOrEditPost } from './createOrEditPost.js'
+import { ComposePost } from './composePost.js'
 
 export class Post extends React.Component {
     constructor(props) {
@@ -35,11 +35,11 @@ export class Post extends React.Component {
 	render() {
 	    if (this.props.mode == 'create') {
 	        return (
-	            <CreateOrEditPost mode="create"/>  
+	            <ComposePost mode="create"/>  
 	        );
 	    } else if (this.props.mode == 'edit') {
 	        return (
-	            <CreateOrEditPost mode="edit" post={this.state.post}/>  
+	            <ComposePost mode="edit" post={this.state.post}/>  
 	        );
 	    } else {
 	        var adminOptions;

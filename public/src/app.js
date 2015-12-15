@@ -17,7 +17,6 @@ class App extends React.Component {
         this.changeView = this.changeView.bind(this);
     }
     changeView(view, params) {
-        console.log("changeView called with: " + view + ", " + params);
         this.setState({
             view: view,
             category: params.category,

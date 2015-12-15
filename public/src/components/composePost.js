@@ -1,6 +1,6 @@
 import React from 'react'
 
-export class CreateOrEditPost extends React.Component {
+export class ComposePost extends React.Component {
 	constructor(props) {
 		super(props);
 		if (this.props.mode == 'edit' && this.props.post) {
@@ -61,7 +61,7 @@ export class CreateOrEditPost extends React.Component {
 		}
 	}
 	render() {
-		var coeHeader, coeMethod, coeTitle, coeCat, coeCover, coeContent;
+		var coeHeader, coeMethod, coeTitle, coeCat, coeCover, coeContent, coeMedia;
 		if (this.props.mode == 'create') {
 			coeHeader = "Create New Post";
 			coeMethod = "post";
@@ -114,23 +114,7 @@ export class CreateOrEditPost extends React.Component {
 								{coeContent}
 							</div>
 						</div>
-						<ol>
-							<li>
-								<label>Media Link</label>
-								<input type="text" name="mediaLinkURL" placeholder="Media Link URL" />
-								<br />
-								<label>Media Type</label>
-								<select name="mediaLinkMedia">
-									<option value="article">Link</option>
-									<option value="youtube">YouTube</option>
-									<option value="photo">Photo</option>
-								</select>
-							</li>
-						</ol>
-						<div>
-							<input type="button" value="Add more media" />
-							<input type="button" value="Remove" />
-						</div>
+						<ComposeMediaLinks mode={this.props.mode} post={this.state.post} handleChange={this.handleChange.bind(this)}/>
 						<br />
 						<div>
 							<input type="submit" />
@@ -141,6 +125,43 @@ export class CreateOrEditPost extends React.Component {
 					</form>
 				</div>
 			</section>	
+		);
+	}
+}
+
+class ComposeMediaLinks extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	handleAdd(event) {
+		console.info(this);
+	}
+	render() {
+		var mediaLinkNodes = this.state.post.medialinks.map(function (mediaLink) {
+			return (
+				<li>
+					<label>Media Link</label>
+					<input type="text" name="mediaLinkURL" placeholder="Media Link URL" />
+					<br />
+					<label>Media Type</label>
+					<select name="mediaLinkMedia">
+						<option value="article">Link</option>
+						<option value="youtube">YouTube</option>
+						<option value="photo">Photo</option>
+					</select>
+				</li>
+			);	
+		}.bind(this));
+		return (
+			<div>
+				<ol>
+				{mediaLinkNodes}
+				</ol>
+				<div>
+					<input type="button" value="Add more media" onClick={this.handleAdd} />
+					<input type="button" value="Remove" />
+				</div>
+			</div>
 		);
 	}
 }
