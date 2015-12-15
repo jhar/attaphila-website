@@ -17,6 +17,21 @@ export class CreateOrEditPost extends React.Component {
 		} else {
 			console.error("Error in CreateOrEditPost constructor: mode or post not passed as prop");
 		}
+		this.handleChange = this.handleChange.bind(this);
+	}
+	handleChange(event) {
+		var postCopy = this.state.post;
+		if (event.target.name == 'title') {
+			postCopy.title = event.target.value;
+			this.setState({
+				post: postCopy
+			});
+		} else if (event.target.name == 'category') {
+			postCopy.category = event.target.value
+			this.setState({
+				post: postCopy
+			});
+		}
 	}
 	sendPostRequest() {
 		if (this.props.mode == 'create') {
@@ -53,34 +68,43 @@ export class CreateOrEditPost extends React.Component {
 		}
 	}
 	render() {
-		var coeTitle, coeMethod;
+		var coeHeader, coeMethod, coeTitle, coeCat;
 		if (this.props.mode == 'create') {
-			coeTitle = "Create New Post";
+			coeHeader = "Create New Post";
 			coeMethod = "post";
+			coeTitle = <input type="text" name="title" placeholder="Title" required />;
+			coeCat = <select name="category" required>
+					 	<option value="inside">Inside</option>
+						<option value="outside">Outside</option>
+						<option value="relatives">Relatives</option>
+						<option value="anthro">Anthropodicies</option>
+					 </select>;
 		} else {
-			coeTitle = "Edit Existing Post";
-			coeMethod = ""
+			coeHeader = "Edit Existing Post";
+			coeMethod = "";
+			coeTitle = <input type="text" name="title" value={this.state.post.title} onChange={this.handleChange} required />;
+			coeCat = <select name="category" value={this.state.post.category} onChange={this.handleChange} required>
+					 	<option value="inside">Inside</option>
+						<option value="outside">Outside</option>
+						<option value="relatives">Relatives</option>
+						<option value="anthro">Anthropodicies</option>
+					</select>;
 		}
 		return (
 			<section className="page">
 				<div className="col-xs-12">
-					<h1>{coeTitle}</h1>
+					<h1>{coeHeader}</h1>
 					<form action="/api/posts" method={coeMethod}>
 						<div>
 							<label>Title</label>
 							<div>
-								<input type="text" name="title" placeholder="Title" required />
+								{coeTitle}
 							</div>
 						</div>
 						<div>
 							<label>Category</label>
 							<br />
-							<select name="category">
-								<option value="inside">Inside</option>
-								<option value="outside">Outside</option>
-								<option value="relatives">Relatives</option>
-								<option value="anthro">Anthropodicies</option>
-							</select>
+							{coeCat}
 						</div>
 						<div>
 			                <label>Cover Photo URL</label>
