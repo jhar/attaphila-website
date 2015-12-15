@@ -21,17 +21,28 @@ export class CreateOrEditPost extends React.Component {
 	}
 	handleChange(event) {
 		var postCopy = this.state.post;
+		postCopy[event.target.name] = event.target.value;
+		this.setState({
+			post: postCopy	
+		});
+		/*
 		if (event.target.name == 'title') {
 			postCopy.title = event.target.value;
 			this.setState({
 				post: postCopy
 			});
 		} else if (event.target.name == 'category') {
-			postCopy.category = event.target.value
+			postCopy.category = event.target.value;
 			this.setState({
 				post: postCopy
 			});
-		}
+		} else if (event.target.name == 'coverPhotoURL') {
+			postCopy.coverPhotoURL = event.target.value;
+			this.setState({
+				post: postCopy
+			});
+		} else 
+		*/
 	}
 	sendPostRequest() {
 		if (this.props.mode == 'create') {
@@ -68,7 +79,7 @@ export class CreateOrEditPost extends React.Component {
 		}
 	}
 	render() {
-		var coeHeader, coeMethod, coeTitle, coeCat;
+		var coeHeader, coeMethod, coeTitle, coeCat, coeCover, coeContent;
 		if (this.props.mode == 'create') {
 			coeHeader = "Create New Post";
 			coeMethod = "post";
@@ -79,6 +90,8 @@ export class CreateOrEditPost extends React.Component {
 						<option value="relatives">Relatives</option>
 						<option value="anthro">Anthropodicies</option>
 					 </select>;
+			coeCover = <input type="text" name="coverPhotoURL" placeholder="Cover Photo URL" />;
+			coeContent = <textarea cols="30" rows="10" name="content" placeholder="Content" required></textarea>;
 		} else {
 			coeHeader = "Edit Existing Post";
 			coeMethod = "";
@@ -89,6 +102,8 @@ export class CreateOrEditPost extends React.Component {
 						<option value="relatives">Relatives</option>
 						<option value="anthro">Anthropodicies</option>
 					</select>;
+			coeCover = <input type="text" name="coverPhotoURL" value={this.state.post.coverPhotoURL} onChange={this.handleChange} />;
+			coeContent = <textarea cols="30" rows="10" name="content" value={this.state.post.content} onChange={this.handleChange} required></textarea>;
 		}
 		return (
 			<section className="page">
@@ -109,12 +124,12 @@ export class CreateOrEditPost extends React.Component {
 						<div>
 			                <label>Cover Photo URL</label>
 			                <br />
-			                <input type="text" name="coverPhotoURL" placeholder="Cover Photo URL" />
+			                {coeCover}
 			            </div>
 						<div>
 							<label>Content</label>
 							<div>
-								<textarea cols="30" rows="10" name="content" placeholder="Content" required></textarea>
+								{coeContent}
 							</div>
 						</div>
 						<ol>
