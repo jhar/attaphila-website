@@ -25,24 +25,6 @@ export class CreateOrEditPost extends React.Component {
 		this.setState({
 			post: postCopy	
 		});
-		/*
-		if (event.target.name == 'title') {
-			postCopy.title = event.target.value;
-			this.setState({
-				post: postCopy
-			});
-		} else if (event.target.name == 'category') {
-			postCopy.category = event.target.value;
-			this.setState({
-				post: postCopy
-			});
-		} else if (event.target.name == 'coverPhotoURL') {
-			postCopy.coverPhotoURL = event.target.value;
-			this.setState({
-				post: postCopy
-			});
-		} else 
-		*/
 	}
 	sendPostRequest() {
 		if (this.props.mode == 'create') {
