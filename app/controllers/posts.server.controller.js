@@ -1,7 +1,6 @@
 var Post = require('mongoose').model('Posts');
 
 var getErrorMessage = function(err) {
-
     if (err.errors) {
         for (var errName in err.errors) {
             if (err.errors[errName].message) return err.errors[errName].message;
@@ -9,11 +8,9 @@ var getErrorMessage = function(err) {
     } else {
         return 'Unknown server error';
     }
-
 };
 
 exports.hasAuthorization = function(req, res, next) {
-
     if ((req.post.creator.id !== req.user.id) && (req.user.username != 'justin')) {
         return res.status(403).sent({
             message: 'User is not authorized'
@@ -21,22 +18,18 @@ exports.hasAuthorization = function(req, res, next) {
     }
 
     next();
-
 };
 
 exports.postById = function(req, res, next, id) {
-
     Post.findById(id).populate('creator', 'username').exec(function(err, post) {
         if (err) return next(err);
         if (!post) return next(new Error('Failed to load post' + id));
         req.post = post;
         next();
     });
-
 };
 
 exports.list = function(req, res) {
-
     Post.find().sort('-created').populate('creator', 'username').exec(function(err, posts) {
         if (err) {
             return res.status(400).send({
@@ -46,11 +39,9 @@ exports.list = function(req, res) {
             res.json(posts);
         }
     });
-
 };
 
 exports.listByCategory = function(req, res, next, cat) {
-
     Post.find({category: cat}).sort('-created').populate('creator', 'username').exec(function(err, posts) {
         if (err) {
             return res.status(400).send({
@@ -61,11 +52,9 @@ exports.listByCategory = function(req, res, next, cat) {
             next();
         }
     });
-
 };
 
 exports.create = function(req, res, next) {
-
     var post = new Post({
         title: req.body.title,
         category: req.body.category,
@@ -75,7 +64,7 @@ exports.create = function(req, res, next) {
     });
     
     if (req.body.medialinks) {
-        for (i = 0; i < req.body.medialinks.length; i++) {
+        for (var i = 0; i < req.body.medialinks.length; i++) {
             post.medialinks.push({
                 url: req.body.medialinks[i].url,
                 media: req.body.medialinks[i].media
@@ -94,17 +83,13 @@ exports.create = function(req, res, next) {
             res.json(post);
         }
     });
-
 };
 
 exports.read = function(req, res) {
-
     res.json(req.post);
-
 };
 
 exports.update = function(req, res) {
-
     var post = req.post;
     post.title = req.body.title;
     post.category = req.body.category;
@@ -121,11 +106,9 @@ exports.update = function(req, res) {
             res.json(post);
         }
     });
-
 };
 
 exports.delete = function(req, res) {
-
     var post = req.post;
 
     post.remove(function(err) {
@@ -137,5 +120,4 @@ exports.delete = function(req, res) {
             res.json(post);
         }
     });
-
 };

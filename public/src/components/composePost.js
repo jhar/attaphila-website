@@ -20,6 +20,8 @@ export class ComposePost extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleAdd = this.handleAdd.bind(this);
 		this.handleRemove = this.handleRemove.bind(this);
+		this.sendPostRequest = this.sendPostRequest.bind(this);
+		this.sendPutRequest = this.sendPutRequest.bind(this);
 	}
 	handleChange(event) {
 		var postCopy = this.state.post;
@@ -53,13 +55,15 @@ export class ComposePost extends React.Component {
 		if (this.props.mode == 'create') {
 			$.ajax({
 				url: "/api/posts/",
+				data: this.state.post,
 				dataType: 'json',
 				method: 'POST',
 				success: function(data) {
 					console.log("SUCCESS");
+					console.log(data);
 				},
 				error: function(xhr, status, err) {
-					
+					console.error(this.state, status, err.toString());
 				}.bind(this)
 			});
 		} else {
@@ -70,10 +74,12 @@ export class ComposePost extends React.Component {
 		if (this.props.mode == 'edit') {
 			$.ajax({
 				url: "/api/posts/" + this.state.post.category + "/" + this.state.post._id,
+				data: this.state.post,
 				dataType: 'json',
 				method: 'PUT',
 				success: function(data) {
 					console.log("SUCCESS");
+					console.log(data);
 				},
 				error: function(xhr, status, err) {
 					console.error(this.state, status, err.toString());
@@ -84,7 +90,7 @@ export class ComposePost extends React.Component {
 		}
 	}
 	render() {
-		var comTitle, comCat, comCover, comContent, comMedia;
+		var comTitle, comCat, comCover, comContent, comMedia, comSubmit;
 		if (this.props.mode == 'create') {
 			comTitle = <input type="text" name="title" placeholder="Title" required />;
 			comCat = <select name="category" required>
@@ -95,6 +101,7 @@ export class ComposePost extends React.Component {
 					 </select>;
 			comCover = <input type="text" name="coverPhotoURL" placeholder="Cover Photo URL" />;
 			comContent = <textarea cols="30" rows="10" name="content" placeholder="Content" required></textarea>;
+			comSubmit = <button className="btn btn-sm btn-success" onClick={this.sendPostRequest}>Submit</button>;
 		} else {
 			comTitle = <input type="text" name="title" value={this.state.post.title} onChange={this.handleChange} required />;
 			comCat = <select name="category" value={this.state.post.category} onChange={this.handleChange} required>
@@ -105,6 +112,7 @@ export class ComposePost extends React.Component {
 					</select>;
 			comCover = <input type="text" name="coverPhotoURL" value={this.state.post.coverPhotoURL} onChange={this.handleChange} />;
 			comContent = <textarea cols="30" rows="10" name="content" value={this.state.post.content} onChange={this.handleChange} required></textarea>;
+			comSubmit = <button className="btn btn-sm btn-success" onClick={this.sendPutRequest}>Submit</button>;
 		}
 		return (
 			<section className="page">
@@ -135,7 +143,7 @@ export class ComposePost extends React.Component {
 					<ComposeMediaLinks mode={this.props.mode} post={this.state.post} handleChange={this.handleChange.bind(this)} handleAdd={this.handleAdd.bind(this)} handleRemove={this.handleRemove.bind(this)}/>
 					<br />
 					<div>
-						<button className="btn btn-sm btn-success">Submit</button>
+						{comSubmit}
 					</div>
 					<div>
 						<strong>Errors</strong>
