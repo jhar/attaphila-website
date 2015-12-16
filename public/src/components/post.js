@@ -116,9 +116,12 @@ class MediaLinks extends React.Component {
                     </div>
                 );
             } else if (media.media == 'youtube') {
+            	var rx = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
+            	var rxResult = media.url.match(rx);
+            	var embedURL = "https://www.youtube.com/embed/" + rxResult[1]; 
                 return (
                     <div className="embed-responsive embed-responsive-16by9">
-					    <iframe className="embed-responsive-item" src={media.url}></iframe>
+					    <iframe className="embed-responsive-item" frameBorder="0" src={embedURL} allowFullScreen></iframe>
 					</div>
                 );
             } else if (media.media == 'photo'){
