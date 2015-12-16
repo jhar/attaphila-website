@@ -29,8 +29,6 @@ export class ComposePost extends React.Component {
 		});
 	}
 	handleAdd() {
-		console.log("handleAdd() was called and context is: ");
-		console.info(this);
 		var postCopy = this.state.post;
 		if (this.state.post.medialinks) {
 			var mediaLinksCopy = this.state.post.medialinks;
@@ -43,8 +41,6 @@ export class ComposePost extends React.Component {
 		});
 	}
 	handleRemove() {
-		console.log("handleAdd() called and context is: ");
-		console.info(this);
 		var postCopy = this.state.post;
 		var mediaLinksCopy = this.state.post.medialinks;
 		mediaLinksCopy.pop();
@@ -155,10 +151,11 @@ class ComposeMediaLinks extends React.Component {
 		super(props);
 	}
 	render() {
-		if (this.props.post.medialinks) {
-			var removeButton = <button className="btn btn-xs btn-danger" onClick={this.props.handleRemove}>Remove Last</button>;
-		} else {
+		var removeButton;
+		if (this.props.post.medialinks.length == 0) {
 			removeButton = '';
+		} else {
+			removeButton = <button className="btn btn-xs btn-danger" onClick={this.props.handleRemove}>Remove Last</button>;
 		}
 		var mediaLinkNodes = this.props.post.medialinks.map(function (mediaLink) {
 			return (
