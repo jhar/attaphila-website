@@ -18,10 +18,37 @@ export class ComposePost extends React.Component {
 			console.error("Error in ComposePost constructor: mode or post not passed as prop");
 		}
 		this.handleChange = this.handleChange.bind(this);
+		this.handleAdd = this.handleAdd.bind(this);
+		this.handleRemove = this.handleRemove.bind(this);
 	}
 	handleChange(event) {
 		var postCopy = this.state.post;
 		postCopy[event.target.name] = event.target.value;
+		this.setState({
+			post: postCopy	
+		});
+	}
+	handleAdd() {
+		console.log("handleAdd() was called and context is: ");
+		console.info(this);
+		var postCopy = this.state.post;
+		if (this.state.post.medialinks) {
+			var mediaLinksCopy = this.state.post.medialinks;
+			postCopy['medialinks'] = mediaLinksCopy.concat({});
+		} else {
+			postCopy['medialinks'] = [{}];
+		}
+		this.setState({
+			post: postCopy	
+		});
+	}
+	handleRemove() {
+		console.log("handleAdd() called and context is: ");
+		console.info(this);
+		var postCopy = this.state.post;
+		var mediaLinksCopy = this.state.post.medialinks;
+		mediaLinksCopy.pop();
+		postCopy['medialinks'] = mediaLinksCopy;
 		this.setState({
 			post: postCopy	
 		});
@@ -109,7 +136,7 @@ export class ComposePost extends React.Component {
 							{comContent}
 						</div>
 					</div>
-					<ComposeMediaLinks mode={this.props.mode} post={this.state.post} handleChange={this.handleChange.bind(this)}/>
+					<ComposeMediaLinks mode={this.props.mode} post={this.state.post} handleChange={this.handleChange.bind(this)} handleAdd={this.handleAdd.bind(this)} handleRemove={this.handleRemove.bind(this)}/>
 					<br />
 					<div>
 						<button className="btn btn-sm btn-success">Submit</button>
@@ -126,40 +153,14 @@ export class ComposePost extends React.Component {
 class ComposeMediaLinks extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			post: this.props.post
-		};
-		this.handleAdd = this.handleAdd.bind(this);
-		this.handleRemove = this.handleRemove.bind(this);
-	}
-	handleAdd() {
-		var postCopy = this.state.post;
-		if (this.state.post.medialinks) {
-			var mediaLinksCopy = this.state.post.medialinks;
-			postCopy['medialinks'] = mediaLinksCopy.concat({});
-		} else {
-			postCopy['medialinks'] = [{}];
-		}
-		this.setState({
-			post: postCopy	
-		});
-	}
-	handleRemove() {
-		var postCopy = this.state.post;
-		var mediaLinksCopy = this.state.post.medialinks;
-		mediaLinksCopy.pop();
-		postCopy['medialinks'] = mediaLinksCopy;
-		this.setState({
-			post: postCopy	
-		});
 	}
 	render() {
-		if (this.state.post.medialinks) {
-			var removeButton = <button className="btn btn-xs btn-danger" onClick={this.handleRemove}>Remove Last</button>;
+		if (this.props.post.medialinks) {
+			var removeButton = <button className="btn btn-xs btn-danger" onClick={this.props.handleRemove}>Remove Last</button>;
 		} else {
 			removeButton = '';
 		}
-		var mediaLinkNodes = this.state.post.medialinks.map(function (mediaLink) {
+		var mediaLinkNodes = this.props.post.medialinks.map(function (mediaLink) {
 			return (
 				<li>
 					<label>Media Link</label>
@@ -180,7 +181,7 @@ class ComposeMediaLinks extends React.Component {
 				{mediaLinkNodes}
 				</ol>
 				<div>
-					<button className="btn btn-xs btn-primary" onClick={this.handleAdd}>Add Media</button>
+					<button className="btn btn-xs btn-primary" onClick={this.props.handleAdd}>Add Media</button>
 					{removeButton}
 				</div>
 			</div>
