@@ -72,11 +72,11 @@ export class ComposePost extends React.Component {
 		if (this.props.mode == 'create') {
 			$.ajax({
 				url: "/api/posts/",
+				context: this,
 				data: this.state.post,
 				type: 'post',
 				success: function(data) {
-					console.log("SUCCESS");
-					console.log(data);
+					this.props.changeView('post', {category: data.category, postid: data._id, mode: 'read'});
 				},
 				error: function(xhr, status, err) {
 					console.error(this.state, status, err.toString());
@@ -90,12 +90,12 @@ export class ComposePost extends React.Component {
 		if (this.props.mode == 'edit') {
 			$.ajax({
 				url: "/api/posts/" + this.state.post.category + "/" + this.state.post._id,
+				context: this,
 				data: this.state.post,
 				dataType: 'json',
 				method: 'PUT',
 				success: function(data) {
-					console.log("SUCCESS");
-					console.log(data);
+					this.props.changeView('post', {category: data.category, postid: data._id, mode: 'read'});
 				},
 				error: function(xhr, status, err) {
 					console.error(this.state, status, err.toString());

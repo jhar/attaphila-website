@@ -35,16 +35,16 @@ export class Post extends React.Component {
 	render() {
 	    if (this.props.mode == 'create') {
 	        return (
-	            <ComposePost mode="create"/>  
+	            <ComposePost mode="create" changeView={this.props.changeView.bind(this)}/>  
 	        );
 	    } else if (this.props.mode == 'edit') {
 	        return (
-	            <ComposePost mode="edit" post={this.state.post}/>  
+	            <ComposePost mode="edit" post={this.state.post} changeView={this.props.changeView.bind(this)}/>  
 	        );
 	    } else {
 	        var adminOptions;
     		if (this.props.user._id == this.state.post.creator._id) {
-    			adminOptions = <PostAdmin post={this.state.post} changeView={this.props.changeView.bind(this)} />
+    			adminOptions = <PostAdmin post={this.state.post} changeView={this.props.changeView.bind(this)}/>
     		} else {
     			adminOptions = '';
     		}
@@ -89,9 +89,10 @@ class PostAdmin extends React.Component {
 	deletePostFromServer() {
 		$.ajax({
 			url: "/api/posts/" + this.props.post.category + "/" + this.props.post._id,
+			context: this,
 			type: 'DELETE',
 			complete: function() {
-				window.location.href="/";
+				this.props.changeView('posts', {category: this.props.post.category});
 			}
 		});
 	}
