@@ -13,6 +13,7 @@ export class Post extends React.Component {
         }
     }
     loadPostFromServer(category, postid) {
+    	console.log("loadPostFromServer was called");
 		$.ajax({
 			url: "/api/posts/" + category + "/" + postid,
 			dataType: 'json',
@@ -27,9 +28,14 @@ export class Post extends React.Component {
 			}.bind(this)
 		});	
     }
-    componentDidMount() {
+    componentWillMount() {
         if (this.props.mode == 'read' || this.props.mode == 'edit') {
 		    this.loadPostFromServer(this.props.category, this.props.postid);
+        }
+	}
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.mode == 'read' || nextProps.mode == 'edit') {
+		    this.loadPostFromServer(nextProps.category, nextProps.postid);
         }
 	}
 	render() {
@@ -91,9 +97,8 @@ class PostAdmin extends React.Component {
 			url: "/api/posts/" + this.props.post.category + "/" + this.props.post._id,
 			context: this,
 			type: 'DELETE',
-			complete: function() {
-				this.props.changeView('posts', {category: this.props.post.category});
-			}
+		}).done(function() {
+			this.props.changeView('posts', {category: 'all'});
 		});
 	}
 	render() {

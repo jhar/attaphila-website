@@ -1,5 +1,7 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
+	
+var safe = {w: 1};
 
 var MediaLinksSchema = new Schema({
 	url: {
@@ -11,7 +13,7 @@ var MediaLinksSchema = new Schema({
 		required: true,
 		enum: ['article', 'youtube', 'photo']
 	}
-});
+}, {safe: safe});
 
 var PostsSchema = new Schema({
 	title: {
@@ -37,6 +39,6 @@ var PostsSchema = new Schema({
 	},
 	medialinks: [MediaLinksSchema],
 	coverPhotoURL: String
-});
+}, {safe: safe});
 
 mongoose.model('Posts', PostsSchema);
