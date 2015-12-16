@@ -10,6 +10,7 @@ export class ComposePost extends React.Component {
 		} else if (this.props.mode == 'create') {
 			this.state = {
 				post: {
+					category: 'inside',
 					creator: {},
 					medialinks: [{}]
 				}
@@ -53,11 +54,11 @@ export class ComposePost extends React.Component {
 	}
 	sendPostRequest() {
 		if (this.props.mode == 'create') {
+			console.info(this.state.post);
 			$.ajax({
 				url: "/api/posts/",
 				data: this.state.post,
-				dataType: 'json',
-				method: 'POST',
+				type: 'post',
 				success: function(data) {
 					console.log("SUCCESS");
 					console.log(data);
@@ -92,15 +93,15 @@ export class ComposePost extends React.Component {
 	render() {
 		var comTitle, comCat, comCover, comContent, comMedia, comSubmit;
 		if (this.props.mode == 'create') {
-			comTitle = <input type="text" name="title" placeholder="Title" required />;
-			comCat = <select name="category" required>
+			comTitle = <input type="text" name="title" placeholder="Title" onChange={this.handleChange} required />;
+			comCat = <select name="category" onChange={this.handleChange} required>
 					 	<option value="inside">Inside</option>
 						<option value="outside">Outside</option>
 						<option value="relatives">Relatives</option>
 						<option value="anthro">Anthropodicies</option>
 					 </select>;
-			comCover = <input type="text" name="coverPhotoURL" placeholder="Cover Photo URL" />;
-			comContent = <textarea cols="30" rows="10" name="content" placeholder="Content" required></textarea>;
+			comCover = <input type="text" name="coverPhotoURL" placeholder="Cover Photo URL" onChange={this.handleChange} />;
+			comContent = <textarea cols="30" rows="10" name="content" placeholder="Content" onChange={this.handleChange} required></textarea>;
 			comSubmit = <button className="btn btn-sm btn-success" onClick={this.sendPostRequest}>Submit</button>;
 		} else {
 			comTitle = <input type="text" name="title" value={this.state.post.title} onChange={this.handleChange} required />;
