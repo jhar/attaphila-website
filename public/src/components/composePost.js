@@ -25,11 +25,27 @@ export class ComposePost extends React.Component {
 		this.sendPutRequest = this.sendPutRequest.bind(this);
 	}
 	handleChange(event) {
-		var postCopy = this.state.post;
-		postCopy[event.target.name] = event.target.value;
-		this.setState({
-			post: postCopy	
-		});
+		if (event.target.dataset.index) {
+			var postCopy = this.state.post;
+			var mediaLinksCopy = this.state.post.medialinks;
+			var index = event.target.dataset.index;
+			if (event.target.name == 'url') {
+				mediaLinksCopy[index].url = event.target.value;
+			} else {
+				mediaLinksCopy[index].media = event.target.value;
+			}
+			postCopy['medialinks'] = mediaLinksCopy;
+			this.setState({
+				post: postCopy
+			});
+		} else {
+			var postCopy = this.state.post;
+			postCopy[event.target.name] = event.target.value;
+			this.setState({
+				post: postCopy	
+			});
+		}
+
 	}
 	handleAdd() {
 		var postCopy = this.state.post;
@@ -54,7 +70,6 @@ export class ComposePost extends React.Component {
 	}
 	sendPostRequest() {
 		if (this.props.mode == 'create') {
-			console.info(this.state.post);
 			$.ajax({
 				url: "/api/posts/",
 				data: this.state.post,
@@ -166,18 +181,30 @@ class ComposeMediaLinks extends React.Component {
 		} else {
 			removeButton = <button className="btn btn-xs btn-danger" onClick={this.props.handleRemove}>Remove Last</button>;
 		}
-		var mediaLinkNodes = this.props.post.medialinks.map(function (mediaLink) {
+		var mediaLinkNodes = this.props.post.medialinks.map(function (mediaLink, index) {
+			var mlURL, mlType;
+			if (this.props.mode == 'create') {
+				mlURL = <input type="text" name="url" placeholder="Media Link URL" onChange={this.props.handleChange} data-index={index}/>;
+				mlType = <select name="media" defaultValue="article" onChange={this.props.handleChange} data-index={index}>
+						 	<option value="article">Link</option>
+							<option value="youtube">YouTube</option>
+							<option value="photo">Photo</option>
+						 </select>;
+			} else {
+				mlURL = <input type="text" name="url" value={mediaLink.url} onChange={this.props.handleChange} data-index={index}/>;
+				mlType = <select name="media" value={mediaLink.media} onChange={this.props.handleChange} data-index={index}>
+						 	<option value="article">Link</option>
+							<option value="youtube">YouTube</option>
+							<option value="photo">Photo</option>
+						 </select>;
+			}
 			return (
 				<li>
 					<label>Media Link</label>
-					<input type="text" name="mediaLinkURL" placeholder="Media Link URL" />
+					{mlURL}
 					<br />
 					<label>Media Type</label>
-					<select name="mediaLinkMedia">
-						<option value="article">Link</option>
-						<option value="youtube">YouTube</option>
-						<option value="photo">Photo</option>
-					</select> 
+					{mlType}
 				</li>
 			);	
 		}.bind(this));

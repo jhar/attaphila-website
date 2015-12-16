@@ -55,6 +55,8 @@ exports.listByCategory = function(req, res, next, cat) {
 };
 
 exports.create = function(req, res, next) {
+    console.log("create:");
+    console.log(req.body);
     var post = new Post({
         title: req.body.title,
         category: req.body.category,
@@ -90,6 +92,8 @@ exports.read = function(req, res) {
 };
 
 exports.update = function(req, res) {
+    console.log("update:");
+    console.log(req.body);
     var post = req.post;
     post.title = req.body.title;
     post.category = req.body.category;
