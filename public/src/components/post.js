@@ -13,7 +13,6 @@ export class Post extends React.Component {
         }
     }
     loadPostFromServer(category, postid) {
-    	console.log("loadPostFromServer was called");
 		$.ajax({
 			url: "/api/posts/" + category + "/" + postid,
 			dataType: 'json',

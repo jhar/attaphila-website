@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router'
 
 export class Footer extends React.Component {
 	render() {
@@ -42,7 +41,7 @@ class SignOut extends React.Component {
 				<li><a href="/signout">Signout</a></li>
 				<li><a onClick={this.props.changeView.bind(this, 'post', {mode: 'create'})}>Create Post</a></li>
 				<li><a onClick={this.props.changeView.bind(this, 'posts', {category: 'all'})}>List All Posts</a></li>
-				<li><a>Upload Images</a></li>
+				<li><a onClick={this.props.changeView.bind(this, 'uploads')}>Upload Images</a></li>
 			</ul>
 		);
 	}	

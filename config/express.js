@@ -5,8 +5,7 @@ var config = require('./config'),
 	session = require('express-session'),
 	flash = require('connect-flash'),
 	passport = require('passport'),
-	multer = require('multer'),
-	upload = multer({ dest: 'public/img/' });
+	aws = require('aws-sdk');
 
 module.exports = function() {
 	var app = express();
@@ -35,25 +34,11 @@ module.exports = function() {
 	app.use(passport.initialize());
 	app.use(passport.session());
 
-	app.post('/public/img', upload.single('file'), function(req, res, next) {
-		console.log(req.file);
-		if (!req.file) {
-			next();
-		} else {
-			var fullPath = req.file.path;
-			var shortPath = fullPath.slice(7);
-			return res.status(201).send({
-				message: shortPath
-			});
-		}
-	});
-
-	app.get('/uploads')
-
 	// Routes
 	require('../app/routes/index.server.routes.js')(app);
 	require('../app/routes/users.server.routes.js')(app);
 	require('../app/routes/posts.server.routes.js')(app);
+	require('../app/routes/uploads.server.routes.js')(app);
 
 	return app;
 };
