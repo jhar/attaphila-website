@@ -25,7 +25,6 @@
     "method-override": "^2.3.5",
     "mongodb-uri": "^0.9.7",
     "mongoose": "^4.1.2",
-    "multer": "^1.0.6",
     "nodemon": "^1.7.1",
     "passport": "^0.2.2",
     "passport-local": "latest",

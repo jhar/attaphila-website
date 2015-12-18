@@ -3,6 +3,24 @@
   "version": "1.0.0",
   "dependencies": {
     "bootstrap": "~3.3.5",
-    "react": "~0.14.1"
-  }
+    "react": "~0.14.1",
+    "jquery": "~2.1.4"
+  },
+  "homepage": "https://github.com/jhar/attaphila-website",
+  "authors": [
+    "Justin Harrison <jhar87@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/src/lib",
+    "test",
+    "tests"
+  ]
 }
