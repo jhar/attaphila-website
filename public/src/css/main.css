@@ -15,7 +15,7 @@ body {
 }
 body,
 section {
-  background-color: #d9f6bb;
+  background-color: #edf7ed;
 }
 html,
 body,
@@ -43,9 +43,8 @@ header a {
 }
 header .atta-header {
   font-size: 24px;
-  float: right;
-  height: 48px;
-  margin: 0;
+  min-height: 48px;
+  text-align: center;
   padding-top: 10px;
 }
 header .atta-brand {
@@ -70,18 +69,38 @@ nav a {
 }
 /* Main Content Area */
 article {
-  margin-bottom: 40px;
-}
-.hero {
-  background-image: url("../img/attaphilaHero.jpg");
-  background-size: cover;
-  display: block;
-  height: 100%;
+  margin-bottom: 50px;
 }
 section {
   color: #26331a;
   margin-bottom: 50px;
   padding: 5%;
+}
+.hero {
+  display: block;
+  margin-top: 49px;
+  padding: none;
+}
+.hero .heroContent section {
+  background-color: transparent;
+  margin-top: -100px;
+  margin-bottom: -150px;
+  padding: 2% 9%;
+}
+@media only screen and (min-width: 1024px) {
+  .hero .heroContent section {
+    padding: 2% 19%;
+  }
+}
+.hero .heroContent section article {
+  background-color: #d9f6bb;
+  margin-bottom: 0;
+  padding: 2%;
+}
+@media only screen and (min-width: 1024px) {
+  .hero .heroContent section article {
+    padding: 24px;
+  }
 }
 /* Footer */
 footer {

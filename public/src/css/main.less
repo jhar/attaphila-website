@@ -5,7 +5,7 @@
   src: local('Special Elite'), local('SpecialElite-Regular'), url(https://fonts.gstatic.com/s/specialelite/v6/9-wW4zu3WNoD5Fjka35JmwYWpCd0FFfjqwFBDnEN0bM.woff2) format('woff2');
 }
 
-@desktop:     ~"only screen and (min-width: 1024px)";
+@desktop: ~"only screen and (min-width: 1024px)";
 
 /* General */
 
@@ -20,7 +20,7 @@ body {
 }
 
 body, section {
-	background-color: rgb(217, 246, 187);
+	background-color: rgb(237, 247, 237);
 }
 
 html, body, body > div, body > div > div {
@@ -49,9 +49,8 @@ header {
 	
 	.atta-header {
 		font-size: 24px;
-		float: right;
-		height: 48px;
-		margin: 0;
+		min-height: 48px;
+		text-align: center;
 		padding-top: 10px;
 	}
 	
@@ -85,20 +84,43 @@ nav {
 /* Main Content Area */
 
 article {
-	margin-bottom: 40px;
-}
-
-.hero {
-	background-image: url("../img/attaphilaHero.jpg");
-	background-size: cover;
-	display: block;
-	height: 100%;
+	margin-bottom: 50px;
 }
 
 section {
 	color: rgb(38, 51, 26);
 	margin-bottom: 50px;
 	padding: 5%;
+}
+
+.hero {
+	display: block;
+	margin-top: 49px;
+	padding: none;
+	
+	.heroContent {
+		section {
+			background-color: transparent;
+			margin-top: -100px;
+			margin-bottom: -150px;
+			padding: 2% 9%;	
+			
+			@media @desktop {
+				padding: 2% 19%;
+			}
+			
+			article {
+				background-color: rgb(217, 246, 187);
+				margin-bottom: 0;
+				padding: 2%;
+				
+				@media @desktop {
+					padding: 24px;
+				}
+			}
+		}
+
+	}
 }
 
 /* Footer */

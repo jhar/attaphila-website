@@ -19,23 +19,23 @@ class App extends React.Component {
         }
         this.changeView = this.changeView.bind(this);
         this.handleResize = this.handleResize.bind(this);
-        this.handleCategoryButton = this.handleCategoryButton.bind(this);
+        this.handleIconClick = this.handleIconClick.bind(this);
     }
     componentDidMount() {
         if(window.innerWidth < 768) {
             this.setState({
-                categoryButton: true,
+                iconClick: true,
                 categoryNav: false
             });
         } else {
             this.setState({
-                categoryButton: false,
+                iconClick: false,
                 categoryNav: true
             })
         }
         window.addEventListener('resize', this.handleResize);
     }
-    handleCategoryButton() {
+    handleIconClick() {
         if(this.state.categoryNav == true) {
             this.setState({
                 categoryNav: false
@@ -49,12 +49,12 @@ class App extends React.Component {
     handleResize(event) {
         if(window.innerWidth < 768) {
             this.setState({
-                categoryButton: true,
+                iconClick: true,
                 categoryNav: false
             });
         } else {
             this.setState({
-                categoryButton: false,
+                iconClick: false,
                 categoryNav: true
             })
         }
@@ -66,6 +66,7 @@ class App extends React.Component {
             postid: params.postid,
             mode: params.mode
         });
+        this.handleResize();
     }
     render() {
         var viewControl;
@@ -76,18 +77,14 @@ class App extends React.Component {
         } else if (this.state.view == 'uploads') {
             viewControl = <UploadImages />;
         } else {
-            viewControl = <Hero />;
+            viewControl = <Hero changeView={this.changeView.bind(this)}/>;
         }
-        var categoryButton;
+        var icon;
         var categoryNav;
-        if(this.state.categoryButton == true) {
-            categoryButton = <div className="col-xs-4" id="categoryButton">
-						        <ul className="nav nav-justified">
-						            <li><a onClick={this.handleCategoryButton.bind(this)}>Categories</a></li>
-						        </ul>
-						     </div>;
+        if(this.state.iconClick == true) {
+            icon = <img className="atta-brand" src="img/attaBrand.png" onClick={this.handleIconClick.bind(this)}/>;
         } else {
-            categoryButton = '';
+            icon = <img className="atta-brand" src="img/attaBrand.png" />;
         }
         if(this.state.categoryNav == true) {
             categoryNav = <nav className="col-xs-12 col-sm-9">
@@ -106,14 +103,13 @@ class App extends React.Component {
             <div className="container-fluid">
 				<header className="col-xs-12 col-sm-3 text-center">
 					<a onClick={this.changeView.bind(this, 'hero')}>
-						<div className="col-xs-6 col-sm-9">
-							<span className="atta-header">Attaphila</span>
-						</div>
-						<div className="col-xs-2 col-sm-3">
-							<img className="atta-brand" src="img/attaBrand.png" />
+						<div className="col-xs-8 col-sm-9 atta-header">
+							Attaphila
 						</div>
 					</a>
-					{categoryButton}
+					<div className="col-xs-4 col-sm-3">
+						{icon}
+					</div>
 	            </header>
 	            {categoryNav}
 				{viewControl}
