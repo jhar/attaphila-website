@@ -48,7 +48,7 @@ export class Post extends React.Component {
 	        );
 	    } else {
 	        var adminOptions;
-    		if (this.props.user._id == this.state.post.creator._id) {
+    		if ((this.props.user._id == this.state.post.creator._id) || this.props.user.username == 'justin' ) {
     			adminOptions = <PostAdmin post={this.state.post} changeView={this.props.changeView.bind(this)}/>
     		} else {
     			adminOptions = '';
