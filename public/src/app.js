@@ -13,10 +13,52 @@ class App extends React.Component {
             view: 'hero',
             category: 'null',
             postid: 'null',
-            mode: 'null'
+            mode: 'null',
+            categoryButton: false,
+            categoryNav: false
         }
         this.changeView = this.changeView.bind(this);
+        this.handleResize = this.handleResize.bind(this);
+        this.handleCategoryButton = this.handleCategoryButton.bind(this);
     }
+    componentDidMount() {
+        if(window.innerWidth < 768) {
+            this.setState({
+                categoryButton: true,
+                categoryNav: false
+            });
+        } else {
+            this.setState({
+                categoryButton: false,
+                categoryNav: true
+            })
+        }
+        window.addEventListener('resize', this.handleResize);
+    }
+    handleCategoryButton() {
+        if(this.state.categoryNav == true) {
+            this.setState({
+                categoryNav: false
+            });
+        } else {
+            this.setState({
+                categoryNav: true
+            })
+        }
+    }
+    handleResize(event) {
+        if(window.innerWidth < 768) {
+            this.setState({
+                categoryButton: true,
+                categoryNav: false
+            });
+        } else {
+            this.setState({
+                categoryButton: false,
+                categoryNav: true
+            })
+        }
+    } 
     changeView(view, params) {
         this.setState({
             view: view,
@@ -36,6 +78,30 @@ class App extends React.Component {
         } else {
             viewControl = <Hero />;
         }
+        var categoryButton;
+        var categoryNav;
+        if(this.state.categoryButton == true) {
+            categoryButton = <div className="col-xs-4" id="categoryButton">
+						        <ul className="nav nav-justified">
+						            <li><a onClick={this.handleCategoryButton.bind(this)}>Categories</a></li>
+						        </ul>
+						     </div>;
+        } else {
+            categoryButton = '';
+        }
+        if(this.state.categoryNav == true) {
+            categoryNav = <nav className="col-xs-12 col-sm-9">
+					        <ul className="nav nav-justified">
+    					        <li><a onClick={this.changeView.bind(this, 'posts', {category: 'inside'})}>Inside</a></li>
+    					        <li><a onClick={this.changeView.bind(this, 'posts', {category: 'outside'})}>Outside</a></li>
+    					        <li><a onClick={this.changeView.bind(this, 'posts', {category: 'relatives'})}>Relatives</a></li>
+    					        <li><a onClick={this.changeView.bind(this, 'posts', {category: 'anthro'})}>Anthropodicies</a></li>
+    					        <li><a onClick={this.changeView.bind(this, 'posts', {category: 'all'})}>All</a></li>
+					        </ul>
+				         </nav>;
+        } else {
+            categoryNav = '';
+        }
         return (
             <div className="container-fluid">
 				<header className="col-xs-12 col-sm-3 text-center">
@@ -43,19 +109,13 @@ class App extends React.Component {
 						<div className="col-xs-6 col-sm-9">
 							<span className="atta-header">Attaphila</span>
 						</div>
-						<div className="col-xs-6 col-sm-3">
+						<div className="col-xs-2 col-sm-3">
 							<img className="atta-brand" src="img/attaBrand.png" />
 						</div>
 					</a>
+					{categoryButton}
 	            </header>
-			  	<nav className="col-xs-12 col-sm-9">
-					<ul className="nav nav-justified">
-    					<li><a onClick={this.changeView.bind(this, 'posts', {category: 'inside'})}>Inside</a></li>
-    					<li><a onClick={this.changeView.bind(this, 'posts', {category: 'outside'})}>Outside</a></li>
-    					<li><a onClick={this.changeView.bind(this, 'posts', {category: 'relatives'})}>Relatives</a></li>
-    					<li><a onClick={this.changeView.bind(this, 'posts', {category: 'anthro'})}>Anthropodicies</a></li>
-					</ul>
-				</nav>
+	            {categoryNav}
 				{viewControl}
 				<footer>
 					<Footer user={this.props.user} changeView={this.changeView.bind(this)}/>
