@@ -98,23 +98,59 @@ nav a {
 }
 .hero .heroImageWhite {
   margin: 0 auto;
-  max-width: 1280px;
+  max-width: 62%;
 }
-/* Single Post View */
-article {
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 1280px;
-  padding: 5% 0;
-}
-.cover-photo {
-  max-height: 570px;
-}
+/* Posts View */
 .media {
   max-width: 1024px;
 }
 .media-object {
   max-width: 128px;
+}
+/* Post View */
+.post-view {
+  margin: 50px auto;
+  max-width: 86%;
+}
+@media only screen and (min-width: 960px) {
+  .post-view {
+    max-width: 62%;
+  }
+}
+.post-view .cover-photo {
+  margin: 0 auto;
+}
+.post-view .title-container {
+  background-color: white;
+  margin: -48px auto 24px auto;
+  max-width: 86%;
+  padding: 12px;
+  position: relative;
+  z-index: 2;
+}
+@media only screen and (min-width: 960px) {
+  .post-view .title-container {
+    max-width: 62%;
+  }
+}
+.post-view .title-container .post-category {
+  display: block;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.post-view .title-container .post-title {
+  font-size: 32px;
+}
+@media only screen and (min-width: 960px) {
+  .post-view .title-container .post-title {
+    font-size: 48px;
+  }
+}
+.post-view .title-container .post-meta {
+  display: block;
+}
+.post-view .post-paragraph {
+  max-width: 86%;
 }
 /* Footer */
 footer {

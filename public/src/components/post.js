@@ -54,19 +54,22 @@ export class Post extends React.Component {
     			adminOptions = '';
     		}
     		return (
-    			<section>
+    			<section className="post-view">
 					<img className="img-responsive cover-photo" src={this.state.post.coverPhotoURL} />
-					<h2>{this.state.post.title}</h2>
-					<p>{this.state.post.content}</p>
-					<small>
-						<em>Posted on </em>
-						<em>
-							<FormattedDate date={this.state.post.created} />
-						</em>
-						<em> by </em>
-						<em>{this.state.post.creator.username}</em>
-					</small>
-					{adminOptions}
+					<div className="title-container">
+						<span className="post-category">{this.state.post.category}</span>
+						<span className="post-title">{this.state.post.title}</span>
+						<small className="post-meta">
+							<em>Posted on </em>
+							<em>
+								<FormattedDate date={this.state.post.created} />
+							</em>
+							<em> by </em>
+							<em>{this.state.post.creator.username}</em>
+						</small>
+						{adminOptions}
+					</div>
+					<p className="post-paragraph">{this.state.post.content}</p>
     				<MediaLinks medialinks={this.state.post.medialinks} />
     			</section>
     		);
