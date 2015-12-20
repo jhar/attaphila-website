@@ -4,7 +4,6 @@ import { Hero } from './components/hero.js'
 import { Post } from './components/post.js'
 import { Posts } from './components/posts.js'
 import { Footer } from './components/footer.js'
-import { UploadImages } from './components/uploadImages.js'
 
 class App extends React.Component {
     constructor(props) {
@@ -74,8 +73,6 @@ class App extends React.Component {
             viewControl = <Post user={this.props.user} category={this.state.category} postid={this.state.postid} mode={this.state.mode} changeView={this.changeView.bind(this)}/>;
         } else if (this.state.view == 'posts') {
             viewControl = <Posts category={this.state.category} changeView={this.changeView.bind(this)} />;
-        } else if (this.state.view == 'uploads') {
-            viewControl = <UploadImages />;
         } else {
             viewControl = <Hero changeView={this.changeView.bind(this)}/>;
         }
@@ -125,13 +122,3 @@ render(
   <App user = { window.user }/>,
   document.getElementById('app')
 );
-
-/* TODO:
-
-    Link to individual posts from posts view
-    List All Posts (from footer)
-    Create Post (from footer)
-    
-    Upload Images
-
-*/

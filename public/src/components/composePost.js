@@ -1,4 +1,5 @@
 import React from 'react'
+import { UploadImages } from './uploadImages.js'
 
 export class ComposePost extends React.Component {
 	constructor(props) {
@@ -132,7 +133,7 @@ export class ComposePost extends React.Component {
 		}
 		return (
 			<section className="page">
-				<div className="col-xs-12">
+				<div className="col-xs-12 col-sm-6">
 					<h1>Compose Post</h1>
 					<div>
 						<label>Title</label>
@@ -161,9 +162,9 @@ export class ComposePost extends React.Component {
 					<div>
 						{comSubmit}
 					</div>
-					<div>
-						<strong>Errors</strong>
-					</div>
+				</div>
+				<div className="col-xs-12 col-sm-6">
+					<UploadImages />
 				</div>
 			</section>	
 		);

@@ -56,15 +56,13 @@ export class UploadImages extends React.Component {
 	}
 	render() {
 		return (
-			<section className="page">
-				<div className="col-xs-12">
-					<h1>Upload Images</h1>
-					<input type="file" id="file_input" onChange={this.initUpload}/>
-					<img className="img-responsive" src={this.state.previewURL} />
-					<h5>Make sure to copy the URL below:</h5>
-					<span>{this.state.previewURL}</span>
-				</div>
-			</section>
+			<div className="col-xs-12">
+				<h1>Upload Images</h1>
+				<input type="file" id="file_input" onChange={this.initUpload}/>
+				<img className="img-responsive" src={this.state.previewURL} />
+				<h5>Make sure to copy the URL below:</h5>
+				<span>{this.state.previewURL}</span>
+			</div>
 		);
 	}
 }

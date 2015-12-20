@@ -15,8 +15,11 @@ export class Footer extends React.Component {
 class SignInButton extends React.Component {
 	render() {
 		return (
-			<div className="col-xs-12 text-center">
-				<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#signInModal">Admin</button>
+			<div className="text-center">
+				<small>
+					Copyright 2015. Zach Phillips. 
+				</small>
+				<button type="button" className="btn btn-link" data-toggle="modal" data-target="#signInModal">Admin</button>
 			</div>
 		);
 	}	
@@ -25,11 +28,14 @@ class SignInButton extends React.Component {
 class SignOut extends React.Component {
 	render() {
 		return (
-			<ul className="nav nav-justified">
-				<li><a href="/signout">Signout</a></li>
-				<li><a onClick={this.props.changeView.bind(this, 'post', {mode: 'create'})}>Create Post</a></li>
-				<li><a onClick={this.props.changeView.bind(this, 'uploads')}>Upload Images</a></li>
-			</ul>
+			<div>
+				<div className="col-xs-6 text-center">
+					<a href="/signout">Signout</a>
+				</div>
+				<div className="col-xs-6 text-center">
+					<a onClick={this.props.changeView.bind(this, 'post', {mode: 'create'})}>Create Post</a>
+				</div>
+			</div>
 		);
 	}	
 }

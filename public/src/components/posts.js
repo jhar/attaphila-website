@@ -54,6 +54,8 @@ class PostPreview extends React.Component {
         super(props);
     }
 	render() {
+		var content = this.props.post.content;
+		var short = content.substr(0,140);
 		return (
 			<article className="row">
 				<div className="col-xs-12">
@@ -64,7 +66,7 @@ class PostPreview extends React.Component {
 							</div>
 							<div className="media-body">
 								<h3 className="media-heading">{this.props.post.title}</h3>
-								<p>{this.props.post.content}</p>
+								<p>{short}</p>
 								<span>Click to read more.</span>
 							</div>
 						</div>
