@@ -119,6 +119,7 @@ nav a {
 }
 .post-view .cover-photo {
   margin: 0 auto;
+  width: 100%;
 }
 .post-view .title-container {
   background-color: white;
@@ -161,6 +162,7 @@ footer {
   min-height: 50px;
   position: absolute;
   width: 100%;
+  z-index: 3;
 }
 footer a {
   color: #3a9dd7;

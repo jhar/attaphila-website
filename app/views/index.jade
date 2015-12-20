@@ -6,6 +6,15 @@ html(lang="en")
 		link(rel="stylesheet", media="screen", href="all.css")
 	body
 		div(id="app")
+		div(class="modal fade", id="signInModal", tabIndex="-1", role="dialog", aria-labelledby="myModalLabel")
+			div(class="modal-dialog", role="document")
+				div(class="modal-content")
+					form(action="/signin", class="form-sign-in", method="post")
+						img(class="img-responsive signinImage", src="/img/scrapbook.png")
+						input(class="form-control", type="text", name="username", placeholder="Username", required, autofocus)
+						input(class="form-control", type="password", name="password", placeholder="Password", required)
+						button(class="btn btn-lg btn-primary btn-block", type="submit").
+							Sign in
 		script(type="text/javascript")
 			if user
 				| window.user = !{user};
