@@ -13,10 +13,6 @@ body {
   font-family: 'Special Elite', cursive;
   min-width: 320px;
 }
-body,
-section {
-  background-color: #edf7ed;
-}
 html,
 body,
 body > div,
@@ -67,40 +63,58 @@ nav a {
 .nav > li > a:hover {
   border-bottom: 1px outset #e0e0e0;
 }
-/* Main Content Area */
-article {
-  margin-bottom: 50px;
-}
-section {
-  color: #26331a;
-  margin-bottom: 50px;
-  padding: 5%;
-}
+/* Hero View */
 .hero {
+  background-color: white;
   display: block;
   margin-top: 49px;
   padding: none;
 }
-.hero .heroContent section {
-  background-color: transparent;
-  margin-top: -100px;
-  margin-bottom: -150px;
-  padding: 2% 9%;
+.hero .heroImage {
+  background-image: url(img/attaphilaHero.jpg);
+  background-size: cover;
+  border: 1px solid gray;
+  margin: 0;
+  height: 540px;
 }
-@media only screen and (min-width: 1024px) {
-  .hero .heroContent section {
-    padding: 2% 19%;
+@media only screen and (min-width: 1280px) {
+  .hero .heroImage {
+    background-image: url(img/attaphilaHeroLargeFormat.jpg);
+    height: 686px;
   }
 }
-.hero .heroContent section article {
-  background-color: #d9f6bb;
-  margin-bottom: 0;
-  padding: 2%;
+.hero .heroImage2 {
+  background-image: url(img/fungalGarden.jpg);
+  background-size: cover;
+  border: 1px solid gray;
+  margin: 0;
+  height: 540px;
 }
-@media only screen and (min-width: 1024px) {
-  .hero .heroContent section article {
-    padding: 24px;
+@media only screen and (min-width: 1280px) {
+  .hero .heroImage2 {
+    background-image: url(img/fungalGardenLargeFormat.jpg);
+    height: 686px;
   }
+}
+.hero .heroImageWhite {
+  margin: 0 auto;
+  max-width: 1280px;
+}
+/* Single Post View */
+article {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1280px;
+  padding: 5% 0;
+}
+.cover-photo {
+  max-height: 570px;
+}
+.media {
+  max-width: 1024px;
+}
+.media-object {
+  max-width: 128px;
 }
 /* Footer */
 footer {
@@ -124,22 +138,12 @@ footer .text-center {
   margin-right: auto;
   max-height: 750px;
 }
-.cover-photo {
-  margin-left: auto;
-  margin-right: auto;
-}
-.media {
-  max-width: 1024px;
-}
-.media-object {
-  max-width: 128px;
-}
 /* Sign In Modal */
 .modal-dialog {
   margin: 156px auto;
   width: 250px;
 }
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 960px) {
   .modal-dialog {
     width: 640px;
   }
@@ -147,7 +151,7 @@ footer .text-center {
 .modal-dialog .modal-content {
   padding: 10%;
 }
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 960px) {
   .modal-dialog .modal-content {
     padding: 5%;
   }
@@ -155,7 +159,7 @@ footer .text-center {
 .modal-dialog .modal-content .form-sign-in .img-responsive {
   margin-bottom: 12px;
 }
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 960px) {
   .modal-dialog .modal-content .form-sign-in .img-responsive {
     float: left;
     margin: 24px;
@@ -165,7 +169,7 @@ footer .text-center {
   height: 48px;
   margin-bottom: 8px;
 }
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 960px) {
   .modal-dialog .modal-content .form-sign-in .form-control {
     float: right;
     height: 36px;
@@ -173,7 +177,7 @@ footer .text-center {
     width: 38%;
   }
 }
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 960px) {
   .modal-dialog .modal-content .form-sign-in .btn-primary {
     margin: 0 auto;
     width: 62%;

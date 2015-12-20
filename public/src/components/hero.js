@@ -5,11 +5,9 @@ export class Hero extends React.Component {
 	render() {
 		return (
 			<div className="hero">
-				<img className="heroImage img-responsive" src="img/attaphilaHero.jpg" />
-				<div className="heroContent">
-					<Posts category="all" changeView={this.props.changeView.bind(this)} />
-				</div>
-				<img className="heroImage img-responsive" src="img/fungalGarden.jpg" />
+				<div className="heroImage" />
+				<img className="heroImageWhite img-responsive" src="img/female.png" />
+				<div className="heroImage2" />
 			</div>
 		);
 	}

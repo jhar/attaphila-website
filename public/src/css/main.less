@@ -5,7 +5,8 @@
   src: local('Special Elite'), local('SpecialElite-Regular'), url(https://fonts.gstatic.com/s/specialelite/v6/9-wW4zu3WNoD5Fjka35JmwYWpCd0FFfjqwFBDnEN0bM.woff2) format('woff2');
 }
 
-@desktop: ~"only screen and (min-width: 1024px)";
+@desktop: ~"only screen and (min-width: 960px)";
+@largeformat: ~"only screen and (min-width: 1280px)";
 
 /* General */
 
@@ -17,10 +18,6 @@ a {
 body {
 	font-family: 'Special Elite', cursive;
 	min-width: 320px;
-}
-
-body, section {
-	background-color: rgb(237, 247, 237);
 }
 
 html, body, body > div, body > div > div {
@@ -81,46 +78,63 @@ nav {
 	border-bottom: 1px outset #e0e0e0;
 }
 
-/* Main Content Area */
-
-article {
-	margin-bottom: 50px;
-}
-
-section {
-	color: rgb(38, 51, 26);
-	margin-bottom: 50px;
-	padding: 5%;
-}
+/* Hero View */
 
 .hero {
+	background-color: white;
 	display: block;
 	margin-top: 49px;
 	padding: none;
 	
-	.heroContent {
-		section {
-			background-color: transparent;
-			margin-top: -100px;
-			margin-bottom: -150px;
-			padding: 2% 9%;	
-			
-			@media @desktop {
-				padding: 2% 19%;
-			}
-			
-			article {
-				background-color: rgb(217, 246, 187);
-				margin-bottom: 0;
-				padding: 2%;
-				
-				@media @desktop {
-					padding: 24px;
-				}
-			}
+	.heroImage {
+		background-image: url(img/attaphilaHero.jpg);
+		background-size: cover;
+		border: 1px solid gray;
+		margin: 0;
+		height: 540px;
+		@media @largeformat {
+			background-image: url(img/attaphilaHeroLargeFormat.jpg);
+			height: 686px;
 		}
-
 	}
+	
+	.heroImage2 {
+		background-image: url(img/fungalGarden.jpg);
+		background-size: cover;
+		border: 1px solid gray;
+		margin: 0;
+		height: 540px;
+		@media @largeformat {
+			background-image: url(img/fungalGardenLargeFormat.jpg);
+			height: 686px;
+		}
+	}
+	
+	.heroImageWhite {
+		margin: 0 auto;
+		max-width: 1280px;
+	}
+}
+
+/* Single Post View */
+
+article {
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 1280px;
+	padding: 5% 0;
+}
+
+.cover-photo {
+	max-height: 570px;
+}
+
+.media {
+	max-width: 1024px;
+}
+
+.media-object {
+	max-width: 128px;
 }
 
 /* Footer */
@@ -151,18 +165,7 @@ footer {
 	max-height: 750px;
 }
 
-.cover-photo {
-	margin-left: auto;
-	margin-right: auto;
-}
 
-.media {
-	max-width: 1024px;
-}
-
-.media-object {
-	max-width: 128px;
-}
 
 /* Sign In Modal */
 

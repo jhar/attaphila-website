@@ -54,31 +54,19 @@ export class Post extends React.Component {
     			adminOptions = '';
     		}
     		return (
-    			<section className="col-xs-12">
-    				<div className="row">
-    					<div className="col-xs-0 col-sm-1 col-md-2 col-lg-2"></div>
-    					<div className="col-xs-12 col-sm-10 col-md-8 col-lg-8">
-    						<img className="img-responsive cover-photo" src={this.state.post.coverPhotoURL} />
-    						<h2>{this.state.post.title}</h2>
-    					</div>
-    					<div className="col-xs-0 col-sm-1 col-md-2 col-lg-2"></div>
-    				</div>
-    				<div className="row">
-    					<div className="col-xs-0 col-sm-1 col-md-2 col-lg-2"></div>
-    					<div className="col-xs-12 col-sm-10 col-md-8 col-lg-8">
-    						<p>{this.state.post.content}</p>
-    						<small>
-    							<em>Posted on </em>
-    							<em>
-    								<FormattedDate date={this.state.post.created} />
-    							</em>
-    							<em> by </em>
-    							<em>{this.state.post.creator.username}</em>
-    						</small>
-    						{adminOptions}
-    					</div>
-    					<div className="col-xs-0 col-sm-1 col-md-2 col-lg-2"></div>
-    				</div>
+    			<section>
+					<img className="img-responsive cover-photo" src={this.state.post.coverPhotoURL} />
+					<h2>{this.state.post.title}</h2>
+					<p>{this.state.post.content}</p>
+					<small>
+						<em>Posted on </em>
+						<em>
+							<FormattedDate date={this.state.post.created} />
+						</em>
+						<em> by </em>
+						<em>{this.state.post.creator.username}</em>
+					</small>
+					{adminOptions}
     				<MediaLinks medialinks={this.state.post.medialinks} />
     			</section>
     		);

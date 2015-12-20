@@ -42,7 +42,7 @@ export class Posts extends React.Component {
 			);	
 		}.bind(this));
 		return (
-			<section className="col-xs-12">
+			<section>
 				{postPreviewNodes}	
 			</section>	
 		);
