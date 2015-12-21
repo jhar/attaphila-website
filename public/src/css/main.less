@@ -115,18 +115,29 @@ nav {
 }
 
 /* Posts View */
-.media {
-	max-width: 1024px;
+.posts-view {
+	margin: 74px auto;
+	max-width: 86%;
+	
+	@media @desktop {
+		margin: 98px: auto;
+		max-width: 62%;
+	}
+	
+	article {
+		margin-bottom: 48px;
+	}
+	
+	.media-object {
+		max-width: 128px;
+	}
 }
 
-.media-object {
-	max-width: 128px;
-}
 
 /* Post View */
 
 .post-view {
-	margin: 50px auto;
+	margin: 74px auto;
 	max-width: 86%;
 	
 	@media @desktop {
@@ -153,7 +164,7 @@ nav {
 		.post-category {
 			display: block;
 			font-weight: bold;
-			text-transform: capitalize;
+			text-transform: uppercase;
 		}
 		
 		.post-title {

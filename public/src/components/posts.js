@@ -42,7 +42,7 @@ export class Posts extends React.Component {
 			);	
 		}.bind(this));
 		return (
-			<section>
+			<section className="posts-view">
 				{postPreviewNodes}	
 			</section>	
 		);
@@ -57,21 +57,19 @@ class PostPreview extends React.Component {
 		var content = this.props.post.content;
 		var short = content.substr(0,140);
 		return (
-			<article className="row">
-				<div className="col-xs-12">
-					<a onClick={this.props.changeView.bind(this, 'post', {category:this.props.post.category, postid:this.props.post._id, mode: 'read'})}>
-						<div className="media">
-							<div className="media-left media-middle">
-								<img className="media-object" src={this.props.post.coverPhotoURL} />
-							</div>
-							<div className="media-body">
-								<h3 className="media-heading">{this.props.post.title}</h3>
-								<p>{short}</p>
-								<span>Click to read more.</span>
-							</div>
+			<article>
+				<a onClick={this.props.changeView.bind(this, 'post', {category:this.props.post.category, postid:this.props.post._id, mode: 'read'})}>
+					<div className="media">
+						<div className="media-left media-middle">
+							<img className="media-object" src={this.props.post.coverPhotoURL} />
 						</div>
-					</a>
-				</div>
+						<div className="media-body">
+							<h3 className="media-heading">{this.props.post.title}</h3>
+							<p>{short}</p>
+							<span>Click to read more.</span>
+						</div>
+					</div>
+				</a>
 			</article>
 		);
 	}	
