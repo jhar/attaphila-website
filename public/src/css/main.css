@@ -163,9 +163,9 @@ nav a {
 .post-view .title-container .post-meta {
   display: block;
 }
-.post-view .post-paragraph {
+.post-view iframe {
+  display: block;
   margin: 0 auto;
-  max-width: 86%;
 }
 /* Footer */
 footer {
