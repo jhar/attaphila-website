@@ -163,7 +163,8 @@ nav a {
 .post-view .title-container .post-meta {
   display: block;
 }
-.post-view iframe {
+.post-view iframe,
+.post-view img {
   display: block;
   margin: 0 auto;
 }

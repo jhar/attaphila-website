@@ -12,8 +12,7 @@ export class ComposePost extends React.Component {
 			this.state = {
 				post: {
 					category: 'inside',
-					creator: {},
-					medialinks: [{}]
+					creator: {}
 				}
 			}
 		} else {
@@ -68,9 +67,10 @@ export class ComposePost extends React.Component {
 		}
 	}
 	render() {
-		var comTitle, comCat, comCover, comContent, comMedia, comSubmit;
+		var comTitle, comShort, comCat, comCover, comContent, comSubmit;
 		if (this.props.mode == 'create') {
 			comTitle = <input type="text" name="title" placeholder="Title" onChange={this.handleChange} required />;
+			comShort = <input type="text" name="short" placeholder="Short Description" onChange={this.handleChange} required />;
 			comCat = <select name="category" onChange={this.handleChange} required>
 					 	<option value="inside">Inside</option>
 						<option value="outside">Outside</option>
@@ -82,6 +82,7 @@ export class ComposePost extends React.Component {
 			comSubmit = <button className="btn btn-sm btn-success" onClick={this.sendPostRequest}>Submit</button>;
 		} else {
 			comTitle = <input type="text" name="title" value={this.state.post.title} onChange={this.handleChange} required />;
+			comShort = <input type="text" name="short" value={this.state.post.short} onChange={this.handleChange} required />;
 			comCat = <select name="category" value={this.state.post.category} onChange={this.handleChange} required>
 					 	<option value="inside">Inside</option>
 						<option value="outside">Outside</option>
@@ -100,6 +101,12 @@ export class ComposePost extends React.Component {
 						<label>Title</label>
 						<div>
 							{comTitle}
+						</div>
+					</div>
+					<div>
+						<label>Short Description</label>
+						<div>
+							{comShort}
 						</div>
 					</div>
 					<div>

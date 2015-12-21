@@ -25,7 +25,8 @@ var PostsSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'Users'
 	},
-	coverPhotoURL: String
+	coverPhotoURL: String,
+	short: String
 }, {safe: safe});
 
 mongoose.model('Posts', PostsSchema);

@@ -61,7 +61,8 @@ exports.create = function(req, res, next) {
         title: req.body.title,
         category: req.body.category,
         content: req.body.content,
-        coverPhotoURL: req.body.coverPhotoURL
+        coverPhotoURL: req.body.coverPhotoURL,
+        short: req.body.short
     });
 
     post.creator = req.user;
@@ -89,6 +90,7 @@ exports.update = function(req, res) {
     post.category = req.body.category;
     post.content = req.body.content;
     post.coverPhotoURL = req.body.coverPhotoURL;
+    post.short = req.body.short;
 
     post.save(function(err) {
         if (err) {

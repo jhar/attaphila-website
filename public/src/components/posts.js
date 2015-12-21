@@ -66,6 +66,7 @@ class PostPreview extends React.Component {
 						</div>
 						<div className="media-body">
 							<h3 className="media-heading">{this.props.post.title}</h3>
+							<p>{this.props.post.short}</p>
 							<span>Click to read more.</span>
 						</div>
 					</div>
