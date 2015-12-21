@@ -20,51 +20,12 @@ export class ComposePost extends React.Component {
 			console.error("Error in ComposePost constructor: mode or post not passed as prop");
 		}
 		this.handleChange = this.handleChange.bind(this);
-		this.handleAdd = this.handleAdd.bind(this);
-		this.handleRemove = this.handleRemove.bind(this);
 		this.sendPostRequest = this.sendPostRequest.bind(this);
 		this.sendPutRequest = this.sendPutRequest.bind(this);
 	}
 	handleChange(event) {
-		if (event.target.dataset.index) {
-			var postCopy = this.state.post;
-			var mediaLinksCopy = this.state.post.medialinks;
-			var index = event.target.dataset.index;
-			if (event.target.name == 'url') {
-				mediaLinksCopy[index].url = event.target.value;
-			} else {
-				mediaLinksCopy[index].media = event.target.value;
-			}
-			postCopy['medialinks'] = mediaLinksCopy;
-			this.setState({
-				post: postCopy
-			});
-		} else {
-			var postCopy = this.state.post;
-			postCopy[event.target.name] = event.target.value;
-			this.setState({
-				post: postCopy	
-			});
-		}
-
-	}
-	handleAdd() {
 		var postCopy = this.state.post;
-		if (this.state.post.medialinks) {
-			var mediaLinksCopy = this.state.post.medialinks;
-			postCopy['medialinks'] = mediaLinksCopy.concat({});
-		} else {
-			postCopy['medialinks'] = [{}];
-		}
-		this.setState({
-			post: postCopy	
-		});
-	}
-	handleRemove() {
-		var postCopy = this.state.post;
-		var mediaLinksCopy = this.state.post.medialinks;
-		mediaLinksCopy.pop();
-		postCopy['medialinks'] = mediaLinksCopy;
+		postCopy[event.target.name] = event.target.value;
 		this.setState({
 			post: postCopy	
 		});
@@ -157,8 +118,6 @@ export class ComposePost extends React.Component {
 							{comContent}
 						</div>
 					</div>
-					<ComposeMediaLinks mode={this.props.mode} post={this.state.post} handleChange={this.handleChange.bind(this)} handleAdd={this.handleAdd.bind(this)} handleRemove={this.handleRemove.bind(this)}/>
-					<br />
 					<div>
 						{comSubmit}
 					</div>
@@ -167,58 +126,6 @@ export class ComposePost extends React.Component {
 					<UploadImages />
 				</div>
 			</section>	
-		);
-	}
-}
-
-class ComposeMediaLinks extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-	render() {
-		var removeButton;
-		if (this.props.post.medialinks.length == 0) {
-			removeButton = '';
-		} else {
-			removeButton = <button className="btn btn-xs btn-danger" onClick={this.props.handleRemove}>Remove Last</button>;
-		}
-		var mediaLinkNodes = this.props.post.medialinks.map(function (mediaLink, index) {
-			var mlURL, mlType;
-			if (this.props.mode == 'create') {
-				mlURL = <input type="text" name="url" placeholder="Media Link URL" onChange={this.props.handleChange} data-index={index}/>;
-				mlType = <select name="media" defaultValue="article" onChange={this.props.handleChange} data-index={index}>
-						 	<option value="article">Link</option>
-							<option value="youtube">YouTube</option>
-							<option value="photo">Photo</option>
-						 </select>;
-			} else {
-				mlURL = <input type="text" name="url" value={mediaLink.url} onChange={this.props.handleChange} data-index={index}/>;
-				mlType = <select name="media" value={mediaLink.media} onChange={this.props.handleChange} data-index={index}>
-						 	<option value="article">Link</option>
-							<option value="youtube">YouTube</option>
-							<option value="photo">Photo</option>
-						 </select>;
-			}
-			return (
-				<li>
-					<label>Media Link</label>
-					{mlURL}
-					<br />
-					<label>Media Type</label>
-					{mlType}
-				</li>
-			);	
-		}.bind(this));
-		return (
-			<div>
-				<ol>
-				{mediaLinkNodes}
-				</ol>
-				<div>
-					<button className="btn btn-xs btn-primary" onClick={this.props.handleAdd}>Add Media</button>
-					{removeButton}
-				</div>
-			</div>
 		);
 	}
 }

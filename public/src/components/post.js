@@ -1,14 +1,14 @@
 import React from 'react'
 import { FormattedDate } from './reusable.js'
 import { ComposePost } from './composePost.js'
+import Markdown from 'react-remarkable'
 
 export class Post extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             post: {
-                creator: {},
-                medialinks: [{}]
+                creator: {}
             }
         }
     }
@@ -53,6 +53,7 @@ export class Post extends React.Component {
     		} else {
     			adminOptions = '';
     		}
+    		var hash = {html:true};
     		return (
     			<section className="post-view">
 					<img className="img-responsive cover-photo" src={this.state.post.coverPhotoURL} />
@@ -69,8 +70,7 @@ export class Post extends React.Component {
 						</small>
 						{adminOptions}
 					</div>
-					<p className="post-paragraph">{this.state.post.content}</p>
-    				<MediaLinks medialinks={this.state.post.medialinks} />
+					<Markdown source={this.state.post.content} options={hash} />
     			</section>
     		);
         }
@@ -100,42 +100,4 @@ class PostAdmin extends React.Component {
 			</div>
 		);
 	}	
-}
-
-class MediaLinks extends React.Component {
-    render() {
-        var mediaLinkNodes = this.props.medialinks.map(function(media) {
-            if (media.media == 'article') {
-                return (
-                    <div>
-                        <h3><a href={media.url}>Go to Page</a></h3>  
-                    </div>
-                );
-            } else if (media.media == 'youtube') {
-            	var rx = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
-            	var rxResult = media.url.match(rx);
-            	var embedURL = "https://www.youtube.com/embed/" + rxResult[1]; 
-                return (
-                    <div className="embed-responsive embed-responsive-16by9">
-					    <iframe className="embed-responsive-item" frameBorder="0" src={embedURL} allowFullScreen></iframe>
-					</div>
-                );
-            } else if (media.media == 'photo'){
-                return (
-                    <div className="img-responsive">
-						<img src={media.url} />
-					</div>
-                );
-            }
-        });
-        return (
-            <div className="row">
-				<div className="col-xs-0 col-sm-1 col-md-2 col-lg-2"></div>
-				<div className="col-xs-12 col-sm-10 col-md-8 col-lg-8">
-					{mediaLinkNodes}
-				</div>
-				<div className="col-xs-0 col-sm-1 col-md-2 col-lg-2"></div>
-			</div>
-        );
-    }
 }

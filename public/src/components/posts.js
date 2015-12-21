@@ -1,4 +1,5 @@
 import React from 'react'
+import Markdown from 'react-remarkable'
 
 export class Posts extends React.Component {
     constructor(props) {
@@ -65,7 +66,6 @@ class PostPreview extends React.Component {
 						</div>
 						<div className="media-body">
 							<h3 className="media-heading">{this.props.post.title}</h3>
-							<p>{short}</p>
 							<span>Click to read more.</span>
 						</div>
 					</div>

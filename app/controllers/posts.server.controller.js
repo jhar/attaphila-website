@@ -61,18 +61,8 @@ exports.create = function(req, res, next) {
         title: req.body.title,
         category: req.body.category,
         content: req.body.content,
-        coverPhotoURL: req.body.coverPhotoURL,
-        medialinks: []
+        coverPhotoURL: req.body.coverPhotoURL
     });
-    
-    if (req.body.medialinks) {
-        for (var i = 0; i < req.body.medialinks.length; i++) {
-            post.medialinks.push({
-                url: req.body.medialinks[i].url,
-                media: req.body.medialinks[i].media
-            });
-        }
-    }
 
     post.creator = req.user;
 
@@ -99,7 +89,6 @@ exports.update = function(req, res) {
     post.category = req.body.category;
     post.content = req.body.content;
     post.coverPhotoURL = req.body.coverPhotoURL;
-    post.medialinks = req.body.medialinks;
 
     post.save(function(err) {
         if (err) {

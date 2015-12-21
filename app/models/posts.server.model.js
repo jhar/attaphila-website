@@ -3,18 +3,6 @@ var mongoose = require('mongoose'),
 	
 var safe = {w: 1};
 
-var MediaLinksSchema = new Schema({
-	url: {
-		type: String,
-		required: true
-	},
-	media: {
-		type: String,
-		required: true,
-		enum: ['article', 'youtube', 'photo']
-	}
-}, {safe: safe});
-
 var PostsSchema = new Schema({
 	title: {
 		type: String,
@@ -37,7 +25,6 @@ var PostsSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'Users'
 	},
-	medialinks: [MediaLinksSchema],
 	coverPhotoURL: String
 }, {safe: safe});
 
