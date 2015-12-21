@@ -54,6 +54,7 @@ nav {
   border-bottom: 1px outset #e0e0e0;
   min-height: 48px;
   padding: 0 !important;
+  z-index: 3;
 }
 nav a {
   color: #43390a;
@@ -119,7 +120,7 @@ nav a {
 }
 /* Post View */
 .post-view {
-  margin: 74px auto;
+  margin: 98px auto;
   max-width: 86%;
 }
 @media only screen and (min-width: 960px) {
@@ -147,7 +148,7 @@ nav a {
 .post-view .title-container .post-category {
   display: block;
   font-weight: bold;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 .post-view .title-container .post-title {
   font-size: 32px;
