@@ -130,15 +130,17 @@ nav a {
 }
 .post-view .cover-photo {
   margin: 0 auto;
-  width: 100%;
 }
 .post-view .title-container {
   background-color: white;
+  color: black;
   margin: -48px auto 24px auto;
   max-width: 86%;
   padding: 12px;
   position: relative;
   z-index: 2;
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px #888888;
 }
 @media only screen and (min-width: 960px) {
   .post-view .title-container {
@@ -162,6 +164,7 @@ nav a {
   display: block;
 }
 .post-view .post-paragraph {
+  margin: 0 auto;
   max-width: 86%;
 }
 /* Footer */
