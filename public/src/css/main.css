@@ -166,6 +166,7 @@ nav a {
 .post-view iframe,
 .post-view img {
   display: block;
+  max-width: 100%;
   margin: 0 auto;
 }
 /* Footer */
