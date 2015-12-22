@@ -4,9 +4,7 @@ exports.render = function(req, res) {
 	}
 	req.session.lastVisit = new Date();
 	res.render('index', {
-		locals: {
-			title: 'Attaphila',
-			user: JSON.stringify(req.user)
-		}
+		title: 'Attaphila',
+		user: JSON.stringify(req.user)
 	});
 };
