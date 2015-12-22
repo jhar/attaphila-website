@@ -35,10 +35,10 @@ module.exports = function() {
 	app.use(passport.session());
 
 	// Routes
-	require('../app/routes/index.server.routes.js')(app);
 	require('../app/routes/users.server.routes.js')(app);
 	require('../app/routes/posts.server.routes.js')(app);
 	require('../app/routes/uploads.server.routes.js')(app);
+	require('../app/routes/index.server.routes.js')(app);
 
 	return app;
 };

@@ -19,6 +19,7 @@ class App extends React.Component {
         this.changeView = this.changeView.bind(this);
         this.handleResize = this.handleResize.bind(this);
         this.handleIconClick = this.handleIconClick.bind(this);
+        this.handleHash = this.handleHash.bind(this);
     }
     componentDidMount() {
         if(window.innerWidth < 768) {
@@ -33,6 +34,16 @@ class App extends React.Component {
             })
         }
         window.addEventListener('resize', this.handleResize);
+        window.onhashchange = this.handleHash();
+        this.handleHash();
+    }
+    handleHash() {
+        var hashArray = window.location.hash.substr(2).split("/");
+        if (hashArray[0] && !hashArray[1]) {
+            this.changeView('posts', {category: hashArray[0]}, false);    
+        } else if (hashArray[0] && hashArray[1]) {
+            this.changeView('post', {category: hashArray[0], postid: hashArray[1], mode: 'read'}, false);
+        }
     }
     handleIconClick() {
         if(this.state.categoryNav == true) {
@@ -57,8 +68,8 @@ class App extends React.Component {
                 categoryNav: true
             })
         }
-    } 
-    changeView(view, params) {
+    }
+    changeView(view, params, changeHash) {
         this.setState({
             view: view,
             category: params.category,
@@ -66,6 +77,13 @@ class App extends React.Component {
             mode: params.mode
         });
         this.handleResize();
+        if (params.category && !params.postid) {
+            window.location.hash = "#/" + params.category;
+        } else if (params.category && params.postid) {
+            window.location.hash = "#/" + params.category + "/" + params.postid;
+        } else {
+            window.location.hash = '';
+        }
     }
     render() {
         var viewControl;
