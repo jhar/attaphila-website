@@ -46,15 +46,9 @@ class App extends React.Component {
         }
     }
     handleIconClick() {
-        if(this.state.categoryNav == true) {
-            this.setState({
-                categoryNav: false
-            });
-        } else {
-            this.setState({
-                categoryNav: true
-            })
-        }
+        this.setState({
+            categoryNav: !this.state.categoryNav 
+        });
     }
     handleResize(event) {
         if(window.innerWidth < 768) {
