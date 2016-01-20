@@ -42,6 +42,11 @@ export class Posts extends React.Component {
 				</PostPreview>
 			);	
 		}.bind(this));
+		if (this.state.data.length === 0) {
+			return (
+				<h2>No posts to show</h2>	
+			);
+		}
 		return (
 			<section className="posts-view">
 				{postPreviewNodes}	
