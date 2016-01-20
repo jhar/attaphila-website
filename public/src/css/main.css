@@ -118,6 +118,9 @@ nav a {
 .posts-view .media-object {
   max-width: 128px;
 }
+.posts-view .no-posts {
+  margin: 70px 20px;
+}
 /* Post View */
 .post-view {
   margin: 98px auto;

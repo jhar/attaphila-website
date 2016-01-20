@@ -44,14 +44,17 @@ export class Posts extends React.Component {
 		}.bind(this));
 		if (this.state.data.length === 0) {
 			return (
-				<h2>No posts to show</h2>	
+				<section className="posts-view">
+					<h2 className="no-posts">No posts to show</h2>
+				</section>
+			);
+		} else {
+			return (
+				<section className="posts-view">
+					{postPreviewNodes}	
+				</section>	
 			);
 		}
-		return (
-			<section className="posts-view">
-				{postPreviewNodes}	
-			</section>	
-		);
 	}
 }
 
